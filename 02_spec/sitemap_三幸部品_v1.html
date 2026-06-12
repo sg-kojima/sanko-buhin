@@ -4,746 +4,606 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>サイト仕様書 vol.01 ｜ 株式会社三幸部品</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&family=Noto+Serif+JP:wght@400;600;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&family=Noto+Serif+JP:wght@400;600;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --accent: #C8000A;
-    --dark: #1a1a1a;
-    --gray: #666;
-    --light-gray: #f5f5f5;
-    --border: #e0e0e0;
-    --white: #ffffff;
+    --navy:         #1b3a5c;
+    --navy-mid:     #2d5a8e;
+    --navy-light:   #e8f0f8;
+    --gold:         #b8810a;
+    --gold-light:   #fef7e7;
+    --text:         #1a2330;
+    --muted:        #5a6472;
+    --border:       #b8c8d8;
+    --border-light: #d8e4ee;
+    --bg:           #f4f7fa;
+    --white:        #ffffff;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 14px;
-    color: var(--dark);
-    background: #e8e8e8;
-    line-height: 1.8;
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    font-size: 12px;
+    color: var(--text);
+    background: #8fa5be;
+    line-height: 1.75;
   }
   .page {
-    width: 210mm;
-    min-height: 297mm;
+    width: 297mm;
+    min-height: 210mm;
     background: var(--white);
-    margin: 0 auto 20px;
-    padding: 20mm 18mm 18mm;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    margin: 16px auto;
+    padding: 11mm 15mm;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.12);
     position: relative;
-  }
-  @media print {
-    body { background: white; }
-    .page { margin: 0; padding: 15mm 15mm 12mm; box-shadow: none; page-break-after: always; }
-    .page:last-child { page-break-after: auto; }
+    overflow: hidden;
   }
 
-  /* ── 表紙 ── */
-  .cover { display: flex; flex-direction: column; justify-content: space-between; min-height: 257mm; }
-  .cover-label { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
-  .cover-title { font-size: 40px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
-  .cover-vol { font-size: 13px; color: var(--gray); font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
-  .cover-client { margin-top: 52px; padding-top: 28px; border-top: 3px solid var(--dark); }
-  .cover-client-label { font-size: 11px; color: var(--gray); font-family: 'DM Mono', monospace; letter-spacing: 0.08em; margin-bottom: 8px; }
-  .cover-client-name { font-size: 24px; font-weight: 700; }
-  .cover-desc { margin-top: 28px; font-size: 12.5px; color: var(--gray); line-height: 2.1; }
-  .cover-bottom { border-top: 1px solid var(--border); padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; }
-  .cover-info { font-size: 12px; line-height: 2; }
-  .cover-info .lbl { color: var(--gray); font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
-  .cover-date { font-family: 'DM Mono', monospace; font-size: 13px; color: #bbb; }
+  /* ── ページヘッダー ── */
+  .ph { display: flex; justify-content: space-between; align-items: center; padding-bottom: 5px; border-bottom: 1px solid var(--border); margin-bottom: 14px; font-size: 9px; color: var(--muted); }
+  .ph-brand { font-weight: 700; color: var(--navy); font-size: 9.5px; letter-spacing: 0.03em; }
 
-  /* ── ページ共通ヘッダー ── */
-  .page-header { border-bottom: 2px solid var(--dark); padding-bottom: 10px; margin-bottom: 28px; display: flex; align-items: baseline; gap: 16px; }
-  .page-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.08em; }
-  .page-title { font-size: 22px; font-weight: 700; letter-spacing: 0.02em; }
+  /* ── セクションヘッダー ── */
+  .sh { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--navy); }
+  .sh-num { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1; color: var(--gold); opacity: 0.45; flex-shrink: 0; }
+  .sh-body { display: flex; flex-direction: column; gap: 1px; }
+  .sh-title { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: 0.04em; }
+  .sh-sub { font-size: 9px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
 
-  /* ── フッター ── */
-  .page-footer { position: absolute; bottom: 10mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; font-size: 10px; color: #bbb; font-family: 'DM Mono', monospace; border-top: 1px solid #eee; padding-top: 5px; }
+  /* ── サブヘッド ── */
+  .sub-head { font-size: 11px; font-weight: 700; color: var(--text); padding-left: 9px; border-left: 3px solid var(--gold); margin: 14px 0 6px; }
+  .sub-head:first-child { margin-top: 0; }
 
-  /* ── 目次 ── */
-  .toc-list { list-style: none; margin-top: 8px; }
-  .toc-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
-  .toc-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); width: 38px; flex-shrink: 0; }
-  .toc-name { flex: 1; }
-  .toc-dots { flex: 1; border-bottom: 1px dotted #ccc; margin: 0 10px; position: relative; top: -3px; min-width: 20px; }
-  .toc-page { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gray); }
+  /* ── info-table ── */
+  .info-table { width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed; margin-bottom: 2px; }
+  .info-table th { width: 22%; background: var(--navy-light); color: var(--navy); font-weight: 600; padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; }
+  .info-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; background: var(--white); line-height: 1.7; }
+  .info-table tr:nth-child(even) td { background: var(--bg); }
+
+  /* ── sitemap-table ── */
+  .sitemap-table { width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed; }
+  .sitemap-table thead th { background: var(--navy); color: var(--white); font-weight: 600; padding: 7px 8px; border: 1px solid var(--navy); text-align: left; }
+  .sitemap-table tbody td { padding: 5px 8px; border: 1px solid var(--border); vertical-align: top; background: var(--white); line-height: 1.65; }
+  .sitemap-table tbody tr:nth-child(even) td { background: var(--bg); }
+  .sm-url { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--navy-mid); }
+  .td-name { font-weight: 600; color: var(--navy); }
+  .badge { display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 10px; color: #fff; margin-left: 3px; white-space: nowrap; vertical-align: middle; font-weight: 700; }
+  .badge-star { background: var(--gold); }
+  .badge-cms  { background: var(--navy); }
+  .badge-form { background: #1565c0; }
+  .badge-gray { background: #888; }
+  .sm-legend { display: flex; gap: 20px; font-size: 10px; color: var(--muted); margin-top: 8px; }
+  .sm-count { text-align: right; font-size: 10px; color: var(--muted); margin-top: 4px; }
+  .sm-count strong { color: var(--navy); font-size: 13px; }
+
+  /* ── schedule-table ── */
+  .sch-table { width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed; }
+  .sch-table thead th { background: var(--navy); color: var(--white); font-weight: 600; padding: 7px 10px; border: 1px solid var(--navy); text-align: left; }
+  .sch-table tbody td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; background: var(--white); line-height: 1.65; }
+  .sch-table tbody tr:nth-child(even) td { background: var(--bg); }
+  .badge-tbd { display: inline-block; background: #f3f4f6; color: var(--muted); font-size: 10px; padding: 2px 8px; border-radius: 4px; }
+  .badge-now { display: inline-block; background: var(--gold-light); color: var(--gold); font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 700; border: 1px solid var(--gold); }
 
   /* ── 制作の流れ ── */
-  .flow-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 32px; align-items: center; }
-  .flow-box { background: var(--dark); color: white; padding: 10px 12px; font-size: 11.5px; font-weight: 500; text-align: center; min-width: 66px; line-height: 1.5; }
-  .flow-box.hl { background: var(--accent); }
-  .flow-arrow { color: #bbb; font-size: 14px; line-height: 1; }
-  .flow-note { background: var(--light-gray); padding: 14px 18px; font-size: 12px; line-height: 2.1; border-left: 3px solid var(--accent); margin-top: 24px; }
+  .fd-period { text-align: right; font-size: 10px; color: var(--muted); margin-bottom: 6px; }
+  .fd-steps { display: grid; grid-template-columns: repeat(10, 1fr); gap: 0 5px; margin-bottom: 5px; }
+  .fd-step { position: relative; display: flex; justify-content: center; }
+  .fd-step:not(:first-child)::before { content: '→'; position: absolute; left: -1px; top: 50%; transform: translate(-50%, -50%); font-size: 10px; color: #aaa; z-index: 3; background: #fff; line-height: 1; padding: 1px 0; }
+  .fd-box { writing-mode: vertical-rl; text-orientation: mixed; padding: 10px 6px; font-size: 10px; font-weight: 500; min-height: 88px; width: 100%; display: flex; align-items: center; justify-content: center; border-radius: 3px; letter-spacing: 0.08em; line-height: 1.4; text-align: center; }
+  .fd-step.done    .fd-box { background: #e5e5e5; color: #888; border: 1px solid #ccc; }
+  .fd-step.current .fd-box { background: var(--navy-light); border: 2px dashed var(--navy-mid); color: var(--navy); font-weight: 700; }
+  .fd-step.pending .fd-box { background: var(--gold-light); border: 1px solid #ddb96e; color: #7a5a00; }
+  .fd-roles { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px 5px; margin-top: 6px; }
+  .fd-role { padding: 5px 6px; font-size: 9px; font-weight: 700; text-align: center; border-radius: 2px; display: flex; align-items: center; justify-content: center; }
+  .fd-role.advisor  { grid-column: 1 / 4;  background: #e0e0e0; color: #555; }
+  .fd-role.director { grid-column: 4 / 11; background: var(--navy-light); color: var(--navy); }
+  .fd-role.designer { grid-column: 6 / 11; background: var(--gold-light); color: #7a5a00; }
+  .fd-notes { margin-top: 12px; font-size: 10px; color: var(--muted); background: var(--bg); border-left: 3px solid var(--border); padding: 8px 12px; line-height: 1.9; }
 
-  /* ── 汎用 info block ── */
-  .info-block { margin-bottom: 28px; }
-  .info-label { font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
-  .info-body { font-size: 13.5px; line-height: 2; }
-  .tbd { display: inline-block; background: #fff0f0; color: var(--accent); font-size: 10px; font-family: 'DM Mono', monospace; padding: 1px 7px; border: 1px solid #ffc0c0; border-radius: 3px; margin-left: 4px; vertical-align: middle; }
-
-  /* ── 基本情報テーブル ── */
-  .info-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .info-table th { width: 130px; background: var(--light-gray); padding: 10px 14px; font-weight: 500; border: 1px solid var(--border); text-align: left; vertical-align: top; white-space: nowrap; }
-  .info-table td { padding: 10px 14px; border: 1px solid var(--border); vertical-align: top; line-height: 1.9; }
-
-  /* ── サイトマップ ── */
-  .sitemap-legend { font-size: 12px; color: var(--gray); margin-bottom: 12px; display: flex; gap: 16px; align-items: center; }
-  .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 3px; font-family: 'DM Mono', monospace; letter-spacing: 0.03em; }
-  .badge-cms { background: #e8f5e9; color: #2e7d32; }
-  .badge-form { background: #e3f2fd; color: #1565c0; }
-  .badge-static { background: var(--light-gray); color: var(--gray); border: 1px solid var(--border); }
-  .badge-star { color: var(--accent); font-weight: 700; font-size: 13px; }
-  .sitemap-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .sitemap-table th { background: var(--dark); color: white; padding: 8px 12px; font-weight: 500; font-size: 11px; letter-spacing: 0.04em; text-align: left; }
-  .sitemap-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.7; }
-  .sitemap-table tr:nth-child(even) td { background: #fafafa; }
-  .sitemap-table td:first-child { text-align: center; font-family: 'DM Mono', monospace; font-size: 11px; color: #bbb; }
-
-  /* ── デザインカード ── */
-  .design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .design-card { border: 1px solid var(--border); padding: 16px 18px; }
-  .design-card-title { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-  .design-card-body { font-size: 12.5px; line-height: 1.95; }
+  /* ── カラーパレット ── */
+  .color-palette { display: flex; gap: 14px; margin: 8px 0 12px; }
+  .color-chip { flex: 0 0 calc(20% - 12px); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+  .color-swatch { height: 44px; }
+  .color-info { padding: 7px 9px; background: var(--bg); }
+  .color-info .c-hex  { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .color-info .c-role { font-size: 10px; color: var(--navy); font-weight: 500; margin-bottom: 2px; }
+  .color-info .c-desc { font-size: 9px; color: var(--muted); line-height: 1.5; }
 
   /* ── フォントカード ── */
-  .font-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .font-card { border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
-  .font-card-head { padding: 7px 12px; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.04em; background: var(--dark); color: white; }
-  .font-card-head.rec { background: var(--accent); }
-  .font-hero-area { padding: 14px 14px 12px; border-bottom: 1px solid var(--border); }
-  .f-brand { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--gray); text-transform: uppercase; margin-bottom: 6px; }
-  .f-catch { line-height: 1.35; margin-bottom: 6px; }
-  .f-sub { font-size: 10.5px; color: var(--gray); line-height: 1.75; }
-  .font-content-area { padding: 10px 14px; flex: 1; }
-  .f-label { font-family: 'Courier New', monospace; font-size: 8.5px; color: #aaa; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 8px; margin-bottom: 2px; }
-  .f-label:first-child { margin-top: 0; }
-  .f-heading { font-weight: 700; font-size: 13px; }
-  .f-body { font-size: 11px; line-height: 1.75; color: #333; }
-  .f-btn { display: inline-block; background: var(--dark); color: white; padding: 4px 12px; font-size: 10.5px; margin-top: 2px; }
-  .f-stat { font-size: 22px; font-weight: 700; color: var(--accent); }
-  .f-unit { font-size: 11px; color: var(--gray); }
-  .font-foot { background: var(--light-gray); padding: 8px 14px; font-size: 10px; color: var(--gray); line-height: 1.75; border-top: 1px solid var(--border); }
+  .font-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .font-card { border: 1px solid var(--border); border-top: 3px solid var(--border-light); border-radius: 3px; overflow: hidden; }
+  .font-card.recommended { border-top-color: var(--navy); }
+  .font-card-header { background: var(--bg); padding: 7px 12px; font-size: 10px; font-weight: 700; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+  .font-card-header.rec-hd { background: var(--navy); color: var(--white); }
+  .rec-tag { background: var(--gold); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+  .font-card-hero { padding: 12px; border-bottom: 1px solid var(--border-light); }
+  .hero-brand { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; }
+  .hero-catch { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.55; margin-bottom: 5px; }
+  .hero-sub { font-size: 10px; color: var(--muted); line-height: 1.65; }
+  .fa .hero-catch { font-family: 'Noto Sans JP', sans-serif; }
+  .fa .hero-sub   { font-family: 'Noto Sans JP', sans-serif; }
+  .fb .hero-catch { font-family: 'Noto Serif JP', serif; }
+  .fb .hero-sub   { font-family: 'Noto Sans JP', sans-serif; }
+  .fc .hero-catch { font-family: 'M PLUS Rounded 1c', sans-serif; }
+  .fc .hero-sub   { font-family: 'M PLUS Rounded 1c', sans-serif; }
+  .font-card-content { padding: 10px 12px; border-bottom: 1px solid var(--border-light); }
+  .fcl { font-size: 9px; color: var(--muted); margin-bottom: 2px; font-weight: 500; font-family: 'DM Mono', monospace; }
+  .fct { margin-bottom: 8px; }
+  .fa .fct.heading { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); }
+  .fa .fct.body    { font-family: 'Noto Sans JP', sans-serif; font-size: 10px; color: #374151; line-height: 1.75; }
+  .fa .fct.btn     { font-family: 'Noto Sans JP', sans-serif; }
+  .fa .fct.stat    { font-family: 'DM Mono', monospace; }
+  .fb .fct.heading { font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 700; color: var(--navy); }
+  .fb .fct.body    { font-family: 'Noto Sans JP', sans-serif; font-size: 10px; color: #374151; line-height: 1.75; }
+  .fb .fct.btn     { font-family: 'Noto Sans JP', sans-serif; }
+  .fb .fct.stat    { font-family: 'DM Serif Display', serif; }
+  .fc .fct.heading { font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); }
+  .fc .fct.body    { font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 10px; color: #374151; line-height: 1.75; }
+  .fc .fct.btn     { font-family: 'M PLUS Rounded 1c', sans-serif; }
+  .fc .fct.stat    { font-family: 'M PLUS Rounded 1c', sans-serif; }
+  .fct.btn { display: inline-block; padding: 4px 12px; border-radius: 3px; font-size: 10px; font-weight: 600; background: var(--navy); color: var(--white); }
+  .fct.stat { font-size: 20px; font-weight: 700; color: var(--navy); }
+  .font-card-footer { padding: 8px 12px; background: var(--bg); font-size: 10px; color: var(--muted); }
+  .font-names { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--navy); font-size: 10px; display: block; margin-bottom: 2px; }
 
   /* ── 参考サイト ── */
-  .ref-card { border: 1px solid var(--border); padding: 16px 18px; margin-bottom: 14px; display: flex; gap: 18px; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 22px; color: var(--accent); font-weight: 500; min-width: 28px; line-height: 1; padding-top: 2px; }
-  .ref-name { font-weight: 700; font-size: 13.5px; margin-bottom: 4px; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--gray); margin-bottom: 8px; }
-  .ref-point-head { font-size: 10px; color: var(--accent); font-weight: 700; margin-bottom: 4px; letter-spacing: 0.04em; }
-  .ref-point { font-size: 12px; color: #444; line-height: 1.85; }
+  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ref-card { border: 1px solid var(--border); border-top: 3px solid var(--gold); border-radius: 3px; }
+  .ref-card-body { padding: 12px 14px; }
+  .ref-num { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); display: block; margin-bottom: 3px; }
+  .ref-card-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .ref-card-url { font-size: 9.5px; color: var(--navy-mid); font-family: 'DM Mono', monospace; margin-bottom: 6px; }
+  .ref-tag { display: inline-block; background: var(--navy-light); color: var(--navy); font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 2px; margin: 0 3px 5px 0; }
+  .ref-note { font-size: 10.5px; color: #374151; line-height: 1.8; }
 
-  /* ── スケジュール ── */
-  .schedule-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .schedule-table th { background: var(--dark); color: white; padding: 8px 12px; font-size: 11px; font-weight: 500; text-align: left; }
-  .schedule-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); line-height: 1.7; }
-  .schedule-table tr:nth-child(even) td { background: #fafafa; }
-  .tbd-date { font-family: 'DM Mono', monospace; font-size: 12px; color: #bbb; }
+  /* ── ターゲットグリッド ── */
+  .target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .target-card { border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .target-card-head { background: var(--navy); color: var(--white); padding: 6px 12px; font-size: 10px; font-weight: 700; }
+  .target-card-body { padding: 10px 12px; font-size: 10.5px; color: var(--text); line-height: 1.75; }
 
-  /* ── MTG確認事項 ── */
-  .mtg-section { margin-bottom: 22px; }
-  .mtg-section-title { font-size: 12.5px; font-weight: 700; color: var(--accent); border-bottom: 1px solid #ffc0c0; padding-bottom: 5px; margin-bottom: 10px; }
+  /* ── 強みカード ── */
+  .strength-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+  .strength-card { border: 1px solid var(--border); border-radius: 4px; padding: 12px; }
+  .s-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--gold); opacity: 0.4; line-height: 1; margin-bottom: 4px; }
+  .s-title { font-size: 11px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .s-desc { font-size: 10px; color: var(--muted); line-height: 1.7; }
+
+  /* ── TBDバッジ ── */
+  .tbd { display: inline-block; background: #fef3c7; color: #92400e; font-size: 9px; font-family: 'DM Mono', monospace; padding: 1px 6px; border: 1px solid #fcd34d; border-radius: 3px; margin-left: 4px; }
+
+  /* ── ノートボックス ── */
+  .note-box { background: var(--bg); border-left: 3px solid var(--border); padding: 8px 12px; margin-top: 10px; font-size: 10px; color: var(--muted); line-height: 1.85; }
+  .gold-box { background: var(--gold-light); border-left: 3px solid var(--gold); padding: 10px 14px; margin-top: 12px; font-size: 10.5px; color: var(--text); line-height: 1.85; }
+
+  /* ── MTG確認リスト ── */
+  .mtg-section { margin-bottom: 16px; }
+  .mtg-section-title { font-size: 11px; font-weight: 700; color: var(--navy); border-bottom: 1px solid var(--border); padding-bottom: 4px; margin-bottom: 8px; }
   .mtg-list { list-style: none; }
-  .mtg-item { font-size: 12.5px; padding: 7px 0; border-bottom: 1px dotted var(--border); display: flex; gap: 9px; line-height: 1.75; }
-  .mtg-item::before { content: '□'; color: var(--accent); flex-shrink: 0; font-size: 13px; }
-  .mtg-note { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 12px 16px; font-size: 12px; line-height: 2.1; margin-top: 20px; }
+  .mtg-item { font-size: 11px; padding: 5px 0; border-bottom: 1px dotted var(--border-light); display: flex; gap: 8px; line-height: 1.65; }
+  .mtg-item::before { content: '□'; color: var(--gold); flex-shrink: 0; font-size: 12px; }
+
+  /* ── 表紙 ── */
+  .cover-page { display: flex; flex-direction: column; justify-content: space-between; min-height: 210mm; padding: 0; }
+  .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 14mm 18mm 10mm 22mm; position: relative; }
+  .cover-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 7px; background: var(--gold); }
+  .cover-label { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .cover-client { font-family: 'Noto Sans JP', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px; letter-spacing: 0.02em; line-height: 1.45; }
+  .cover-brand { font-size: 11px; color: var(--muted); margin-bottom: 28px; font-family: 'DM Mono', monospace; }
+  .cover-title { font-family: 'Noto Sans JP', sans-serif; font-size: 44px; font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 6px; }
+  .cover-vol { font-size: 13px; color: var(--gold); letter-spacing: 0.14em; margin-bottom: 44px; }
+  .cover-meta { display: flex; gap: 44px; }
+  .cover-meta-item label { display: block; font-size: 9px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; }
+  .cover-meta-item span { font-size: 12px; color: var(--text); font-weight: 500; }
+  .cover-foot { background: var(--navy); padding: 12px 22mm; display: flex; align-items: center; gap: 6px; }
+  .cover-foot-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-right: 10px; flex-shrink: 0; }
+  .cover-foot-item { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.65); font-size: 10px; padding-right: 16px; margin-right: 16px; border-right: 1px solid rgba(255,255,255,0.15); }
+  .cover-foot-item:last-child { border-right: none; }
+  .cover-foot-item-num { font-family: 'DM Serif Display', serif; font-size: 16px; color: rgba(255,255,255,0.3); line-height: 1; }
+
+  /* ── 目次 ── */
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 52px; margin-top: 8px; }
+  .toc-item { display: flex; align-items: baseline; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border-light); }
+  .toc-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--gold); opacity: 0.35; line-height: 1; flex-shrink: 0; }
+  .toc-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .toc-en { font-size: 9px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-left: 6px; }
+
+  /* ── 印刷設定 ── */
+  @page { size: A4 landscape; margin: 0; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { width: 297mm; margin: 0; padding: 0; background: #fff; }
+    .page { width: 297mm; height: 210mm; overflow: hidden; margin: 0; padding: 11mm 15mm; box-shadow: none; page-break-after: always; break-after: page; }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+    .cover-page { padding: 0; }
+    .cover-main { padding: 14mm 18mm 10mm 22mm; }
+    .fd-steps, .fd-roles { display: grid !important; grid-template-columns: repeat(10, 1fr) !important; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ① 表紙 -->
-<div class="page">
-  <div class="cover">
-    <div>
-      <div class="cover-label">SITE SPECIFICATION DOCUMENT</div>
-      <div class="cover-title">サイト仕様書</div>
-      <div class="cover-vol">vol.01 &nbsp;/&nbsp; 2026.06.12</div>
-      <div class="cover-client">
-        <div class="cover-client-label">CLIENT</div>
-        <div class="cover-client-name">株式会社三幸部品 御中</div>
-      </div>
-      <div class="cover-desc">
-        本書は、株式会社三幸部品様のウェブサイト制作にあたり、<br>
-        制作内容・ページ構成・スケジュールをまとめた仕様書です。<br>
-        内容をご確認いただき、ご不明点はお気軽にお申し付けください。
-      </div>
-    </div>
-    <div>
-      <div class="cover-bottom">
-        <div class="cover-info">
-          <div class="lbl">DIRECTOR</div>
-          <div><strong>株式会社Stage Group</strong></div>
-          <div>ディレクター：小島 Megumi</div>
-          <div>k_kojima@stagegroup.jp</div>
-        </div>
-        <div class="cover-date">2026.06.12</div>
-      </div>
+<!-- P1：表紙 -->
+<div class="page cover-page">
+  <div class="cover-main">
+    <div class="cover-bar"></div>
+    <div class="cover-label">Web Site Specification Document</div>
+    <div class="cover-client">株式会社三幸部品 御中</div>
+    <div class="cover-brand">新規ウェブサイト制作（コーポレート＋採用サイト）</div>
+    <div class="cover-title">サイト仕様書</div>
+    <div class="cover-vol">vol. 01</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><label>作成日</label><span>2026年6月12日</span></div>
+      <div class="cover-meta-item"><label>ディレクター</label><span>小島 Megumi</span></div>
+      <div class="cover-meta-item"><label>メール</label><span>k_kojima@stagegroup.jp</span></div>
     </div>
   </div>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
+  <div class="cover-foot">
+    <span class="cover-foot-label">Scope</span>
+    <div style="display:flex;flex-wrap:wrap;">
+      <div class="cover-foot-item"><span class="cover-foot-item-num">10</span><span>ページ構成（PC＆スマホ対応）</span></div>
+      <div class="cover-foot-item"><span>CMS対応（新着情報）あり</span></div>
+      <div class="cover-foot-item"><span>お問い合わせ・エントリーフォームあり</span></div>
+      <div class="cover-foot-item"><span>公開目標：MTGにて確認</span></div>
+    </div>
   </div>
 </div>
 
-<!-- ② 目次 -->
+<!-- P2：目次 -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">INDEX</span>
-    <span class="page-title">目次</span>
-  </div>
-  <ul class="toc-list">
-    <li class="toc-item"><span class="toc-num">01</span><span class="toc-name">制作の流れ</span><span class="toc-dots"></span><span class="toc-page">03</span></li>
-    <li class="toc-item"><span class="toc-num">02</span><span class="toc-name">ホームページの構成</span><span class="toc-dots"></span><span class="toc-page">04</span></li>
-    <li class="toc-item"><span class="toc-num">03</span><span class="toc-name">サイト基本情報</span><span class="toc-dots"></span><span class="toc-page">05</span></li>
-    <li class="toc-item"><span class="toc-num">04</span><span class="toc-name">サイトマップ</span><span class="toc-dots"></span><span class="toc-page">06</span></li>
-    <li class="toc-item"><span class="toc-num">05</span><span class="toc-name">デザインについて</span><span class="toc-dots"></span><span class="toc-page">07</span></li>
-    <li class="toc-item"><span class="toc-num">06</span><span class="toc-name">フォントについて</span><span class="toc-dots"></span><span class="toc-page">08</span></li>
-    <li class="toc-item"><span class="toc-num">07</span><span class="toc-name">デザイン参考サイト</span><span class="toc-dots"></span><span class="toc-page">09</span></li>
-    <li class="toc-item"><span class="toc-num">08</span><span class="toc-name">今後のスケジュール</span><span class="toc-dots"></span><span class="toc-page">10</span></li>
-    <li class="toc-item" style="border-bottom:none;"><span class="toc-num" style="color:#f59e0b;">—</span><span class="toc-name" style="color:var(--accent);font-weight:500;">事前MTGで確認する事項</span><span class="toc-dots"></span><span class="toc-page">11</span></li>
-  </ul>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>Table of Contents</span></div>
+  <div class="sh"><span class="sh-num">—</span><div class="sh-body"><span class="sh-title">目次</span><span class="sh-sub">Table of Contents</span></div></div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01</span><div><div class="toc-name">制作の流れ</div><span class="toc-en">Production Flow</span></div></div>
+    <div class="toc-item"><span class="toc-num">02</span><div><div class="toc-name">ホームページの構成</div><span class="toc-en">Site Strategy</span></div></div>
+    <div class="toc-item"><span class="toc-num">03</span><div><div class="toc-name">サイト基本情報</div><span class="toc-en">Basic Information</span></div></div>
+    <div class="toc-item"><span class="toc-num">04</span><div><div class="toc-name">サイトマップ</div><span class="toc-en">Sitemap</span></div></div>
+    <div class="toc-item"><span class="toc-num">05</span><div><div class="toc-name">デザインについて</div><span class="toc-en">Design Direction</span></div></div>
+    <div class="toc-item"><span class="toc-num">06</span><div><div class="toc-name">フォントについて</div><span class="toc-en">Typography</span></div></div>
+    <div class="toc-item"><span class="toc-num">07</span><div><div class="toc-name">デザイン参考サイト</div><span class="toc-en">Reference Sites</span></div></div>
+    <div class="toc-item"><span class="toc-num">08</span><div><div class="toc-name">今後のスケジュール</div><span class="toc-en">Schedule</span></div></div>
   </div>
 </div>
 
-<!-- ③ 制作の流れ -->
+<!-- P3：制作の流れ -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">01</span>
-    <span class="page-title">制作の流れ</span>
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>01 — Production Flow</span></div>
+  <div class="sh"><span class="sh-num">01</span><div class="sh-body"><span class="sh-title">制作の流れ</span><span class="sh-sub">Production Flow</span></div></div>
+  <div class="fd-period">制作期間の目安：約 3〜4ヶ月（公開目標：<span class="badge-tbd">TBD</span>）</div>
+  <div class="fd-steps">
+    <div class="fd-step current"><div class="fd-box">ヒアリング</div></div>
+    <div class="fd-step pending"><div class="fd-box">ご提案</div></div>
+    <div class="fd-step pending"><div class="fd-box">ご契約</div></div>
+    <div class="fd-step pending"><div class="fd-box">お打ち合わせ</div></div>
+    <div class="fd-step pending"><div class="fd-box">レイアウト案作成</div></div>
+    <div class="fd-step pending"><div class="fd-box">デザイン案作成</div></div>
+    <div class="fd-step pending"><div class="fd-box">コーディング</div></div>
+    <div class="fd-step pending"><div class="fd-box">プログラム制作</div></div>
+    <div class="fd-step pending"><div class="fd-box">テスト・最終確認</div></div>
+    <div class="fd-step pending"><div class="fd-box">公開</div></div>
   </div>
-  <div class="flow-steps">
-    <div class="flow-box">ヒアリング</div><span class="flow-arrow">›</span>
-    <div class="flow-box">ご提案</div><span class="flow-arrow">›</span>
-    <div class="flow-box">ご契約</div><span class="flow-arrow">›</span>
-    <div class="flow-box">お打ち<br>合わせ</div><span class="flow-arrow">›</span>
-    <div class="flow-box">レイアウト<br>案作成</div><span class="flow-arrow">›</span>
-    <div class="flow-box hl">デザイン<br>案作成</div><span class="flow-arrow">›</span>
-    <div class="flow-box">コーディング</div><span class="flow-arrow">›</span>
-    <div class="flow-box">プログラム<br>制作</div><span class="flow-arrow">›</span>
-    <div class="flow-box">テスト・<br>最終確認</div><span class="flow-arrow">›</span>
-    <div class="flow-box hl">公開</div>
+  <div class="fd-roles">
+    <div class="fd-role advisor">営業</div>
+    <div class="fd-role director">ディレクター</div>
+    <div class="fd-role designer">デザイナー／コーダー</div>
   </div>
-  <div style="margin-bottom:24px;">
-    <div class="info-label">制作期間の目安</div>
-    <div class="info-body">ご契約後より約 <strong>3〜4ヶ月</strong>（素材・テキストのご提供状況によって前後します）</div>
-  </div>
-  <div class="flow-note">
-    ※ 制作期間は写真・テキスト等の素材ご提供状況や確認フローによって前後する場合があります。<br>
-    ※ 各工程でのご確認・ご承認後に次工程へ進みます。工程の後戻りが発生しないよう、確認はお早めにお願いいたします。
-  </div>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
+  <div class="fd-notes">
+    ※ 制作期間はお客様のご確認状況・素材ご提供状況により前後することがあります。スムーズな進行のため、ご確認の期日目安を各フェーズでお伝えします。<br>
+    ※ 一度確定した工程を後戻りする場合は、追加の費用・期間が発生することがあります。あらかじめご了承ください。
   </div>
 </div>
 
-<!-- ④ ホームページの構成 -->
+<!-- P4：ホームページの構成 -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">02</span>
-    <span class="page-title">ホームページの構成</span>
-  </div>
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>02 — Site Strategy</span></div>
+  <div class="sh"><span class="sh-num">02</span><div class="sh-body"><span class="sh-title">ホームページの構成</span><span class="sh-sub">Purpose / Target / Strength</span></div></div>
 
-  <div class="info-block">
-    <div class="info-label">PURPOSE ／ 目的</div>
-    <div class="info-body">
-      <strong>採用強化を最優先</strong>とし、求職者に対して「働く魅力」「職場環境」「社員の声」をわかりやすく伝えます。<br>
-      同時に、取引先・新規顧客向けのサービス紹介・問い合わせ窓口としても機能させ、<br>
-      会社全体の信頼感・ブランディング向上を目的とします。
-    </div>
-  </div>
-
-  <div class="info-block">
-    <div class="info-label">TARGET ／ ターゲット</div>
-    <div class="info-body">
-      <strong>採用ターゲット（メイン）</strong>：自動車部品業界・製造業への転職を検討している求職者<br>
-      　→ 年齢層・経験有無・募集職種は事前MTGにて確認予定<span class="tbd">TBD</span><br>
-      <br>
-      <strong>BtoBターゲット（サブ）</strong>：サービス導入・取引を検討している企業の担当者<span class="tbd">TBD</span>
-    </div>
-  </div>
-
-  <div class="info-block">
-    <div class="info-label">STRENGTH ／ 優位性・強み</div>
-    <div class="info-body" style="color:#999;">
-      ※ 事前MTGにて確認・整理予定<span class="tbd">TBD</span><br><br>
-      <span style="color:#aaa;">確認予定の項目：<br>
-      　▸ 創業年数・取引実績（取引先数・供給実績など）<br>
-      　▸ 競合他社との差別化ポイント<br>
-      　▸ 自動車部品の取扱い範囲・得意とする専門領域<br>
-      　▸ 採用訴求ポイント（働く環境・社風・成長機会など）</span>
-    </div>
-  </div>
-
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
-  </div>
-</div>
-
-<!-- ⑤ サイト基本情報 -->
-<div class="page">
-  <div class="page-header">
-    <span class="page-num">03</span>
-    <span class="page-title">サイト基本情報</span>
-  </div>
+  <div class="sub-head">制作目的</div>
   <table class="info-table">
-    <tr>
-      <th>サイト名</th>
-      <td>株式会社三幸部品<span class="tbd">TBD</span><br><small style="color:#aaa;">正式なサイト名称・キャッチフレーズは確認後決定</small></td>
-    </tr>
-    <tr>
-      <th>ドメイン名</th>
-      <td><span class="tbd">TBD</span>　取得状況・希望ドメインをMTGで確認</td>
-    </tr>
-    <tr>
-      <th>SEOキーワード</th>
-      <td><span class="tbd">TBD</span>　仕様書確定後に別途SEO資料にて整理</td>
-    </tr>
-    <tr>
-      <th>ページ数</th>
-      <td>全 <strong>10ページ</strong>（静的コンテンツ ＋ 更新機能付きページ ＋ メールフォーム）</td>
-    </tr>
-    <tr>
-      <th>更新機能</th>
-      <td>新着情報（CMSモジュール：N3）</td>
-    </tr>
-    <tr>
-      <th>フォーム</th>
-      <td>お問い合わせ・エントリーフォーム（モジュール：A3）</td>
-    </tr>
-    <tr>
-      <th>既存HP</th>
-      <td><span class="tbd">TBD</span>　新規制作 / リニューアルをMTGで確認</td>
-    </tr>
-    <tr>
-      <th>公開希望日</th>
-      <td><span class="tbd">TBD</span>　MTGにて確認</td>
-    </tr>
-    <tr>
-      <th>ご予算</th>
-      <td>ご提案書に基づき確定</td>
-    </tr>
+    <tr><th>①</th><td><strong>採用強化</strong>：求職者に「働く魅力・職場環境・社員の声」をわかりやすく伝え、採用応募数の増加を図る</td></tr>
+    <tr><th>②</th><td><strong>サービス・企業紹介</strong>：取引先・新規顧客向けに自動車部品の供給体制・強みを発信する</td></tr>
+    <tr><th>③</th><td><strong>問い合わせ獲得</strong>：BtoB顧客からの問い合わせ・新規取引の相談窓口として機能させる</td></tr>
+    <tr><th>④</th><td><strong>企業ブランディング</strong>：信頼・実績・専門性を伝えるコーポレートサイトとして企業価値を向上させる</td></tr>
   </table>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
+
+  <div class="sub-head" style="margin-top:14px;">ターゲット</div>
+  <div class="target-grid">
+    <div class="target-card">
+      <div class="target-card-head">メインターゲット（採用）</div>
+      <div class="target-card-body">
+        自動車部品業界・製造業への転職を検討している求職者<br>
+        ・年齢層・経験有無・募集職種 → MTGで確認予定<span class="tbd">TBD</span><br>
+        ・「職場の雰囲気」「安定性」「給与・待遇」を重視<br>
+        ・スマートフォンからの求人検索が中心
+      </div>
+    </div>
+    <div class="target-card">
+      <div class="target-card-head">サブターゲット（BtoB）</div>
+      <div class="target-card-body">
+        自動車部品の調達・取引を検討している企業担当者<span class="tbd">TBD</span><br>
+        ・取り扱い品目・対応メーカー・供給体制を確認したい<br>
+        ・信頼できる取引先として評価・問い合わせにつなげる
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-head" style="margin-top:14px;">優位性・強み <span style="font-size:10px;font-weight:400;color:var(--muted);">— MTGにて確認・整理予定</span></div>
+  <div class="strength-grid">
+    <div class="strength-card">
+      <div class="s-num">01</div>
+      <div class="s-title" style="color:var(--muted);">取扱い品目・専門領域</div>
+      <div class="s-desc">どのような自動車部品を取り扱い、どの分野に強みがあるかをMTGにて確認します。</div>
+    </div>
+    <div class="strength-card">
+      <div class="s-num">02</div>
+      <div class="s-title" style="color:var(--muted);">創業実績・取引先数</div>
+      <div class="s-desc">創業年数・取引先数・供給実績など、信頼性を伝えるデータをMTGにて確認します。</div>
+    </div>
+    <div class="strength-card">
+      <div class="s-num">03</div>
+      <div class="s-title" style="color:var(--muted);">採用訴求ポイント</div>
+      <div class="s-desc">働く環境・社風・成長機会・福利厚生など、求職者への訴求ポイントをMTGにて確認します。</div>
+    </div>
   </div>
 </div>
 
-<!-- ⑥ サイトマップ -->
+<!-- P5：サイト基本情報 -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">04</span>
-    <span class="page-title">サイトマップ</span>
-  </div>
-  <div class="sitemap-legend">
-    <span><span class="badge-star">★</span> 更新可能ページ</span>
-    <span><span class="badge badge-cms">CMS</span> 更新機能あり</span>
-    <span><span class="badge badge-form">FORM</span> メールフォーム</span>
-    <span><span class="badge badge-static">STATIC</span> 静的コンテンツ</span>
-  </div>
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>03 — Basic Information</span></div>
+  <div class="sh"><span class="sh-num">03</span><div class="sh-body"><span class="sh-title">サイト基本情報</span><span class="sh-sub">Basic Information</span></div></div>
+  <table class="info-table">
+    <tr><th>サイト名</th><td>株式会社三幸部品<span class="tbd">TBD</span>　正式なサイト名・キャッチフレーズは確認後決定</td></tr>
+    <tr><th>既存HP</th><td><span class="tbd">TBD</span>　新規制作 / リニューアルをMTGで確認</td></tr>
+    <tr><th>ドメイン名</th><td><span class="tbd">TBD</span>　取得状況・希望ドメインをMTGで確認</td></tr>
+    <tr><th>制作タイプ</th><td>コーポレートサイト ＋ 採用サイト（一体型） / レスポンシブデザイン</td></tr>
+    <tr><th>ページ数</th><td>全 <strong>10ページ</strong>（静的コンテンツ ＋ CMS更新対応 ＋ メールフォーム）</td></tr>
+    <tr><th>更新機能</th><td>新着情報（CMSモジュール：N3）</td></tr>
+    <tr><th>フォーム</th><td>お問い合わせ・エントリーフォーム（モジュール：A3）</td></tr>
+    <tr><th>SEOキーワード</th><td><span class="tbd">TBD</span>　仕様書確定後に別途SEO資料にて整理</td></tr>
+    <tr><th>公開希望日</th><td><span class="tbd">TBD</span>　MTGにて確認</td></tr>
+    <tr><th>ご予算</th><td>ご提案書に基づき確定</td></tr>
+  </table>
+</div>
+
+<!-- P6：サイトマップ -->
+<div class="page">
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>04 — Sitemap</span></div>
+  <div class="sh"><span class="sh-num">04</span><div class="sh-body"><span class="sh-title">サイトマップ</span><span class="sh-sub">Sitemap</span></div></div>
   <table class="sitemap-table">
     <thead>
       <tr>
-        <th style="width:30px;">#</th>
-        <th style="width:148px;">ページ名</th>
-        <th style="width:148px;">URL（暫定）</th>
+        <th style="width:28px;">#</th>
+        <th style="width:134px;">ページ名</th>
+        <th style="width:138px;">URL（暫定）</th>
         <th>主なコンテンツ・機能</th>
-        <th style="width:64px;text-align:center;">種別</th>
+        <th style="width:52px;text-align:center;">種別</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td><strong>トップページ</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/ (index)</td>
-        <td style="font-size:12px;">第一印象の形成・各コンテンツへの動線。サービス・採用・新着情報への誘導</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><strong>サービス紹介</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/service/</td>
-        <td style="font-size:12px;">サービス内容・強み・導入メリット・よくある課題と解決事例</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td><strong>会社概要</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/company/</td>
-        <td style="font-size:12px;">会社基本情報・代表者・事業内容・企業理念・アクセス</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td><strong>新着情報 <span class="badge-star">★</span></strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/news/</td>
-        <td style="font-size:12px;">お知らせ・採用情報の発信（CMS更新・カテゴリ管理）</td>
-        <td style="text-align:center;"><span class="badge badge-cms">CMS</span></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td><strong>採用トップページ</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/recruit/</td>
-        <td style="font-size:12px;">採用情報の入口。仕事内容・社員紹介・福利厚生・募集要項への動線</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td><strong>仕事を知る</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/recruit/works/</td>
-        <td style="font-size:12px;">職種ごとの業務内容・役割・1日の流れ・やりがい</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td><strong>社員インタビュー</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/recruit/interview/</td>
-        <td style="font-size:12px;">実際に働く社員の声・入社理由・仕事内容・職場の雰囲気</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td><strong>福利厚生・制度</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/recruit/benefit/</td>
-        <td style="font-size:12px;">各種手当・休日休暇・社会保険・研修制度・資格取得支援</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td><strong>募集要項</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/recruit/jobs/</td>
-        <td style="font-size:12px;">職種・雇用形態・給与・勤務地・勤務時間・応募資格</td>
-        <td style="text-align:center;"><span class="badge badge-static">STATIC</span></td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td><strong>お問い合わせ・エントリー</strong></td>
-        <td style="font-family:monospace;font-size:11px;color:#666;">/contact/</td>
-        <td style="font-size:12px;">問い合わせ・採用応募の受付フォーム（A3モジュール）</td>
-        <td style="text-align:center;"><span class="badge badge-form">FORM</span></td>
-      </tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">1</td><td class="td-name">トップページ</td><td class="sm-url">/ (index)</td><td>第一印象・各コンテンツへの動線。サービス・採用・新着情報への誘導</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">2</td><td class="td-name">サービス紹介</td><td class="sm-url">/service/</td><td>サービス内容・強み・導入メリット・よくある課題と解決事例</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">3</td><td class="td-name">会社概要</td><td class="sm-url">/company/</td><td>会社基本情報・代表者・事業内容・企業理念・アクセス</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">4</td><td class="td-name">新着情報 <span class="badge badge-star">★更新</span></td><td class="sm-url">/news/</td><td>お知らせ・採用情報の発信（CMS更新・カテゴリ管理）</td><td style="text-align:center;"><span class="badge badge-cms">CMS</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">5</td><td class="td-name">採用トップページ</td><td class="sm-url">/recruit/</td><td>採用情報の入口。仕事内容・社員紹介・福利厚生・募集要項への動線</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">6</td><td class="td-name">仕事を知る</td><td class="sm-url">/recruit/works/</td><td>職種ごとの業務内容・役割・1日の流れ・やりがい</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">7</td><td class="td-name">社員インタビュー</td><td class="sm-url">/recruit/interview/</td><td>実際に働く社員の声・入社理由・仕事内容・職場の雰囲気</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">8</td><td class="td-name">福利厚生・制度</td><td class="sm-url">/recruit/benefit/</td><td>各種手当・休日休暇・社会保険・研修制度・資格取得支援</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">9</td><td class="td-name">募集要項</td><td class="sm-url">/recruit/jobs/</td><td>職種・雇用形態・給与・勤務地・勤務時間・応募資格</td><td style="text-align:center;"><span class="badge badge-gray">静的</span></td></tr>
+      <tr><td style="text-align:center;font-family:monospace;font-size:10px;color:#bbb;">10</td><td class="td-name">お問い合わせ・エントリー</td><td class="sm-url">/contact/</td><td>問い合わせ・採用応募の受付フォーム（A3モジュール）</td><td style="text-align:center;"><span class="badge badge-form">FORM</span></td></tr>
     </tbody>
   </table>
-  <p style="font-size:11px;color:#bbb;margin-top:10px;">※ URLスラッグは暫定です。ドメイン決定後に調整します。</p>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
+  <div class="sm-legend">
+    <span><span class="badge badge-star" style="border-radius:3px;">★更新</span> 更新可能ページ</span>
+    <span><span class="badge badge-cms" style="border-radius:3px;">CMS</span> CMS更新機能あり</span>
+    <span><span class="badge badge-form" style="border-radius:3px;">FORM</span> メールフォームあり</span>
   </div>
+  <div class="sm-count">合計 <strong>10</strong> ページ ／ URLスラッグは暫定。ドメイン決定後に調整します。</div>
 </div>
 
-<!-- ⑦ デザインについて -->
+<!-- P7：デザインについて -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">05</span>
-    <span class="page-title">デザインについて</span>
-  </div>
-  <div class="design-grid">
-    <div class="design-card">
-      <div class="design-card-title">COLOR ／ カラー</div>
-      <div class="design-card-body">
-        既存ロゴ・CIのカラーに合わせて設計します。<span class="tbd">TBD</span><br><br>
-        <strong>方向性（案）</strong><br>
-        製造業・BtoBの信頼感を軸に、採用向けには<br>
-        明るさ・親しみやすさも加味した配色を検討します。<br><br>
-        <em style="font-size:11.5px;color:#bbb;">ロゴデータ・コーポレートカラーのご支給をお願いします。</em>
-      </div>
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>05 — Design Direction</span></div>
+  <div class="sh"><span class="sh-num">05</span><div class="sh-body"><span class="sh-title">デザインについて</span><span class="sh-sub">Design Direction</span></div></div>
+
+  <div class="sub-head">カラー <span style="font-size:10px;font-weight:400;color:var(--muted);">— 業種イメージに合わせた仮設定。ロゴ入稿後に正式決定。</span></div>
+  <div class="color-palette">
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#1b3a5c;"></div>
+      <div class="color-info"><div class="c-hex">#1B3A5C</div><div class="c-role">メイン（仮）</div><div class="c-desc">ネイビー。信頼・誠実・専門性</div></div>
     </div>
-    <div class="design-card">
-      <div class="design-card-title">FONT ／ フォント</div>
-      <div class="design-card-body">
-        Noto Sans JP（見出し） ＋ Noto Sans JP（本文）の2本構成。<br>
-        詳細は「06 フォントについて」ページ参照。<br><br>
-        <em style="font-size:11.5px;color:#bbb;">3案の中からご希望の方向性をお選びください。</em>
-      </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#2d5a8e;"></div>
+      <div class="color-info"><div class="c-hex">#2D5A8E</div><div class="c-role">サブ（仮）</div><div class="c-desc">ミッドネイビー。リンク・アクティブ要素</div></div>
     </div>
-    <div class="design-card">
-      <div class="design-card-title">LOGO ／ ロゴ</div>
-      <div class="design-card-body">
-        <span class="tbd">未入稿</span><br><br>
-        以下の形式でのご支給をお願いします：<br>
-        AI / EPS / SVG（ベクター形式を推奨）<br>
-        または PNG（透過・高解像度）
-      </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#b8810a;"></div>
+      <div class="color-info"><div class="c-hex">#B8810A</div><div class="c-role">アクセント（仮）</div><div class="c-desc">ゴールド。CTAボタン・強調</div></div>
     </div>
-    <div class="design-card">
-      <div class="design-card-title">IMAGE ／ イメージ・方向性</div>
-      <div class="design-card-body">
-        「信頼・実績・プロフェッショナル」をベースに、<br>
-        採用面では「チームワーク・成長・安心して働ける環境」を<br>
-        訴求できるデザインを目指します。<span class="tbd">TBD</span><br><br>
-        <em style="font-size:11.5px;color:#bbb;">MTGにて好み・NG事項を確認します。</em>
-      </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#f4f7fa; border:1px solid #d8e4ee;"></div>
+      <div class="color-info"><div class="c-hex">#F4F7FA</div><div class="c-role">背景</div><div class="c-desc">ライトブルーグレー。セクション背景</div></div>
+    </div>
+    <div class="color-chip">
+      <div class="color-swatch" style="background:#1a2330;"></div>
+      <div class="color-info"><div class="c-hex">#1A2330</div><div class="c-role">テキスト</div><div class="c-desc">ダークネイビー。本文・基本テキスト</div></div>
     </div>
   </div>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
-  </div>
+  <div class="note-box">※ 上記カラーはロゴ未入稿段階での仮設定です。ロゴデータ・CIガイドラインのご支給後に正式決定します。</div>
+
+  <div class="sub-head" style="margin-top:16px;">フォント・ロゴ・イメージ方向性</div>
+  <table class="info-table">
+    <tr><th>フォント</th><td>Noto Sans JP（見出し）＋ Noto Sans JP（本文）の2本構成。詳細は「06 フォントについて」ページ参照。</td></tr>
+    <tr><th>ロゴ</th><td><span class="tbd">未入稿</span>　AI / EPS / SVG（ベクター推奨）または PNG（透過・高解像度）でのご支給をお願いします。</td></tr>
+    <tr><th>イメージ・方向性</th><td>「信頼・実績・プロフェッショナル」をベースに、採用面では「チームワーク・成長・安心して働ける環境」を訴求できるデザインを目指します。<span class="tbd">MTGで確認</span></td></tr>
+    <tr><th>写真素材</th><td><span class="tbd">TBD</span>　社員・職場・工場の写真素材の有無をMTGで確認。ない場合は撮影要否も確認。</td></tr>
+  </table>
 </div>
 
-<!-- ⑧ フォントについて -->
+<!-- P8：フォントについて -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">06</span>
-    <span class="page-title">フォントについて</span>
-  </div>
-  <p style="font-size:12px;color:#888;margin-bottom:16px;">3つのフォント案をご提案します。実際のコンテンツで表示した場合のイメージです。ご希望の方向性をお選びください。</p>
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>06 — Typography</span></div>
+  <div class="sh"><span class="sh-num">06</span><div class="sh-body"><span class="sh-title">フォントについて</span><span class="sh-sub">Typography</span></div></div>
+  <p style="font-size:10px;color:var(--muted);margin-bottom:14px;">3つのフォント案をご提案します。実際のコンテンツで表示した場合のイメージです。ご希望の方向性をお選びください。</p>
   <div class="font-grid">
 
-    <!-- A案 推奨 -->
-    <div class="font-card">
-      <div class="font-card-head rec">A — 推奨：信頼・クリーン系</div>
-      <div class="font-hero-area" style="font-family:'Noto Sans JP',sans-serif;">
-        <div class="f-brand">SANKO BUHIN CO., LTD.</div>
-        <div class="f-catch" style="font-size:15px;font-weight:700;">自動車部品で、<br>ものづくりを支える。</div>
-        <div class="f-sub">確かな品質と迅速な供給体制で、製造現場の信頼パートナーとして歩み続けます。</div>
+    <div class="font-card recommended fa">
+      <div class="font-card-header rec-hd"><span>A — 推奨：信頼・クリーン系</span><span class="rec-tag">推奨</span></div>
+      <div class="font-card-hero">
+        <div class="hero-brand">SANKO BUHIN CO., LTD.</div>
+        <div class="hero-catch">自動車部品で、<br>ものづくりを支える。</div>
+        <div class="hero-sub">確かな品質と迅速な供給体制で、製造現場の信頼パートナーとして歩み続けます。</div>
       </div>
-      <div class="font-content-area" style="font-family:'Noto Sans JP',sans-serif;">
-        <div class="f-label">SECTION HEADING</div>
-        <div class="f-heading">私たちの強みとサービス</div>
-        <div class="f-label">BODY TEXT</div>
-        <div class="f-body">長年の実績と専門知識をもとに、お客様のニーズに最適な部品供給をご提案します。</div>
-        <div class="f-label">BUTTON</div>
-        <div class="f-btn">詳しく見る</div>
-        <div class="f-label">STAT</div>
-        <div><span class="f-stat">500</span><span class="f-unit"> 社以上</span></div>
+      <div class="font-card-content">
+        <div class="fcl">SECTION HEADING</div><div class="fct heading">私たちの強みとサービス</div>
+        <div class="fcl">BODY TEXT</div><div class="fct body">長年の実績と専門知識をもとに、最適な部品供給をご提案します。</div>
+        <div class="fcl">BUTTON</div><div class="fct btn">詳しく見る</div>
+        <div class="fcl">STAT</div><div class="fct stat">500<span style="font-size:12px;font-weight:400;color:var(--muted);"> 社以上</span></div>
       </div>
-      <div class="font-foot">
-        <strong>Noto Sans JP</strong>（見出し・本文）<br>
-        コーポレート・製造業向き。明快で読みやすく信頼感を演出。
-      </div>
+      <div class="font-card-footer"><span class="font-names">Noto Sans JP（見出し・本文）</span>コーポレート・製造業向き。明快で読みやすく信頼感を演出。</div>
     </div>
 
-    <!-- B案 -->
-    <div class="font-card">
-      <div class="font-card-head">B — 格調・実績系</div>
-      <div class="font-hero-area" style="font-family:'Noto Serif JP',serif;">
-        <div class="f-brand" style="font-family:'DM Mono',monospace;">SANKO BUHIN CO., LTD.</div>
-        <div class="f-catch" style="font-size:15px;font-weight:700;">自動車部品で、<br>ものづくりを支える。</div>
-        <div class="f-sub" style="font-family:'Noto Sans JP',sans-serif;">確かな品質と迅速な供給体制で、製造現場の信頼パートナーとして歩み続けます。</div>
+    <div class="font-card fb">
+      <div class="font-card-header"><span>B — 格調・実績系</span></div>
+      <div class="font-card-hero">
+        <div class="hero-brand">SANKO BUHIN CO., LTD.</div>
+        <div class="hero-catch">自動車部品で、<br>ものづくりを支える。</div>
+        <div class="hero-sub">確かな品質と迅速な供給体制で、製造現場の信頼パートナーとして歩み続けます。</div>
       </div>
-      <div class="font-content-area">
-        <div class="f-label">SECTION HEADING</div>
-        <div class="f-heading" style="font-family:'Noto Serif JP',serif;">私たちの強みとサービス</div>
-        <div class="f-label">BODY TEXT</div>
-        <div class="f-body" style="font-family:'Noto Sans JP',sans-serif;">長年の実績と専門知識をもとに、お客様のニーズに最適な部品供給をご提案します。</div>
-        <div class="f-label">BUTTON</div>
-        <div class="f-btn" style="font-family:'Noto Sans JP',sans-serif;">詳しく見る</div>
-        <div class="f-label">STAT</div>
-        <div><span class="f-stat" style="font-family:'Noto Serif JP',serif;">500</span><span class="f-unit"> 社以上</span></div>
+      <div class="font-card-content">
+        <div class="fcl">SECTION HEADING</div><div class="fct heading">私たちの強みとサービス</div>
+        <div class="fcl">BODY TEXT</div><div class="fct body">長年の実績と専門知識をもとに、最適な部品供給をご提案します。</div>
+        <div class="fcl">BUTTON</div><div class="fct btn">詳しく見る</div>
+        <div class="fcl">STAT</div><div class="fct stat">500<span style="font-size:12px;font-weight:400;color:var(--muted);"> 社以上</span></div>
       </div>
-      <div class="font-foot">
-        <strong>Noto Serif JP</strong>（見出し）＋ <strong>Noto Sans JP</strong>（本文）<br>
-        歴史・格調・重厚感を重視したい場合に適した組み合わせ。
-      </div>
+      <div class="font-card-footer"><span class="font-names">Noto Serif JP（見出し）＋ Noto Sans JP（本文）</span>歴史・格調・重厚感を重視したい場合に適した組み合わせ。</div>
     </div>
 
-    <!-- C案 -->
-    <div class="font-card">
-      <div class="font-card-head">C — 親しみやすさ・採用向け</div>
-      <div class="font-hero-area" style="font-family:'M PLUS Rounded 1c',sans-serif;">
-        <div class="f-brand" style="font-family:'DM Mono',monospace;">SANKO BUHIN CO., LTD.</div>
-        <div class="f-catch" style="font-size:15px;font-weight:700;">自動車部品で、<br>ものづくりを支える。</div>
-        <div class="f-sub">確かな品質と迅速な供給体制で、製造現場の信頼パートナーとして歩み続けます。</div>
+    <div class="font-card fc">
+      <div class="font-card-header"><span>C — 親しみやすさ・採用向け</span></div>
+      <div class="font-card-hero">
+        <div class="hero-brand">SANKO BUHIN CO., LTD.</div>
+        <div class="hero-catch">自動車部品で、<br>ものづくりを支える。</div>
+        <div class="hero-sub">確かな品質と迅速な供給体制で、製造現場の信頼パートナーとして歩み続けます。</div>
       </div>
-      <div class="font-content-area" style="font-family:'M PLUS Rounded 1c',sans-serif;">
-        <div class="f-label">SECTION HEADING</div>
-        <div class="f-heading">私たちの強みとサービス</div>
-        <div class="f-label">BODY TEXT</div>
-        <div class="f-body">長年の実績と専門知識をもとに、お客様のニーズに最適な部品供給をご提案します。</div>
-        <div class="f-label">BUTTON</div>
-        <div class="f-btn">詳しく見る</div>
-        <div class="f-label">STAT</div>
-        <div><span class="f-stat">500</span><span class="f-unit"> 社以上</span></div>
+      <div class="font-card-content">
+        <div class="fcl">SECTION HEADING</div><div class="fct heading">私たちの強みとサービス</div>
+        <div class="fcl">BODY TEXT</div><div class="fct body">長年の実績と専門知識をもとに、最適な部品供給をご提案します。</div>
+        <div class="fcl">BUTTON</div><div class="fct btn">詳しく見る</div>
+        <div class="fcl">STAT</div><div class="fct stat">500<span style="font-size:12px;font-weight:400;color:var(--muted);"> 社以上</span></div>
       </div>
-      <div class="font-foot">
-        <strong>M PLUS Rounded 1c</strong>（見出し・本文）<br>
-        採用訴求・親しみやすさを前面に出したい場合に適している。
-      </div>
+      <div class="font-card-footer"><span class="font-names">M PLUS Rounded 1c（見出し・本文）</span>採用訴求・親しみやすさを前面に出したい場合に適している。</div>
     </div>
 
-  </div>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
   </div>
 </div>
 
-<!-- ⑨ 参考サイト -->
+<!-- P9：参考サイト -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">07</span>
-    <span class="page-title">デザイン参考サイト</span>
-  </div>
-  <p style="font-size:12px;color:#888;margin-bottom:20px;">制作提案時に参考としたサイトです。コンテンツ構成・デザインの方向性の参考としてご確認ください。</p>
-
-  <div class="ref-card">
-    <div class="ref-num">01</div>
-    <div>
-      <div class="ref-name">石井商事株式会社　採用サイト</div>
-      <div class="ref-url">https://www.ishii-shoji.co.jp/recruit/works/　（仕事を知る）</div>
-      <div class="ref-url">https://www.ishii-shoji.co.jp/recruit/member/　（社員インタビュー）</div>
-      <div class="ref-point-head">参考にしたいポイント</div>
-      <div class="ref-point">
-        職種ごとの仕事内容・1日のスケジュール・社員インタビューのコンテンツ構成。<br>
-        製造・流通系企業の採用サイトとして実務イメージが伝わりやすいレイアウト。
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>07 — Reference Sites</span></div>
+  <div class="sh"><span class="sh-num">07</span><div class="sh-body"><span class="sh-title">デザイン参考サイト</span><span class="sh-sub">Reference Sites</span></div></div>
+  <p style="font-size:10px;color:var(--muted);margin-bottom:16px;">制作提案時に参考としたサイトです。コンテンツ構成・デザインの方向性の参考としてご確認ください。</p>
+  <div class="ref-grid">
+    <div class="ref-card">
+      <div class="ref-card-body">
+        <span class="ref-num">REF — 01</span>
+        <div class="ref-card-name">石井商事株式会社　採用サイト</div>
+        <div class="ref-card-url">https://www.ishii-shoji.co.jp/recruit/works/</div>
+        <div class="ref-card-url">https://www.ishii-shoji.co.jp/recruit/member/</div>
+        <div style="margin-bottom:6px;"><span class="ref-tag">仕事を知る</span><span class="ref-tag">社員インタビュー</span></div>
+        <div class="ref-note">職種ごとの仕事内容・1日のスケジュール・社員インタビューのコンテンツ構成が参考になります。製造・流通系企業の採用サイトとして実務イメージが伝わりやすいレイアウトです。</div>
+      </div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-card-body">
+        <span class="ref-num">REF — 02</span>
+        <div class="ref-card-name">カーディーラーファミリー　採用サイト</div>
+        <div class="ref-card-url">https://www.cardealerfamily.co.jp/recruit/welfare/</div>
+        <div style="margin-bottom:6px;"><span class="ref-tag">福利厚生・制度</span></div>
+        <div class="ref-note">福利厚生・制度ページのデザインと情報整理の仕方が参考になります。自動車業界関連企業の採用サイト事例として業種的にも近く参考にしやすいサイトです。</div>
       </div>
     </div>
   </div>
-
-  <div class="ref-card">
-    <div class="ref-num">02</div>
-    <div>
-      <div class="ref-name">カーディーラーファミリー　採用サイト</div>
-      <div class="ref-url">https://www.cardealerfamily.co.jp/recruit/welfare/　（福利厚生・制度）</div>
-      <div class="ref-point-head">参考にしたいポイント</div>
-      <div class="ref-point">
-        福利厚生・制度ページのデザインと情報整理の仕方。<br>
-        自動車業界関連企業の採用サイト事例として近い業種で参考にしやすい。
-      </div>
-    </div>
-  </div>
-
-  <p style="font-size:11px;color:#ccc;margin-top:14px;">
+  <div class="note-box" style="margin-top:14px;">
     ※ 参考サイトは方向性確認のためのものです。デザインをそのまま模倣するものではありません。<br>
     ※ ご要望の参考サイトがあれば、MTGにてお聞かせください。
-  </p>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
   </div>
 </div>
 
-<!-- ⑩ スケジュール -->
+<!-- P10：スケジュール -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num">08</span>
-    <span class="page-title">今後のスケジュール</span>
-  </div>
-  <p style="font-size:12.5px;color:#888;margin-bottom:16px;">
-    ※ 公開希望日をご確認後、正式なスケジュールを作成します。下表は目安工程です。<span class="tbd">TBD</span>
-  </p>
-  <table class="schedule-table">
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ サイト仕様書 vol.01</span><span>08 — Schedule</span></div>
+  <div class="sh"><span class="sh-num">08</span><div class="sh-body"><span class="sh-title">今後のスケジュール</span><span class="sh-sub">Schedule</span></div></div>
+  <p style="font-size:10px;color:var(--muted);margin-bottom:14px;">※ 公開希望日をご確認後、正式なスケジュールを作成します。下表は目安工程です。<span class="badge-tbd">TBD</span></p>
+  <table class="sch-table">
     <thead>
-      <tr>
-        <th style="width:148px;">工程</th>
-        <th style="width:130px;">期日（目安）</th>
-        <th>内容</th>
-      </tr>
+      <tr><th style="width:140px;">工程</th><th style="width:130px;">期日（目安）</th><th>内容</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td><strong>事前MTG</strong></td>
-        <td style="font-family:monospace;font-size:12px;">2026年6月（予定）</td>
-        <td style="font-size:12px;">ヒアリング・要件確定・仕様書の最終確認</td>
-      </tr>
-      <tr>
-        <td><strong>ご契約</strong></td>
-        <td class="tbd-date">TBD</td>
-        <td style="font-size:12px;">契約書締結・制作着手</td>
-      </tr>
-      <tr>
-        <td><strong>仕様書確定</strong></td>
-        <td class="tbd-date">TBD</td>
-        <td style="font-size:12px;">ページ構成・要件の最終確認・承認</td>
-      </tr>
-      <tr>
-        <td><strong>ワイヤー提出</strong></td>
-        <td class="tbd-date">TBD</td>
-        <td style="font-size:12px;">レイアウト案・ページ構成のご確認</td>
-      </tr>
-      <tr>
-        <td><strong>デザイン提出</strong></td>
-        <td class="tbd-date">TBD</td>
-        <td style="font-size:12px;">トップページ・下層ページのデザインご確認</td>
-      </tr>
-      <tr>
-        <td><strong>コーディング</strong></td>
-        <td class="tbd-date">TBD</td>
-        <td style="font-size:12px;">HTML/CSS コーディング・プログラム制作</td>
-      </tr>
-      <tr>
-        <td><strong>テスト・確認</strong></td>
-        <td class="tbd-date">TBD</td>
-        <td style="font-size:12px;">動作確認・校正・最終チェック</td>
-      </tr>
-      <tr>
-        <td><strong>公開</strong></td>
-        <td class="tbd-date">TBD</td>
-        <td style="font-size:12px;">公開作業・Google Analyticsタグ設置・最終確認</td>
-      </tr>
+      <tr><td><strong>事前MTG</strong></td><td><span class="badge-now">2026年6月（予定）</span></td><td>ヒアリング・要件確定・仕様書の最終確認</td></tr>
+      <tr><td><strong>ご契約</strong></td><td><span class="badge-tbd">TBD</span></td><td>契約書締結・制作着手</td></tr>
+      <tr><td><strong>仕様書確定</strong></td><td><span class="badge-tbd">TBD</span></td><td>ページ構成・要件の最終確認・承認</td></tr>
+      <tr><td><strong>ワイヤー提出</strong></td><td><span class="badge-tbd">TBD</span></td><td>レイアウト案・ページ構成のご確認</td></tr>
+      <tr><td><strong>デザイン提出</strong></td><td><span class="badge-tbd">TBD</span></td><td>トップページ・下層ページのデザインご確認</td></tr>
+      <tr><td><strong>コーディング</strong></td><td><span class="badge-tbd">TBD</span></td><td>HTML/CSS コーディング・プログラム制作</td></tr>
+      <tr><td><strong>テスト・確認</strong></td><td><span class="badge-tbd">TBD</span></td><td>動作確認・校正・最終チェック</td></tr>
+      <tr><td><strong>公開</strong></td><td><span class="badge-tbd">TBD</span></td><td>公開作業・Google Analytics タグ設置・最終確認</td></tr>
     </tbody>
   </table>
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ サイト仕様書 vol.01</span>
-    <span>Stage Group</span>
-  </div>
 </div>
 
-<!-- ⑪ 事前MTG 確認事項 -->
+<!-- P11：事前MTG確認事項（社内用） -->
 <div class="page">
-  <div class="page-header">
-    <span class="page-num" style="color:#f59e0b;">MTG</span>
-    <span class="page-title">事前MTGで確認する事項</span>
+  <div class="ph"><span class="ph-brand">株式会社三幸部品 ｜ 事前MTG確認事項（社内用）</span><span>Pre-Meeting Checklist</span></div>
+  <div class="sh">
+    <span class="sh-num" style="color:#d97706;">—</span>
+    <div class="sh-body"><span class="sh-title" style="color:#b45309;">事前MTGで確認する事項</span><span class="sh-sub">Pre-Meeting Checklist — 社内用</span></div>
   </div>
-  <p style="font-size:12px;color:#888;margin-bottom:20px;">月曜日の事前MTGにて確認・整理する項目です。（社内用）</p>
-
-  <div class="mtg-section">
-    <div class="mtg-section-title">会社・事業について</div>
-    <ul class="mtg-list">
-      <li class="mtg-item">取り扱う自動車部品の種類・メーカー・専門領域</li>
-      <li class="mtg-item">主な取引先・顧客層（BtoB中心の場合、どの業種向けか）</li>
-      <li class="mtg-item">自社の強み・競合との差別化ポイント（3点程度）</li>
-      <li class="mtg-item">企業理念・社風・会社として大切にしていること</li>
-      <li class="mtg-item">既存HPの有無（新規制作 or リニューアル）</li>
-    </ul>
+  <p style="font-size:10px;color:var(--muted);margin-bottom:14px;">月曜日の事前MTGにて確認・整理する項目です。</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 32px;">
+    <div>
+      <div class="mtg-section">
+        <div class="mtg-section-title">会社・事業について</div>
+        <ul class="mtg-list">
+          <li class="mtg-item">取り扱う自動車部品の種類・メーカー・専門領域</li>
+          <li class="mtg-item">主な取引先・顧客層（BtoB中心の場合、どの業種向けか）</li>
+          <li class="mtg-item">自社の強み・競合との差別化ポイント（3点程度）</li>
+          <li class="mtg-item">企業理念・社風・会社として大切にしていること</li>
+          <li class="mtg-item">既存HPの有無（新規制作 or リニューアル）</li>
+        </ul>
+      </div>
+      <div class="mtg-section">
+        <div class="mtg-section-title">採用・コンテンツについて</div>
+        <ul class="mtg-list">
+          <li class="mtg-item">採用職種・求める人物像・募集人数・緊急度</li>
+          <li class="mtg-item">ターゲット求職者（年齢層・経験有無・居住エリア）</li>
+          <li class="mtg-item">社員インタビューの掲載人数・対象者の選定</li>
+          <li class="mtg-item">福利厚生・制度の詳細（手当・休日・研修など）</li>
+          <li class="mtg-item">募集要項の詳細（給与・勤務時間・雇用形態）</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="mtg-section">
+        <div class="mtg-section-title">デザイン・素材について</div>
+        <ul class="mtg-list">
+          <li class="mtg-item">ロゴデータの支給（AI・EPS・SVG・PNG 高解像度）</li>
+          <li class="mtg-item">コーポレートカラー・CIガイドラインの有無</li>
+          <li class="mtg-item">社員・職場・工場の写真素材の有無（撮影要否）</li>
+          <li class="mtg-item">デザインの方向性・好み・参考サイトへのご意見</li>
+          <li class="mtg-item">NGな表現・カラー・イメージ</li>
+        </ul>
+      </div>
+      <div class="mtg-section">
+        <div class="mtg-section-title">技術・運用について</div>
+        <ul class="mtg-list">
+          <li class="mtg-item">希望ドメイン名（取得済み or 希望案）</li>
+          <li class="mtg-item">公開希望日・納期のご要望</li>
+          <li class="mtg-item">新着情報の更新担当者・更新頻度の想定</li>
+          <li class="mtg-item">フォームの返信先メールアドレス</li>
+        </ul>
+      </div>
+    </div>
   </div>
-
-  <div class="mtg-section">
-    <div class="mtg-section-title">採用・コンテンツについて</div>
-    <ul class="mtg-list">
-      <li class="mtg-item">採用したい職種・求める人物像・募集人数・緊急度</li>
-      <li class="mtg-item">ターゲット求職者のイメージ（年齢層・経験有無・居住エリアなど）</li>
-      <li class="mtg-item">社員インタビューの掲載人数・対象者の選定</li>
-      <li class="mtg-item">福利厚生・制度の詳細（手当・休日・研修・資格支援など）</li>
-      <li class="mtg-item">募集要項の詳細（給与・勤務時間・雇用形態・勤務地など）</li>
-    </ul>
-  </div>
-
-  <div class="mtg-section">
-    <div class="mtg-section-title">デザイン・素材について</div>
-    <ul class="mtg-list">
-      <li class="mtg-item">ロゴデータの支給（AI・EPS・SVG・PNG 高解像度）</li>
-      <li class="mtg-item">コーポレートカラー・CIガイドラインの有無</li>
-      <li class="mtg-item">社員・職場・工場の写真素材の有無（ない場合は撮影要否の確認）</li>
-      <li class="mtg-item">デザインの方向性・好み・参考サイトへのご意見</li>
-      <li class="mtg-item">NGな表現・カラー・イメージがあればお聞かせください</li>
-    </ul>
-  </div>
-
-  <div class="mtg-section">
-    <div class="mtg-section-title">技術・運用について</div>
-    <ul class="mtg-list">
-      <li class="mtg-item">希望ドメイン名（取得済み or 希望案）</li>
-      <li class="mtg-item">公開希望日・納期のご要望</li>
-      <li class="mtg-item">新着情報の更新担当者・更新頻度の想定</li>
-      <li class="mtg-item">フォームの返信先メールアドレス</li>
-    </ul>
-  </div>
-
-  <div class="mtg-note">
-    本仕様書は事前MTGにて確認した内容をもとに <strong>vol.02</strong> にアップデートします。<br>
-    ご不明点・追加のご要望があれば、MTGの場でお気軽にお申し付けください。
-  </div>
-
-  <div class="page-footer">
-    <span>株式会社三幸部品 ｜ 事前MTG確認事項（社内用）</span>
-    <span>Stage Group</span>
-  </div>
+  <div class="gold-box">本仕様書は事前MTGにて確認した内容をもとに <strong>vol.02</strong> にアップデートします。ご不明点・追加のご要望があれば、MTGの場でお気軽にお申し付けください。</div>
 </div>
 
 </body>
