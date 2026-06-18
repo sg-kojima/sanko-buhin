@@ -10,12 +10,12 @@
   --bg:       #ffffff;
   --bg-muted: #f5f5f5;
   --bg-mid:   #e8e8e8;
-  --bg-dark:  #2a2a2a;
   --border:   #d0d0d0;
   --text:     #1a1a1a;
   --text-mid: #555555;
   --text-soft:#999999;
   --ph:       #cccccc;
+  --edge:     80px;   /* ← 全セクション共通の左右余白 */
 }
 html { font-size: 18px; }
 body {
@@ -25,17 +25,17 @@ body {
   background: var(--bg);
 }
 
+/* ─ コンテンツ幅制御 ─ */
+.inner { max-width: 1200px; margin: 0 auto; padding: 0 var(--edge); }
+
 /* ─ 画像プレースホルダー ─ */
 .img-ph {
   background: var(--ph);
   display: flex; align-items: center; justify-content: center;
   color: #666; font-size: 11px; font-family: 'Courier New', monospace;
   border: 1px solid var(--border);
-  width: 100%; height: auto; text-align: center; padding: 8px;
+  width: 100%; text-align: center; padding: 8px; line-height: 1.6;
 }
-
-/* ─ コンテンツ幅制御（トップワイヤーと同パターン） ─ */
-.inner { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
 
 /* ─ タイポグラフィ ─ */
 .sec-label {
@@ -66,24 +66,18 @@ body {
 }
 
 /* ─ ボタン ─ */
-.btn-wire {
-  display: inline-block; padding: 14px 40px;
-  border: 2px solid var(--text); font-size: 0.88rem; font-weight: 700;
-  background: var(--text); color: #fff; cursor: default; letter-spacing: 0.04em;
+.btn { /* トップワイヤーと同クラス名 */
+  display: inline-block;
+  padding: 14px 36px;
+  border: 2px solid var(--text);
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
+  cursor: default;
 }
-.btn-wire-ol {
-  display: inline-block; padding: 14px 40px;
-  border: 2px solid var(--text); font-size: 0.88rem; font-weight: 700;
-  background: transparent; color: var(--text); cursor: default;
-}
-.btn-sm-wire {
-  display: inline-block; padding: 10px 24px;
-  border: 1.5px solid var(--text-mid); font-size: 0.82rem; font-weight: 700;
-  background: transparent; color: var(--text-mid); cursor: default;
-  align-self: flex-start;
-}
+.btn-fill    { background: var(--text); color: #fff; }
+.btn-outline { background: transparent; color: var(--text); }
+.btn-sm { padding: 10px 24px; font-size: 0.82rem; }
 
-/* ─ グナビ（トップワイヤーと同構造） ─ */
+/* ─ グナビ（トップワイヤーと完全同構造） ─ */
 .gnav {
   background: var(--bg);
   border-bottom: 1px solid var(--border);
@@ -99,7 +93,7 @@ body {
   width: 180px; height: 44px; background: var(--ph);
   display: flex; align-items: center; justify-content: center;
   font-family: 'Courier New', monospace; font-size: 10px; color: #777;
-  flex-shrink: 0;
+  flex-shrink: 0; border: 1px solid var(--border); /* ← トップと同じ */
 }
 .gnav-links {
   display: flex; gap: 32px; list-style: none;
@@ -107,43 +101,42 @@ body {
   flex: 1; justify-content: center;
 }
 .gnav-links .current { font-weight: 700; color: var(--text); }
-.gnav-cta { display: flex; gap: 12px; flex-shrink: 0; }
-.gnav-btn {
-  padding: 8px 20px; border: 1.5px solid var(--text);
-  font-size: 0.78rem; font-weight: 700; cursor: default;
-  background: transparent; color: var(--text);
-}
-.gnav-btn.primary { background: var(--text); color: #fff; }
+.gnav-cta { flex-shrink: 0; }
 
-/* ─ パンくず ─ */
+/* ─ パンくず（.inner と左端を揃える） ─ */
 .breadcrumb {
-  padding: 12px 48px; font-size: 0.7rem;
-  font-family: 'Courier New', monospace; color: var(--text-soft);
   background: var(--bg-muted); border-bottom: 1px solid var(--border);
 }
+.breadcrumb-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 12px var(--edge);
+  font-size: 0.7rem; font-family: 'Courier New', monospace; color: var(--text-soft);
+}
 
-/* ─ HERO ─ */
+/* ─ HERO（フル幅・80vh） ─ */
 .hero {
   position: relative; min-height: 80vh;
-  background: var(--ph); /* ← セクション自体がフル幅写真プレースホルダー */
+  background: var(--ph);
   display: flex; align-items: flex-end; overflow: hidden;
 }
 .hero-img-note {
   position: absolute; top: 24px; right: 24px;
-  font-size: 10px; font-family: 'Courier New', monospace;
-  color: rgba(0,0,0,.35);
+  font-size: 10px; font-family: 'Courier New', monospace; color: rgba(0,0,0,.35);
 }
 .hero-en-bg {
-  position: absolute; top: 32px; left: 48px;
+  position: absolute; top: 32px; left: var(--edge);
   font-family: 'Courier New', monospace;
   font-size: clamp(2rem, 4.5vw, 4.8rem);
   font-weight: 700; letter-spacing: -0.01em;
-  color: rgba(255,255,255,.18); line-height: 1.1;
-  pointer-events: none;
+  color: rgba(0,0,0,.06); line-height: 1.1; pointer-events: none;
 }
+/* ヒーロー本文：max-width+margin:auto で .inner と左端を揃える */
 .hero-body {
-  position: relative; z-index: 2;
-  padding: 64px 48px 72px; width: 100%;
+  position: relative; z-index: 2; width: 100%;
+}
+.hero-body-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 64px var(--edge) 72px;
 }
 .hero-body h1 {
   font-size: clamp(1.8rem, 3vw, 2.8rem);
@@ -155,16 +148,15 @@ body {
 }
 
 /* ─ MESSAGE ─ */
-.message-wrap {
+.message-section {
   position: relative; overflow: hidden;
-  padding: 140px 0; min-height: 80vh;
-  display: flex; align-items: center;
+  min-height: 80vh; display: flex; align-items: center;
 }
 .message-grid {
   display: grid; grid-template-columns: 52fr 48fr;
-  gap: 72px; align-items: center;
-  position: relative; z-index: 1;
-  width: 100%;
+  gap: 80px; align-items: center;
+  position: relative; z-index: 1; width: 100%;
+  padding: 120px 0;
 }
 .message-text h2 {
   font-size: clamp(1.8rem, 3vw, 2.8rem);
@@ -172,11 +164,11 @@ body {
 }
 .message-text .lead {
   font-size: 1.1rem; font-weight: 700; line-height: 1.6;
-  margin-bottom: 20px; color: var(--text);
+  margin-bottom: 20px;
 }
 .message-text p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.9; }
 
-/* ─ OUR JOB ─ */
+/* ─ OUR JOB（左写真・右テキスト 2カラム） ─ */
 .job-section { background: var(--bg-muted); }
 .job-grid {
   display: grid; grid-template-columns: 48fr 52fr;
@@ -184,14 +176,14 @@ body {
 }
 .job-photo { overflow: hidden; }
 .job-body {
-  padding: 80px 64px;
+  padding: 80px var(--edge);
   display: flex; flex-direction: column; justify-content: center;
 }
 .job-list { list-style: none; margin: 24px 0 32px; border-top: 1px solid var(--border); }
 .job-list li {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 0; border-bottom: 1px solid var(--border);
-  font-size: 1rem; font-weight: 700; cursor: default;
+  font-size: 1rem; font-weight: 700;
 }
 .job-list li .num {
   font-family: 'Courier New', monospace; font-size: 0.75rem;
@@ -199,16 +191,14 @@ body {
 }
 .job-list li .arrow {
   width: 28px; height: 28px;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
   font-size: 0.72rem; color: var(--text-soft); flex-shrink: 0;
 }
 
 /* ─ MEMBER ─ */
-.member-section { padding: 100px 0; min-height: 80vh; }
+.member-section { padding: 100px 0; min-height: 80vh; background: var(--bg); }
 .member-header { margin-bottom: 48px; }
-.member-header .sec-en-xl { margin-bottom: 4px; }
-.member-header .sec-label { margin-bottom: 12px; }
-.member-header p { font-size: 0.88rem; color: var(--text-mid); max-width: 520px; }
 .member-strip {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
 }
@@ -222,79 +212,75 @@ body {
 .member-card-body p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.7; }
 .member-nav { display: flex; gap: 10px; margin-top: 32px; }
 .member-nav .nav-btn {
-  width: 36px; height: 36px;
+  width: 36px; height: 36px; background: var(--bg-muted);
+  border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem; color: var(--text-soft); cursor: default;
-  background: var(--bg-muted);
+  font-size: 0.8rem; color: var(--text-soft);
 }
 
-/* ─ WHO WE ARE ─ */
+/* ─ WHO WE ARE（左写真・右テキスト 2カラム） ─ */
 .who-section { background: var(--bg-muted); }
 .who-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 45fr 55fr;
   min-height: 80vh;
 }
-.who-left {
-  padding: 80px 56px; display: flex; flex-direction: column; justify-content: center; gap: 28px;
-  border-right: 1px solid var(--border);
+.who-photo { overflow: hidden; }
+.who-body {
+  padding: 80px var(--edge);
+  display: flex; flex-direction: column; justify-content: center; gap: 20px;
 }
-.who-left blockquote {
-  font-size: 1.15rem; font-weight: 700; line-height: 1.6;
-  border-left: 3px solid var(--text-soft); padding-left: 20px; color: var(--text);
+.who-body .sec-en { margin-bottom: 4px; }
+.who-body p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.9; }
+.who-body blockquote {
+  font-size: 1.1rem; font-weight: 700; line-height: 1.6;
+  border-left: 3px solid var(--border); padding-left: 20px;
 }
-.who-left .who-person { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
-.who-left .who-meta { font-size: 0.78rem; color: var(--text-soft); font-family: 'Courier New', monospace; }
-.who-right {
-  padding: 80px 56px; display: flex; flex-direction: column; justify-content: center;
-}
-.who-right .sec-en-xl { margin-bottom: 20px; }
-.who-right p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 24px; }
+.who-person { display: flex; align-items: center; gap: 16px; }
+.who-meta { font-size: 0.75rem; color: var(--text-soft); font-family: 'Courier New', monospace; }
 
-/* ─ ENVIRONMENT（フル幅：トップのheroと同じパターン） ─ */
+/* ─ ENVIRONMENT（フル幅写真背景） ─ */
 .env-section {
   position: relative; min-height: 80vh;
-  background: var(--ph); /* ← セクション自体の背景色 = フル幅写真プレースホルダー */
-  display: flex; align-items: flex-end;
-  overflow: hidden;
+  background: var(--ph);
+  display: flex; align-items: flex-end; overflow: hidden;
 }
 .env-photo-note {
   position: absolute; top: 24px; right: 24px;
-  font-size: 10px; font-family: 'Courier New', monospace;
-  color: rgba(0,0,0,.35);
+  font-size: 10px; font-family: 'Courier New', monospace; color: rgba(0,0,0,.35);
 }
 .env-body {
   position: relative; z-index: 2;
-  padding: 64px 48px 72px;
-  background: rgba(255,255,255,.88);
-  max-width: 640px;
+  max-width: 600px;
+  padding: 64px var(--edge) 72px;
+  background: rgba(255,255,255,.9);
 }
-.env-body .sec-en-xl { font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 8px; }
+.env-body .sec-en-xl { font-size: clamp(3rem, 5vw, 5rem); margin-bottom: 8px; }
 
 /* ─ PHOTO STRIP ─ */
 .photo-strip {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  height: 220px; overflow: hidden;
+  height: 240px; overflow: hidden;
 }
-.photo-strip .strip-item { overflow: hidden; border-right: 2px solid #fff; }
-.photo-strip .strip-item:last-child { border-right: none; }
+.strip-item { overflow: hidden; border-right: 2px solid #fff; }
+.strip-item:last-child { border-right: none; }
 
 /* ─ 3COL NAV ─ */
-.nav3-section { padding: 64px 0 80px; }
-.nav3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.nav3-section { padding: 80px 0; background: var(--bg); }
+.nav3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
 .nav3-item {
   background: var(--bg-muted);
-  padding: 32px 28px;
+  padding: 40px 36px;
   display: flex; flex-direction: column; gap: 8px;
 }
-.nav3-item .nav3-en {
+.nav3-en {
   font-family: 'Courier New', monospace;
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
   font-weight: 700; letter-spacing: -0.01em;
 }
-.nav3-item .nav3-ja { font-size: 0.8rem; color: var(--text-soft); }
-.nav3-item .nav3-arrow { font-size: 0.75rem; color: var(--text-soft); margin-top: auto; }
+.nav3-ja { font-size: 0.8rem; color: var(--text-soft); }
+.nav3-arrow { font-size: 0.75rem; color: var(--text-soft); margin-top: auto; padding-top: 16px; }
 
-/* ─ フッター（トップワイヤーと同構造） ─ */
+/* ─ FOOTER（トップワイヤーと完全同構造） ─ */
 footer {
   background: #1a1a1a; color: #aaa;
   padding: 64px 40px 28px;
@@ -327,70 +313,76 @@ footer {
 <body>
 
 <!-- ══════════════════════════════════════
-     GLOBAL NAVIGATION（トップワイヤーと同構造）
+     GLOBAL NAVIGATION（トップワイヤーと完全同構造）
+     header > nav > gnav-inner
 ══════════════════════════════════════ -->
-<nav class="gnav">
-  <div class="gnav-inner">
-    <div class="gnav-logo">[ ロゴ ]</div>
-    <ul class="gnav-links">
-      <li>三幸部品とは</li>
-      <li>会社概要</li>
-      <li>新着情報</li>
-      <li class="current">採用情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-    <div class="gnav-cta">
-      <span class="gnav-btn primary">採用エントリー</span>
+<header>
+  <nav class="gnav">
+    <div class="gnav-inner">
+      <div class="gnav-logo">[ ロゴ ]</div>
+      <ul class="gnav-links">
+        <li>三幸部品とは</li>
+        <li>会社概要</li>
+        <li>新着情報</li>
+        <li class="current">採用情報</li>
+        <li>お問い合わせ</li>
+      </ul>
+      <div class="gnav-cta">
+        <div class="btn btn-fill" style="font-size:0.78rem; padding:8px 20px;">採用エントリー</div>
+      </div>
     </div>
-  </div>
-</nav>
-<div class="breadcrumb">TOP &gt; 採用情報</div>
+  </nav>
+</header>
+
+<!-- パンくず：.inner と左端を揃える -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">TOP &gt; 採用情報</div>
+</div>
 
 <!-- ══════════════════════════════════════
-     HERO（80vh・ボタンなし）
+     HERO（フル幅 80vh・テキストは inner と同じ左端）
 ══════════════════════════════════════ -->
 <section id="hero" style="padding:0;">
   <div class="hero">
-    <!-- セクション自体がグレー背景 = フル幅写真プレースホルダー -->
     <div class="hero-img-note">[ 写真：職場・社員の活躍シーン ]</div>
     <div class="hero-en-bg">WORK THAT<br>SUPPORTS<br>THE FUTURE</div>
     <div class="hero-body">
-      <h1>ともに、ものづくりを<br>動かす仲間を求めています。</h1>
-      <p>未経験歓迎・中途採用メイン。事務・現場（製造）など複数ポジション募集中です。</p>
+      <div class="hero-body-inner">
+        <h1>ともに、ものづくりを<br>動かす仲間を求めています。</h1>
+        <p>未経験歓迎・中途採用メイン。事務・現場（製造）など複数ポジション募集中です。</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-     MESSAGE（高さを増す）
+     MESSAGE
 ══════════════════════════════════════ -->
-<section id="message" style="padding:0;">
-  <div class="message-wrap">
-    <div class="watermark">Create new value</div>
-    <div class="inner">
+<section id="message" style="padding:0;" class="message-section">
+  <div class="watermark">Create new value</div>
+  <div class="inner" style="width:100%;">
     <div class="message-grid">
       <div class="message-text">
         <span class="sec-label">MESSAGE</span>
         <h2>未来に残せる価値と、<br>ものづくりの現場を共に支えよう。</h2>
         <p class="lead">三幸部品で働くということ。</p>
-        <p>代表または採用担当者からのメッセージが入ります。仕事への想い・職場の雰囲気・一緒に働きたい人物像などを自然な言葉で伝えます（200字程度）。メッセージは採用MTGにてヒアリング。</p>
+        <p>代表または採用担当者からのメッセージが入ります。仕事への想い・職場の雰囲気・一緒に働きたい人物像などを自然な言葉で伝えます（200字程度）。</p>
         <p style="margin-top:12px; font-size:0.8rem; color:var(--text-soft); font-family:'Courier New',monospace;">代表取締役 ○○ ○○</p>
       </div>
       <div>
-        <div class="img-ph" style="aspect-ratio:4/3; height:auto;">[ 写真：代表 or 採用担当者 ]</div>
+        <div class="img-ph" style="aspect-ratio:4/3;">[ 写真：代表 or 採用担当者 ]</div>
       </div>
     </div>
-    </div><!-- /.inner -->
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-     OUR JOB
+     OUR JOB（左写真・右テキスト）
 ══════════════════════════════════════ -->
 <section id="job" style="padding:0;" class="job-section">
   <div class="job-grid">
     <div class="job-photo">
-      <div class="img-ph" style="width:100%; height:100%; min-height:480px;">[ 写真：職場・作業シーン ]</div>
+      <div class="img-ph" style="height:100%; min-height:560px;">[ 写真：職場・作業シーン ]</div>
     </div>
     <div class="job-body">
       <span class="sec-label">JOB</span>
@@ -398,20 +390,11 @@ footer {
       <p class="sec-ja">仕事を知る</p>
       <p style="font-size:0.85rem; color:var(--text-mid);">三幸部品には、ものづくりを支えるさまざまな仕事があります。あなたに合ったポジションを見つけてください。</p>
       <ul class="job-list">
-        <li>
-          <span><span class="num">01</span>現場職（製造・物流）</span>
-          <span class="arrow">→</span>
-        </li>
-        <li>
-          <span><span class="num">02</span>事務職</span>
-          <span class="arrow">→</span>
-        </li>
-        <li>
-          <span><span class="num">03</span>営業職</span>
-          <span class="arrow">→</span>
-        </li>
+        <li><span><span class="num">01</span>現場職（製造・物流）</span><span class="arrow">→</span></li>
+        <li><span><span class="num">02</span>事務職</span><span class="arrow">→</span></li>
+        <li><span><span class="num">03</span>営業職</span><span class="arrow">→</span></li>
       </ul>
-      <span class="btn-sm-wire">詳しく見る</span>
+      <div class="btn btn-outline btn-sm">詳しく見る</div>
     </div>
   </div>
 </section>
@@ -421,82 +404,84 @@ footer {
 ══════════════════════════════════════ -->
 <section id="member" class="member-section">
   <div class="inner">
-  <div class="member-header">
-    <span class="sec-label">MEMBER</span>
-    <span class="sec-en-xl">Member</span>
-    <p class="sec-ja" style="margin-top:8px;">人を知る</p>
-    <p>実際に働く社員を紹介します。三幸部品で出会える仲間を知ってください。</p>
-  </div>
-  <div class="member-strip">
-    <div class="member-card">
-      <div class="img-ph" style="aspect-ratio:3/4; height:auto;">[ 写真：社員01 ]</div>
-      <div class="member-card-body">
-        <span class="member-meta">STAFF 01 ／ 現場職 ／ 入社○年目</span>
-        <h3>「お客様に仲間を大切に、成長を楽しむ日々。」</h3>
-        <p>○○ ○○ ／ 製造部門・現場リーダー</p>
+    <div class="member-header">
+      <span class="sec-label">MEMBER</span>
+      <span class="sec-en-xl">Member</span>
+      <p class="sec-ja" style="margin-top:8px;">人を知る</p>
+      <p style="font-size:0.88rem; color:var(--text-mid); max-width:520px;">実際に働く社員を紹介します。三幸部品で出会える仲間を知ってください。</p>
+    </div>
+    <div class="member-strip">
+      <div class="member-card">
+        <div class="img-ph" style="aspect-ratio:3/4;">[ 写真：社員01 ]</div>
+        <div class="member-card-body">
+          <span class="member-meta">STAFF 01 ／ 現場職 ／ 入社○年目</span>
+          <h3>「お客様に仲間を大切に、成長を楽しむ日々。」</h3>
+          <p>○○ ○○ ／ 製造部門・現場リーダー</p>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="img-ph" style="aspect-ratio:3/4;">[ 写真：社員02 ]</div>
+        <div class="member-card-body">
+          <span class="member-meta">STAFF 02 ／ 事務職 ／ 入社○年目</span>
+          <h3>「仕事も育児も、自分らしくいられる職場です。」</h3>
+          <p>○○ ○○ ／ 営業事務</p>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="img-ph" style="aspect-ratio:3/4;">[ 写真：社員03 ]</div>
+        <div class="member-card-body">
+          <span class="member-meta">STAFF 03 ／ 現場職 ／ 入社○年目</span>
+          <h3>「未経験でも、確実に成長できる環境がある。」</h3>
+          <p>○○ ○○ ／ 部品管理・検品</p>
+        </div>
       </div>
     </div>
-    <div class="member-card">
-      <div class="img-ph" style="aspect-ratio:3/4; height:auto;">[ 写真：社員02 ]</div>
-      <div class="member-card-body">
-        <span class="member-meta">STAFF 02 ／ 事務職 ／ 入社○年目</span>
-        <h3>「仕事も育児も、自分らしくいられる職場です。」</h3>
-        <p>○○ ○○ ／ 営業事務</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <div class="img-ph" style="aspect-ratio:3/4; height:auto;">[ 写真：社員03 ]</div>
-      <div class="member-card-body">
-        <span class="member-meta">STAFF 03 ／ 現場職 ／ 入社○年目</span>
-        <h3>「未経験でも、確実に成長できる環境がある。」</h3>
-        <p>○○ ○○ ／ 部品管理・検品</p>
-      </div>
+    <div class="member-nav">
+      <span class="nav-btn">←</span>
+      <span class="nav-btn">→</span>
     </div>
   </div>
-  <div class="member-nav">
-    <span class="nav-btn">←</span>
-    <span class="nav-btn">→</span>
-  </div>
-  </div><!-- /.inner -->
 </section>
 
 <!-- ══════════════════════════════════════
-     WHO WE ARE
+     WHO WE ARE（左写真・右テキスト　明快な2カラム）
 ══════════════════════════════════════ -->
 <section id="who" style="padding:0;" class="who-section">
   <div class="who-grid">
-    <div class="who-left">
+    <div class="who-photo">
+      <div class="img-ph" style="height:100%; min-height:560px;">[ 写真：職場・チームの風景 ]</div>
+    </div>
+    <div class="who-body">
+      <span class="sec-label">WHO WE ARE</span>
+      <span class="sec-en">Who we are</span>
+      <p>採用情報について詳しくご紹介します。リード文が入ります（60字程度）。</p>
       <blockquote>「三幸部品は、社員一人ひとりがやりがいを感じながら働ける環境を整えています。」</blockquote>
       <div class="who-person">
-        <div class="img-ph" style="width:64px; height:64px; aspect-ratio:1/1; flex-shrink:0;">[ 顔 ]</div>
+        <div class="img-ph" style="width:56px; height:56px; flex-shrink:0;">[ 顔 ]</div>
         <div>
           <div style="font-size:1rem; font-weight:700;">代表取締役 ○○ ○○</div>
           <div class="who-meta">代表インタビューを読む →</div>
         </div>
       </div>
-    </div>
-    <div class="who-right">
-      <span class="sec-en-xl">Who<br>we are</span>
-      <p>採用情報について詳しくご紹介します。リード文が入ります。</p>
-      <span class="btn-sm-wire">採用情報を見る</span>
+      <div>
+        <div class="btn btn-outline btn-sm">採用情報を見る</div>
+      </div>
     </div>
   </div>
-  <div class="img-ph" style="aspect-ratio:16/4; height:auto;">[ フル幅写真：職場・チームの風景 ]</div>
 </section>
 
 <!-- ══════════════════════════════════════
-     ENVIRONMENT（フル幅写真背景・テキストオーバーレイ）
+     ENVIRONMENT（フル幅写真背景）
 ══════════════════════════════════════ -->
 <section id="environment" style="padding:0;" class="env-section">
-  <!-- セクション自体がグレー背景 = フル幅写真プレースホルダー（トップheroと同じパターン） -->
   <div class="env-photo-note">[ 写真：職場環境・施設 ]</div>
   <div class="env-body">
     <span class="sec-label">ENVIRONMENT</span>
     <span class="sec-en-xl">Environment</span>
     <p class="sec-ja">働く環境・制度</p>
-    <p style="font-size:0.85rem; color:var(--text-mid); max-width:440px;">三幸部品の職場環境と制度についてご紹介します。リード文が入ります（60字程度）。</p>
+    <p style="font-size:0.85rem; color:var(--text-mid);">三幸部品の職場環境と制度についてご紹介します（60字程度）。</p>
     <div style="margin-top:24px;">
-      <span class="btn-sm-wire">詳しく見る（福利厚生・制度へ）</span>
+      <div class="btn btn-outline btn-sm">詳しく見る（福利厚生・制度へ）</div>
     </div>
   </div>
 </section>
@@ -505,47 +490,39 @@ footer {
      PHOTO STRIP
 ══════════════════════════════════════ -->
 <div class="photo-strip">
-  <div class="strip-item">
-    <div class="img-ph" style="height:220px;">[ 職場写真 01 ]</div>
-  </div>
-  <div class="strip-item">
-    <div class="img-ph" style="height:220px;">[ 職場写真 02 ]</div>
-  </div>
-  <div class="strip-item">
-    <div class="img-ph" style="height:220px;">[ 職場写真 03 ]</div>
-  </div>
-  <div class="strip-item">
-    <div class="img-ph" style="height:220px;">[ 職場写真 04 ]</div>
-  </div>
+  <div class="strip-item"><div class="img-ph" style="height:240px;">[ 職場写真 01 ]</div></div>
+  <div class="strip-item"><div class="img-ph" style="height:240px;">[ 職場写真 02 ]</div></div>
+  <div class="strip-item"><div class="img-ph" style="height:240px;">[ 職場写真 03 ]</div></div>
+  <div class="strip-item"><div class="img-ph" style="height:240px;">[ 職場写真 04 ]</div></div>
 </div>
 
 <!-- ══════════════════════════════════════
-     3COL NAV（サイトマップ準拠のページ）
+     3COL NAV（サイトマップ準拠ページへの導線）
 ══════════════════════════════════════ -->
 <div class="nav3-section">
   <div class="inner">
-  <div class="nav3-grid">
-    <div class="nav3-item">
-      <span class="nav3-en">Job<br>Description</span>
-      <span class="nav3-ja">仕事を知る</span>
-      <span class="nav3-arrow">→ /recruit/works/</span>
-    </div>
-    <div class="nav3-item">
-      <span class="nav3-en">Interview</span>
-      <span class="nav3-ja">社員インタビュー</span>
-      <span class="nav3-arrow">→ /recruit/interview/</span>
-    </div>
-    <div class="nav3-item">
-      <span class="nav3-en">Requirements</span>
-      <span class="nav3-ja">募集要項</span>
-      <span class="nav3-arrow">→ /recruit/jobs/</span>
+    <div class="nav3-grid">
+      <div class="nav3-item">
+        <span class="nav3-en">Job Description</span>
+        <span class="nav3-ja">仕事を知る</span>
+        <span class="nav3-arrow">→ /recruit/works/</span>
+      </div>
+      <div class="nav3-item">
+        <span class="nav3-en">Interview</span>
+        <span class="nav3-ja">社員インタビュー</span>
+        <span class="nav3-arrow">→ /recruit/interview/</span>
+      </div>
+      <div class="nav3-item">
+        <span class="nav3-en">Requirements</span>
+        <span class="nav3-ja">募集要項</span>
+        <span class="nav3-arrow">→ /recruit/jobs/</span>
+      </div>
     </div>
   </div>
-  </div><!-- /.inner -->
 </div>
 
 <!-- ══════════════════════════════════════
-     FOOTER（トップワイヤーと同構造）
+     FOOTER（トップワイヤーと完全同構造）
 ══════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
