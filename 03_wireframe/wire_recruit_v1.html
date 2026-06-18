@@ -258,23 +258,6 @@ body {
 .strip-item { overflow: hidden; border-right: 2px solid #fff; }
 .strip-item:last-child { border-right: none; }
 
-/* ─ 4COL NAV（サイトマップ全4ページ） ─ */
-.nav4-section { padding: 80px 0; background: var(--bg); }
-.nav4-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-.nav4-item {
-  background: var(--bg-muted);
-  padding: 40px 32px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.nav4-en {
-  font-family: 'Courier New', monospace;
-  font-size: clamp(1rem, 1.6vw, 1.5rem);
-  font-weight: 700; letter-spacing: -0.01em;
-}
-.nav4-ja { font-size: 0.8rem; color: var(--text-soft); }
-/* ボタンが伸びないよう align-self で制御 */
-.nav4-item .btn { align-self: flex-start; margin-top: auto; }
-
 /* ─ CTA（末尾）採用エントリー誘導 → /contact/ ─ */
 .cta-section {
   position: relative; min-height: 360px;
@@ -498,42 +481,8 @@ footer {
 </div>
 
 <!-- ══════════════════════════════════════
-     4COL NAV（採用サブページ全4ページへの導線）
-     サイトマップ準拠：works / interview / benefit / jobs
-══════════════════════════════════════ -->
-<div class="nav4-section">
-  <div class="inner">
-    <div class="nav4-grid">
-      <!-- → /recruit/works/ -->
-      <div class="nav4-item">
-        <span class="nav4-en">Job Description</span>
-        <span class="nav4-ja">仕事を知る</span>
-        <div class="btn btn-outline btn-sm">詳しく見る</div>
-      </div>
-      <!-- → /recruit/interview/ -->
-      <div class="nav4-item">
-        <span class="nav4-en">Interview</span>
-        <span class="nav4-ja">社員インタビュー</span>
-        <div class="btn btn-outline btn-sm">詳しく見る</div>
-      </div>
-      <!-- → /recruit/benefit/ -->
-      <div class="nav4-item">
-        <span class="nav4-en">Benefits</span>
-        <span class="nav4-ja">福利厚生・制度</span>
-        <div class="btn btn-outline btn-sm">詳しく見る</div>
-      </div>
-      <!-- → /recruit/jobs/ -->
-      <div class="nav4-item">
-        <span class="nav4-en">Requirements</span>
-        <span class="nav4-ja">募集要項</span>
-        <div class="btn btn-outline btn-sm">詳しく見る</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
      CTA（末尾）
+     募集要項を見る → /recruit/jobs/（他セクションで未リンク・唯一）
      採用エントリーはこちら → /contact/
      お問い合わせはこちら → /contact/
 ══════════════════════════════════════ -->
@@ -545,6 +494,8 @@ footer {
       <p>三幸部品で一緒に働きませんか。<br>まずはお気軽にエントリーください。</p>
     </div>
     <div class="cta-btns">
+      <!-- → /recruit/jobs/ -->
+      <div class="btn btn-white-ol">募集要項を見る</div>
       <!-- → /contact/ -->
       <div class="btn btn-white">採用エントリーはこちら</div>
       <!-- → /contact/ -->
