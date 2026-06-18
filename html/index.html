@@ -277,7 +277,7 @@ ul { list-style: none; }
 ═══════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 100vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -424,30 +424,10 @@ ul { list-style: none; }
    RECRUIT
 ═══════════════════════════════════════════ */
 .recruit-section { background: var(--color-bg); }
-.recruit-top {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 80px var(--inner-pad);
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 72px;
-  align-items: center;
-}
-.recruit-intro p {
-  font-size: 0.92rem;
-  color: var(--color-text-sub);
-  line-height: 1.9;
-  font-weight: 300;
-  margin-bottom: 32px;
-}
-.recruit-body-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 .recruit-photo-area {
   position: relative;
-  min-height: 740px;
+  min-height: 860px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .recruit-photo-area img {
   position: absolute; inset: 0;
@@ -457,10 +437,18 @@ ul { list-style: none; }
 }
 .recruit-overlay {
   position: absolute; inset: 0;
-  background: rgba(12,45,82,.46);
+  background: linear-gradient(
+    to bottom,
+    rgba(12,45,82,.52) 0%,
+    rgba(12,45,82,.18) 45%,
+    rgba(12,45,82,.05) 62%,
+    rgba(12,45,82,.0) 72%
+  );
 }
 .recruit-catch {
-  position: relative; z-index: 2;
+  position: absolute;
+  top: 64px; left: 0; right: 0;
+  z-index: 2;
   text-align: center;
   color: #fff;
   padding: 0 40px;
@@ -470,6 +458,35 @@ ul { list-style: none; }
   font-weight: 700;
   line-height: 1.5;
 }
+/* 白パネル：写真の下部に絶対配置 */
+.recruit-panel {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,.96);
+  z-index: 3;
+  padding: 52px 0 60px;
+  backdrop-filter: blur(4px);
+}
+.recruit-panel-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--inner-pad);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.recruit-panel-heading {
+  flex-shrink: 0;
+}
+.recruit-intro p {
+  font-size: 0.92rem;
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+.recruit-body-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* ═══════════════════════════════════════════
    RECRUIT CARDS（2×2）
@@ -484,7 +501,7 @@ ul { list-style: none; }
   display: block;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
 }
 .recruit-card img {
   position: absolute; inset: 0;
@@ -732,8 +749,12 @@ footer {
   .service-info { padding: 48px 28px; border-right: none; border-bottom: 1px solid rgba(37,119,200,.14); }
   .service-strip { min-height: 240px; }
 
-  .recruit-top { grid-template-columns: 1fr; padding: 48px 24px; gap: 32px; }
-  .recruit-photo-area { min-height: 440px; }
+  .recruit-photo-area { min-height: auto; }
+  .recruit-catch { top: 36px; }
+  .recruit-catch p { font-size: clamp(1.4rem, 5vw, 1.9rem); }
+  .recruit-panel { position: static; }
+  .recruit-panel-inner { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px 40px; }
+  .recruit-body-btns { flex-direction: column; align-items: flex-start; }
 
   .recruit-cards { grid-template-columns: 1fr; }
 
@@ -817,7 +838,7 @@ footer {
     <div class="about-photo">
       <img src="sozai/pixta_33539606_XL.jpg" alt="工場・製造現場">
       <div class="about-photo-sub">
-        <img src="sozai/pixta_48782325_XL.jpg" alt="部品クローズアップ">
+        <img src="sozai/pixta_94866638_XL.jpg" alt="トラック・物流">
       </div>
     </div>
     <div class="about-text fade-up">
@@ -874,24 +895,26 @@ footer {
      RECRUIT : 見出し＋テキスト → フル幅フォト
 ══════════════════════════════════════ -->
 <section class="recruit-section" id="recruit">
-  <div class="recruit-top fade-up">
-    <div>
-      <span class="sec-label">採用情報</span>
-      <span class="en-heading">Recruit</span>
-    </div>
-    <div class="recruit-intro">
-      <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
-      <div class="recruit-body-btns">
-        <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
-        <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
-      </div>
-    </div>
-  </div>
   <div class="recruit-photo-area">
     <img src="sozai/pixta_11151978_XL.jpg" alt="働く仲間">
     <div class="recruit-overlay"></div>
     <div class="recruit-catch">
       <p>私たちと一緒に、<br>働きませんか。</p>
+    </div>
+    <div class="recruit-panel fade-up">
+      <div class="recruit-panel-inner">
+        <div class="recruit-panel-heading">
+          <span class="sec-label">採用情報</span>
+          <span class="en-heading">Recruit</span>
+        </div>
+        <div class="recruit-intro">
+          <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
+          <div class="recruit-body-btns">
+            <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
+            <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1023,7 +1046,7 @@ footer {
 ══════════════════════════════════════ -->
 <section class="contact-section" id="contact">
   <div class="contact-bg">
-    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1800&q=80" alt="">
+    <img src="sozai/pixta_48782325_XL.jpg" alt="">
   </div>
   <div class="contact-inner">
     <div class="contact-text fade-up">
