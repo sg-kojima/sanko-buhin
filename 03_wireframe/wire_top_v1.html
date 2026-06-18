@@ -236,11 +236,11 @@
   /* ─── SERVICE（見出し左＋フォトストリップ右） ─── */
   .service-layout {
     display: grid;
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 420px 1fr;
     background: var(--bg-muted);
   }
   .service-info {
-    padding: 80px 48px 80px 64px;
+    padding: 80px 40px 80px 64px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -297,24 +297,24 @@
   }
   .recruit-photo-area {
     position: relative;
-    min-height: 580px;
+    min-height: 720px;
     background: #666;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible;
+    overflow: hidden;
   }
   .recruit-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0,0,0,0.4);
   }
   .recruit-marquee {
     position: relative;
     z-index: 2;
-    font-size: clamp(6rem, 13vw, 13rem);
+    font-size: clamp(8rem, 18vw, 18rem);
     font-weight: 700;
-    color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.10);
     white-space: nowrap;
     font-family: 'Courier New', monospace;
     letter-spacing: -0.02em;
@@ -340,11 +340,11 @@
   .recruit-body-btns { display: flex; gap: 14px; flex-shrink: 0; }
 
   /* ─── RECRUIT CARDS（2×2） ─── */
-  .recruit-cards-section { padding: 96px 0; background: var(--bg); }
+  .recruit-cards-section { padding: 96px 0; background: var(--bg-muted); }
   .recruit-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+    gap: 20px;
   }
   .recruit-card {
     position: relative;
@@ -635,7 +635,7 @@
   <div class="service-layout">
     <div class="service-info">
       <span class="sec-label">事業紹介</span>
-      <span class="en-heading">Our<br>Service</span>
+      <span class="en-heading" style="font-size: clamp(2.4rem, 3.5vw, 3.8rem);">Our<br>Service</span>
       <p>トラック用部品を中心に自動車部品全般の調達・供給・卸売を一貫して担います。製造現場のニーズに合わせた迅速な対応が私たちの強みです。</p>
       <div><div class="btn btn-outline btn-sm">詳しく見る</div></div>
     </div>
@@ -675,7 +675,7 @@
   </div>
   <div class="recruit-photo-area">
     <div class="recruit-overlay"></div>
-    <div class="recruit-marquee">WORK WITH US. &nbsp; WORK WITH US. &nbsp; WORK WITH US.</div>
+    <div class="recruit-marquee">RECRUIT</div>
   </div>
   <div class="recruit-body">
     <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
