@@ -309,18 +309,18 @@
     inset: 0;
     background: rgba(0,0,0,0.4);
   }
-  .recruit-marquee {
+  .recruit-catch {
     position: relative;
     z-index: 2;
-    font-size: clamp(8rem, 18vw, 18rem);
-    font-weight: 700;
-    color: rgba(255,255,255,0.10);
-    white-space: nowrap;
-    font-family: 'Courier New', monospace;
-    letter-spacing: -0.02em;
-    user-select: none;
-    width: 100%;
     text-align: center;
+    color: #fff;
+    padding: 0 40px;
+  }
+  .recruit-catch p {
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
   }
   .recruit-body {
     max-width: 1200px;
@@ -369,22 +369,21 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 36px 32px 28px;
+    padding: 28px 32px;
     background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
     color: #fff;
   }
-  .recruit-card-catch {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.7;
-    margin-bottom: 14px;
-    font-weight: 400;
-  }
   .recruit-card-body h3 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     color: #fff;
+  }
+  .recruit-card-body p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.6;
+    margin-bottom: 10px;
   }
   .link-arrow {
     font-size: 0.78rem;
@@ -676,7 +675,9 @@
   </div>
   <div class="recruit-photo-area">
     <div class="recruit-overlay"></div>
-    <div class="recruit-marquee">RECRUIT</div>
+    <div class="recruit-catch">
+      <p>私たちと一緒に、<br>ものづくりを支えませんか。</p>
+    </div>
   </div>
   <div class="recruit-body">
     <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
@@ -696,32 +697,32 @@
       <div class="recruit-card">
         <div class="recruit-card-img">[ 写真：仕事風景 ]</div>
         <div class="recruit-card-body">
-          <p class="recruit-card-catch">あなたの仕事が、日本の物流を動かしている。</p>
           <h3>仕事を知る</h3>
+          <p>職種ごとの業務内容・1日の流れ・やりがい。</p>
           <div class="link-arrow">詳しく見る →</div>
         </div>
       </div>
       <div class="recruit-card">
         <div class="recruit-card-img">[ 写真：社員インタビュー ]</div>
         <div class="recruit-card-body">
-          <p class="recruit-card-catch">ここで働く人たちの、リアルな声。</p>
           <h3>社員インタビュー</h3>
+          <p>実際に働く社員の声・入社理由・職場の雰囲気。</p>
           <div class="link-arrow">詳しく見る →</div>
         </div>
       </div>
       <div class="recruit-card">
         <div class="recruit-card-img">[ 写真：職場・福利厚生イメージ ]</div>
         <div class="recruit-card-body">
-          <p class="recruit-card-catch">長く、安心して働き続けられる環境を。</p>
           <h3>福利厚生・制度</h3>
+          <p>各種手当・休日・社会保険・資格取得支援など。</p>
           <div class="link-arrow">詳しく見る →</div>
         </div>
       </div>
       <div class="recruit-card">
         <div class="recruit-card-img">[ 写真：職場・応募イメージ ]</div>
         <div class="recruit-card-body">
-          <p class="recruit-card-catch">あなたの力を、三幸部品で活かしませんか。</p>
           <h3>募集要項</h3>
+          <p>職種・給与・勤務地・応募資格など詳細。</p>
           <div class="link-arrow">詳しく見る →</div>
         </div>
       </div>
