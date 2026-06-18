@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社三幸部品 | 自動車部品・トラック用部品の専門商社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   Reset & Base
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* カラー */
+  --color-primary:       #0C2D52;
+  --color-accent:        #2577C8;
+  --color-accent-mid:    #3D8FE0;
+  --color-accent-light:  #EBF4FF;
+  --color-bg:            #FFFFFF;
+  --color-bg-muted:      #F4F8FD;
+  --color-text:          #1A1A1A;
+  --color-text-sub:      #5A6A7A;
+  --color-text-soft:     #9AAAB8;
+  --color-line:          rgba(0,0,0,.08);
+
+  /* フォント */
+  --font-main: 'Noto Sans JP', "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+
+  /* レイアウト */
+  --max-width:   1200px;
+  --inner-pad:   64px;
+  --section-gap: 120px;
+}
+
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-main);
+  line-height: 1.9;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--inner-pad);
+}
+
+/* ═══════════════════════════════════════════
+   Typography helpers
+═══════════════════════════════════════════ */
+.sec-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.en-heading {
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+}
+
+.ja-sub {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+/* ═══════════════════════════════════════════
+   Buttons
+═══════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background .25s, color .25s, border-color .25s;
+  border: 2px solid transparent;
+  line-height: 1;
+}
+.btn::after { content: '→'; font-size: 0.8em; font-weight: 400; }
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+.btn-primary:hover { background: var(--color-accent-mid); border-color: var(--color-accent-mid); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-outline:hover { background: var(--color-primary); color: #fff; }
+
+.btn-white {
+  background: #fff;
+  color: var(--color-primary);
+  border-color: #fff;
+}
+.btn-white:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+.btn-white-ol {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,.6);
+}
+.btn-white-ol:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+
+.btn-sm { padding: 10px 24px; font-size: 0.8rem; }
+
+/* ═══════════════════════════════════════════
+   Fade-up animation
+═══════════════════════════════════════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .72s ease, transform .72s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   GLOBAL NAVIGATION
+═══════════════════════════════════════════ */
+.gnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--color-line);
+  transition: box-shadow .3s;
+  backdrop-filter: blur(8px);
+}
+.gnav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.07); }
+
+.gnav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  gap: 32px;
+}
+
+.gnav-logo {
+  flex-shrink: 0;
+  width: 164px;
+  height: 44px;
+  background: var(--color-bg-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-soft);
+  border: 1px solid var(--color-line);
+}
+
+.gnav-links {
+  display: flex;
+  gap: 28px;
+  flex: 1;
+  justify-content: center;
+}
+.gnav-links a {
+  font-size: 0.83rem;
+  font-weight: 400;
+  color: var(--color-text-sub);
+  letter-spacing: 0.02em;
+  padding: 4px 0;
+  position: relative;
+  transition: color .2s;
+}
+.gnav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform .25s;
+}
+.gnav-links a:hover { color: var(--color-primary); }
+.gnav-links a:hover::after { transform: scaleX(1); }
+
+.gnav-cta { flex-shrink: 0; }
+.gnav-cta .btn { padding: 9px 22px; font-size: 0.78rem; }
+.gnav-cta .btn::after { content: ''; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px; height: 44px;
+  cursor: pointer;
+  background: none; border: none; padding: 0;
+  z-index: 200;
+  color: var(--color-primary);
+}
+.hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: currentColor;
+  transition: transform .3s, opacity .3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Drawer */
+.mobile-drawer {
+  position: fixed; top: 0; right: 0;
+  width: 280px; height: 100%;
+  background: var(--color-primary);
+  z-index: 300;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+  padding: 80px 36px 48px;
+}
+.mobile-drawer.open { transform: translateX(0); }
+.drawer-close {
+  position: absolute; top: 22px; right: 22px;
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; color: rgba(255,255,255,.6); padding: 8px;
+}
+.drawer-nav { display: flex; flex-direction: column; }
+.drawer-nav a {
+  font-size: 13px; font-weight: 300; letter-spacing: .08em;
+  color: rgba(255,255,255,.78);
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  transition: color .2s;
+}
+.drawer-nav a:last-child { border-bottom: none; }
+.drawer-nav a:hover { color: #fff; }
+.drawer-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 290;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-top: 72px;
+}
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(12,45,82,.08) 0%,
+    rgba(12,45,82,.28) 40%,
+    rgba(12,45,82,.72) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 var(--inner-pad) 80px;
+  max-width: 920px;
+  color: #fff;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.52;
+  display: block;
+  margin-bottom: 24px;
+}
+.hero-content h1 {
+  font-size: clamp(2.2rem, 3.2vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.hero-content p {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  max-width: 460px;
+  font-weight: 300;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  min-height: 600px;
+}
+.about-photo { position: relative; overflow: hidden; }
+.about-photo-sub {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 42%; height: 42%;
+  border: 4px solid #fff;
+  overflow: hidden;
+}
+.about-text {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-bg);
+}
+.about-text p {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  margin-bottom: 36px;
+  max-width: 420px;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════════
+   SERVICE
+═══════════════════════════════════════════ */
+.service-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  background: var(--color-bg-muted);
+}
+.service-info {
+  padding: 80px 40px 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(37,119,200,.14);
+}
+.service-info p {
+  font-size: 0.88rem;
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.service-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  min-height: 500px;
+}
+.service-strip-item {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.service-strip-item + .service-strip-item { border-left: 2px solid rgba(255,255,255,.45); }
+.service-strip-item img {
+  position: absolute; inset: 0;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.service-strip-item:hover img { transform: scale(1.05); }
+.service-strip-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(12,45,82,.78) 0%, transparent 55%);
+}
+.service-strip-label {
+  position: relative; z-index: 2;
+  padding: 28px 20px;
+  width: 100%;
+  color: rgba(255,255,255,.92);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.service-strip-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  display: block;
+  opacity: 0.52;
+  margin-bottom: 6px;
+  letter-spacing: 0.12em;
+}
+
+/* ═══════════════════════════════════════════
+   RECRUIT（フル幅フォト）
+═══════════════════════════════════════════ */
+.recruit-section { background: var(--color-bg); }
+.recruit-heading-bar {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px var(--inner-pad) 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.recruit-photo-area {
+  position: relative;
+  min-height: 740px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recruit-photo-area img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.recruit-overlay {
+  position: absolute; inset: 0;
+  background: rgba(12,45,82,.46);
+}
+.recruit-catch {
+  position: relative; z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0 40px;
+}
+.recruit-catch p {
+  font-size: clamp(1.9rem, 3.2vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.5;
+}
+.recruit-body {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 56px var(--inner-pad) 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+.recruit-body p {
+  font-size: 0.92rem;
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  max-width: 540px;
+  font-weight: 300;
+}
+.recruit-body-btns { display: flex; gap: 14px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+
+/* ═══════════════════════════════════════════
+   RECRUIT CARDS（2×2）
+═══════════════════════════════════════════ */
+.recruit-cards-section { padding: 96px 0; background: var(--color-bg-muted); }
+.recruit-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.recruit-card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+.recruit-card img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.recruit-card:hover img { transform: scale(1.04); }
+.recruit-card-body {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 32px 36px;
+  background: linear-gradient(to top, rgba(12,45,82,.85) 0%, rgba(12,45,82,.22) 60%, transparent 100%);
+  color: #fff;
+}
+.recruit-card-body h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.recruit-card-body p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,.76);
+  line-height: 1.65;
+  margin-bottom: 12px;
+  font-weight: 300;
+}
+.link-arrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,.56);
+  letter-spacing: 0.06em;
+}
+
+/* ═══════════════════════════════════════════
+   INTERVIEW
+═══════════════════════════════════════════ */
+.interview-section { padding: var(--section-gap) 0; }
+.interview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+}
+.interview-header .en-heading { font-size: clamp(2.4rem, 4vw, 4rem); }
+.interview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.interview-card { overflow: hidden; }
+.interview-card-img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.interview-card-img img { transition: transform .5s ease; }
+.interview-card:hover .interview-card-img img { transform: scale(1.04); }
+.interview-tag {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 8px;
+}
+.interview-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.55;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+}
+.interview-card p {
+  font-size: 0.82rem;
+  color: var(--color-text-sub);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════════
+   NEWS
+═══════════════════════════════════════════ */
+.news-section { padding: var(--section-gap) 0; background: var(--color-bg-muted); }
+.news-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.news-heading-col .en-heading { font-size: clamp(2.4rem, 4vw, 4rem); }
+.news-list { border-top: 1px solid var(--color-line); margin-top: 8px; }
+.news-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-line);
+  transition: padding-left .2s;
+}
+.news-item:hover { padding-left: 6px; }
+.news-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-soft);
+  flex-shrink: 0;
+  width: 90px;
+}
+.news-cat {
+  font-size: 0.67rem;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 2px 10px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+.news-title {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  transition: color .2s;
+}
+.news-item:hover .news-title { color: var(--color-accent); }
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.contact-section {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-primary);
+}
+.contact-bg { position: absolute; inset: 0; }
+.contact-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .15;
+  mix-blend-mode: luminosity;
+}
+.contact-inner {
+  position: relative; z-index: 2;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px var(--inner-pad);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.contact-text .sec-label { color: rgba(255,255,255,.35); }
+.contact-text .en-heading { color: #fff; font-size: clamp(3rem, 5vw, 5rem); }
+.contact-text p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,.68);
+  line-height: 1.9;
+  margin-top: 14px;
+  max-width: 440px;
+  font-weight: 300;
+}
+.contact-cta {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: #0A1E35;
+  color: #7E90A0;
+  padding: 72px 40px 32px;
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  margin-bottom: 28px;
+}
+.footer-logo {
+  width: 160px; height: 44px;
+  background: rgba(255,255,255,.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #4A5E70;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,.07);
+}
+.footer-addr { font-size: 0.72rem; color: #4A5E70; line-height: 2; }
+.footer-nav h4 {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7E90A0;
+  margin-bottom: 18px;
+}
+.footer-nav ul { display: flex; flex-direction: column; gap: 2px; }
+.footer-nav a {
+  font-size: 0.78rem;
+  color: #4A5E70;
+  padding: 5px 0;
+  transition: color .2s;
+}
+.footer-nav a:hover { color: #7E90A0; }
+.footer-copy {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  color: #2E3E4E;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 860px) {
+  :root {
+    --inner-pad: 24px;
+    --section-gap: 72px;
+  }
+  html { font-size: 16px; }
+
+  .gnav-links, .gnav-cta { display: none; }
+  .hamburger { display: flex; }
+
+  .hero-content { padding: 0 24px 64px; max-width: 100%; }
+  .hero-btns { flex-direction: column; align-items: flex-start; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { min-height: 260px; }
+  .about-photo-sub { display: none; }
+  .about-text { padding: 48px 28px; }
+  .about-text p { max-width: 100%; }
+
+  .service-layout { grid-template-columns: 1fr; }
+  .service-info { padding: 48px 28px; border-right: none; border-bottom: 1px solid rgba(37,119,200,.14); }
+  .service-strip { min-height: 240px; }
+
+  .recruit-heading-bar { padding: 48px 24px 24px; }
+  .recruit-photo-area { min-height: 440px; }
+  .recruit-body { flex-direction: column; padding: 40px 24px 64px; gap: 28px; }
+  .recruit-body-btns { justify-content: flex-start; }
+
+  .recruit-cards { grid-template-columns: 1fr; }
+
+  .interview-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  .news-layout { grid-template-columns: 1fr; gap: 28px; }
+
+  .contact-inner { flex-direction: column; padding: 64px 24px; align-items: flex-start; }
+  .contact-cta { align-items: flex-start; width: 100%; }
+  .contact-cta .btn { width: 100%; justify-content: center; }
+
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-inner > div:first-child { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     GLOBAL NAVIGATION
+══════════════════════════════════════ -->
+<header>
+  <nav class="gnav" id="gnav">
+    <div class="gnav-inner">
+      <a href="index.html" class="gnav-logo">[ LOGO ]</a>
+      <ul class="gnav-links">
+        <li><a href="about/">三幸部品とは</a></li>
+        <li><a href="company/">会社概要</a></li>
+        <li><a href="news/">新着情報</a></li>
+        <li><a href="recruit/">採用情報</a></li>
+        <li><a href="contact/">お問い合わせ</a></li>
+      </ul>
+      <div class="gnav-cta">
+        <a href="recruit/entry/" class="btn btn-primary">採用エントリー</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <button class="drawer-close" id="drawerClose">✕</button>
+  <nav class="drawer-nav">
+    <a href="about/">三幸部品とは</a>
+    <a href="company/">会社概要</a>
+    <a href="news/">新着情報</a>
+    <a href="recruit/">採用情報</a>
+    <a href="contact/">お問い合わせ</a>
+    <a href="recruit/entry/">採用エントリー</a>
+  </nav>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ══════════════════════════════════════
+     HERO : フル幅背景写真 テキスト下左寄せ
+══════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1800&q=80" alt="製造現場">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">SANKO BUHIN CO., LTD.</span>
+    <h1>信頼をつなぐ部品が、<br>日本のものづくりを<br>動かし続ける。</h1>
+    <p>自動車部品・トラック用部品の製造・卸売を通じて、製造現場の信頼パートナーとして歩み続けてきました。</p>
+    <div class="hero-btns">
+      <a href="recruit/" class="btn btn-white">採用情報を見る</a>
+      <a href="about/" class="btn btn-white-ol">会社を知る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ABOUT : フル幅 写真55% + テキスト45%
+══════════════════════════════════════ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photo">
+      <img src="https://images.unsplash.com/photo-1565793979963-e7a31dc97b95?auto=format&fit=crop&w=1200&q=80" alt="工場・製造現場">
+      <div class="about-photo-sub">
+        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=600&q=80" alt="部品クローズアップ">
+      </div>
+    </div>
+    <div class="about-text fade-up">
+      <span class="sec-label">三幸部品とは</span>
+      <span class="en-heading">About Us</span>
+      <p class="ja-sub">自動車部品の専門商社として、製造現場を支え続ける。</p>
+      <p>トラック用部品を中心に、多種多様な自動車部品を取り扱う株式会社三幸部品。長年の実績と専門知識をもとに、製造現場のニーズに応えてきました。「ものの流れを止めない」ことが、私たちの使命です。</p>
+      <a href="about/" class="btn btn-outline btn-sm">詳しく見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SERVICE : 見出し左 + フォトストリップ右
+══════════════════════════════════════ -->
+<section id="service">
+  <div class="service-layout">
+    <div class="service-info fade-up">
+      <span class="sec-label">事業紹介</span>
+      <span class="en-heading" style="font-size: clamp(2.4rem, 3.5vw, 3.8rem);">Our<br>Service</span>
+      <p>トラック用部品を中心に自動車部品全般の調達・供給・卸売を一貫して担います。製造現場のニーズに合わせた迅速な対応が私たちの強みです。</p>
+      <a href="about/" class="btn btn-outline btn-sm">詳しく見る</a>
+    </div>
+    <div class="service-strip">
+      <div class="service-strip-item">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="部品調達・仕入れ">
+        <div class="service-strip-overlay"></div>
+        <div class="service-strip-label">
+          <span class="service-strip-num">01</span>
+          部品調達・仕入れ
+        </div>
+      </div>
+      <div class="service-strip-item">
+        <img src="https://images.unsplash.com/photo-1553697388-94e804e2f0f6?auto=format&fit=crop&w=600&q=80" alt="在庫管理・品質管理">
+        <div class="service-strip-overlay"></div>
+        <div class="service-strip-label">
+          <span class="service-strip-num">02</span>
+          在庫管理・品質管理
+        </div>
+      </div>
+      <div class="service-strip-item">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80" alt="供給・卸売">
+        <div class="service-strip-overlay"></div>
+        <div class="service-strip-label">
+          <span class="service-strip-num">03</span>
+          供給・卸売
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     RECRUIT : フル幅フォト
+══════════════════════════════════════ -->
+<section class="recruit-section" id="recruit">
+  <div class="recruit-heading-bar fade-up">
+    <div>
+      <span class="sec-label">採用情報</span>
+      <span class="en-heading">Recruit</span>
+    </div>
+  </div>
+  <div class="recruit-photo-area">
+    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=80" alt="働く仲間">
+    <div class="recruit-overlay"></div>
+    <div class="recruit-catch">
+      <p>私たちと一緒に、<br>働きませんか。</p>
+    </div>
+  </div>
+  <div class="recruit-body fade-up">
+    <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
+    <div class="recruit-body-btns">
+      <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
+      <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     RECRUIT CARDS : 採用4カード（2×2）
+══════════════════════════════════════ -->
+<div class="recruit-cards-section" id="recruit-contents">
+  <div class="inner">
+    <div class="recruit-cards">
+      <a href="recruit/work/" class="recruit-card">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80" alt="仕事風景">
+        <div class="recruit-card-body">
+          <h3>仕事を知る</h3>
+          <p>各職種の業務内容や1日の流れ、働くやりがいをご紹介します。</p>
+          <div class="link-arrow">詳しく見る →</div>
+        </div>
+      </a>
+      <a href="recruit/interview/" class="recruit-card">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80" alt="社員インタビュー">
+        <div class="recruit-card-body">
+          <h3>社員インタビュー</h3>
+          <p>実際に働く社員が、入社のきっかけや職場の雰囲気を語ります。</p>
+          <div class="link-arrow">詳しく見る →</div>
+        </div>
+      </a>
+      <a href="recruit/benefits/" class="recruit-card">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="福利厚生・制度">
+        <div class="recruit-card-body">
+          <h3>福利厚生・制度</h3>
+          <p>各種手当・休暇・社会保険・資格取得支援など、働く環境をご紹介します。</p>
+          <div class="link-arrow">詳しく見る →</div>
+        </div>
+      </a>
+      <a href="recruit/requirements/" class="recruit-card">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80" alt="募集要項">
+        <div class="recruit-card-body">
+          <h3>募集要項</h3>
+          <p>職種・給与・勤務地・応募資格など、詳しい採用情報をご確認ください。</p>
+          <div class="link-arrow">詳しく見る →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     INTERVIEW : 社員インタビュー 3枚
+══════════════════════════════════════ -->
+<section class="interview-section" id="interview">
+  <div class="inner">
+    <div class="interview-header fade-up">
+      <div>
+        <span class="sec-label">社員の声</span>
+        <span class="en-heading">Interview</span>
+      </div>
+      <a href="recruit/interview/" class="btn btn-outline btn-sm">一覧を見る</a>
+    </div>
+    <div class="interview-grid">
+      <div class="interview-card fade-up">
+        <div class="interview-card-img">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80" alt="社員 01">
+        </div>
+        <span class="interview-tag">STAFF 01 ／ 現場職</span>
+        <h3>「未経験から始めて、今では頼れる存在に。」</h3>
+        <p>入社のきっかけや、仕事のやりがいについてのコメントが入ります。</p>
+      </div>
+      <div class="interview-card fade-up" style="transition-delay:.1s">
+        <div class="interview-card-img">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="社員 02">
+        </div>
+        <span class="interview-tag">STAFF 02 ／ 事務職</span>
+        <h3>「働きやすい環境で、長く続けられる仕事。」</h3>
+        <p>入社のきっかけや、仕事のやりがいについてのコメントが入ります。</p>
+      </div>
+      <div class="interview-card fade-up" style="transition-delay:.2s">
+        <div class="interview-card-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="社員 03">
+        </div>
+        <span class="interview-tag">STAFF 03 ／ 現場職</span>
+        <h3>「ものづくりの面白さを、ここで見つけた。」</h3>
+        <p>入社のきっかけや、仕事のやりがいについてのコメントが入ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     NEWS : 見出し左 ＋ リスト右（2カラム）
+══════════════════════════════════════ -->
+<section class="news-section" id="news">
+  <div class="inner">
+    <div class="news-layout">
+      <div class="news-heading-col fade-up">
+        <span class="sec-label">新着情報</span>
+        <span class="en-heading">News</span>
+        <div style="margin-top:28px;">
+          <a href="news/" class="btn btn-outline btn-sm">全記事一覧へ</a>
+        </div>
+      </div>
+      <ul class="news-list fade-up">
+        <li class="news-item">
+          <span class="news-date">2026.06.01</span>
+          <span class="news-cat">お知らせ</span>
+          <a href="#" class="news-title">新着情報のタイトルテキストが入ります</a>
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026.05.20</span>
+          <span class="news-cat">採用情報</span>
+          <a href="#" class="news-title">採用情報のタイトルテキストが入ります</a>
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026.05.12</span>
+          <span class="news-cat">お知らせ</span>
+          <a href="#" class="news-title">新着情報のタイトルテキストが入ります</a>
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026.04.28</span>
+          <span class="news-cat">お知らせ</span>
+          <a href="#" class="news-title">新着情報のタイトルテキストが入ります</a>
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026.04.10</span>
+          <span class="news-cat">採用情報</span>
+          <a href="#" class="news-title">採用情報のタイトルテキストが入ります</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONTACT : フル幅ネイビー + 写真テクスチャ
+══════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="contact-bg">
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1800&q=80" alt="">
+  </div>
+  <div class="contact-inner">
+    <div class="contact-text fade-up">
+      <span class="sec-label">お問い合わせ・採用エントリー</span>
+      <span class="en-heading">Contact</span>
+      <p>取引・サービスに関するお問い合わせ、採用エントリーはこちらから。</p>
+    </div>
+    <div class="contact-cta fade-up" style="transition-delay:.1s">
+      <a href="recruit/entry/" class="btn btn-white">採用エントリーはこちら</a>
+      <a href="contact/" class="btn btn-white-ol">お問い合わせはこちら</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">[ LOGO ]</div>
+      <p class="footer-addr">株式会社三幸部品<br>〒000-0000<br>所在地：○○<br>TEL：000-000-0000</p>
+    </div>
+    <nav class="footer-nav">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="about/">三幸部品とは</a></li>
+        <li><a href="company/">会社概要</a></li>
+        <li><a href="news/">新着情報</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-nav">
+      <h4>RECRUIT</h4>
+      <ul>
+        <li><a href="recruit/">採用トップ</a></li>
+        <li><a href="recruit/work/">仕事を知る</a></li>
+        <li><a href="recruit/interview/">社員インタビュー</a></li>
+        <li><a href="recruit/benefits/">福利厚生・制度</a></li>
+        <li><a href="recruit/requirements/">募集要項</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-nav">
+      <h4>CONTACT</h4>
+      <ul>
+        <li><a href="contact/">お問い合わせ</a></li>
+        <li><a href="recruit/entry/">採用エントリー</a></li>
+        <li><a href="privacy/">プライバシーポリシー</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="footer-copy">© 2026 株式会社三幸部品 All Rights Reserved.</p>
+</footer>
+
+<script>
+/* ─── Scroll: nav shadow ─── */
+const gnav = document.getElementById('gnav');
+window.addEventListener('scroll', () => {
+  gnav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ─── Fade-up: IntersectionObserver ─── */
+const fadeItems = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+fadeItems.forEach(el => observer.observe(el));
+
+/* ─── Hamburger / Drawer ─── */
+const hamburger = document.getElementById('hamburger');
+const drawer    = document.getElementById('mobileDrawer');
+const overlay   = document.getElementById('drawerOverlay');
+const closeBtn  = document.getElementById('drawerClose');
+
+function openDrawer() {
+  drawer.classList.add('open');
+  overlay.classList.add('open');
+  hamburger.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  drawer.classList.remove('open');
+  overlay.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', openDrawer);
+closeBtn.addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+</body>
+</html>
