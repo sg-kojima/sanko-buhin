@@ -167,7 +167,7 @@ ul { list-style: none; }
 .gnav-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 16px 0 32px;
   display: flex;
   align-items: center;
   height: 72px;
@@ -355,7 +355,7 @@ ul { list-style: none; }
 .about-grid {
   display: grid;
   grid-template-columns: 55fr 45fr;
-  min-height: 700px;
+  min-height: 820px;
 }
 .about-photo { position: relative; overflow: hidden; }
 .about-photo-sub {
@@ -477,7 +477,7 @@ ul { list-style: none; }
   font-weight: 300;
   margin-bottom: 32px;
 }
-.recruit-body-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.recruit-body-btns { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 
 /* ═══════════════════════════════════════════
    RECRUIT TAB（左メニュー ＋ 右画像切替）
@@ -485,7 +485,7 @@ ul { list-style: none; }
 .recruit-cards-section { background: var(--color-bg-muted); }
 .recruit-tab-layout {
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 3fr 2fr;
   min-height: 720px;
 }
 
@@ -493,13 +493,14 @@ ul { list-style: none; }
 .recruit-tab-menu {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-right: 1px solid var(--color-line);
 }
 .recruit-tab-item {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 36px 52px 36px 80px;
+  padding: 36px 56px;
   border-bottom: 1px solid var(--color-line);
   cursor: pointer;
   transition: background .25s;
