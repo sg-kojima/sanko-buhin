@@ -153,17 +153,21 @@ ul { list-style: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  transition: background .4s ease, border-color .4s ease, box-shadow .4s ease;
+}
+.gnav.scrolled {
   background: rgba(255,255,255,.97);
   border-bottom: 1px solid var(--color-line);
-  transition: box-shadow .3s;
+  box-shadow: 0 2px 24px rgba(0,0,0,.07);
   backdrop-filter: blur(8px);
 }
-.gnav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.07); }
 
 .gnav-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   height: 72px;
@@ -213,6 +217,26 @@ ul { list-style: none; }
 .gnav-cta { flex-shrink: 0; display: flex; gap: 10px; align-items: center; }
 .gnav-cta .btn { padding: 9px 22px; font-size: 0.78rem; }
 .gnav-cta .btn::after { content: ''; }
+
+/* ─── ヒーロー上：透過状態の文字色 ─── */
+.gnav:not(.scrolled) .gnav-logo {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.16);
+  color: rgba(255,255,255,.45);
+}
+.gnav:not(.scrolled) .gnav-links a { color: rgba(255,255,255,.78); }
+.gnav:not(.scrolled) .gnav-links a:hover { color: #fff; }
+.gnav:not(.scrolled) .gnav-links a::after { background: rgba(255,255,255,.65); }
+.gnav:not(.scrolled) .gnav-cta .btn-outline {
+  color: rgba(255,255,255,.88);
+  border-color: rgba(255,255,255,.42);
+}
+.gnav:not(.scrolled) .gnav-cta .btn-outline:hover {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.72);
+  color: #fff;
+}
+.gnav:not(.scrolled) .hamburger { color: #fff; }
 
 /* Hamburger */
 .hamburger {
@@ -462,7 +486,7 @@ ul { list-style: none; }
 .recruit-tab-layout {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  min-height: 560px;
+  min-height: 720px;
 }
 
 /* 左：メニューリスト */
@@ -475,7 +499,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 36px 48px;
+  padding: 36px 52px 36px 80px;
   border-bottom: 1px solid var(--color-line);
   cursor: pointer;
   transition: background .25s;
@@ -1142,7 +1166,7 @@ footer {
 /* ─── Scroll: nav shadow ─── */
 const gnav = document.getElementById('gnav');
 window.addEventListener('scroll', () => {
-  gnav.classList.toggle('scrolled', window.scrollY > 40);
+  gnav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.75);
 }, { passive: true });
 
 /* ─── Fade-up: IntersectionObserver ─── */
