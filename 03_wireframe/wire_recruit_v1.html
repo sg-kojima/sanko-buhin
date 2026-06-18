@@ -125,13 +125,15 @@ body {
   position: absolute; top: 24px; right: 24px;
   font-size: 10px; font-family: 'Courier New', monospace; color: rgba(0,0,0,.35);
 }
-/* デコレーション英字：右寄りに配置 */
+/* デコレーション英字：h1 直上・左揃え（絶対位置ではなくフロー内） */
 .hero-en-bg {
-  position: absolute; top: 32px; left: 40%;
+  display: block;
   font-family: 'Courier New', monospace;
-  font-size: clamp(2rem, 4.5vw, 4.8rem);
+  font-size: clamp(1.8rem, 3.5vw, 3.8rem);
   font-weight: 700; letter-spacing: -0.01em;
-  color: rgba(0,0,0,.06); line-height: 1.1; pointer-events: none;
+  color: rgba(0,0,0,.13); line-height: 1.05;
+  margin-bottom: 20px;
+  pointer-events: none;
 }
 /* ヒーロー本文：max-width+margin:auto で .inner と左端を揃える */
 .hero-body {
@@ -273,6 +275,7 @@ body {
 .photo-strip {
   display: grid; grid-template-columns: repeat(4, 1fr);
   overflow: hidden;
+  margin-top: 80px;  /* ENVIRONMENT との間に余白 */
 }
 .strip-item { overflow: hidden; border-right: 2px solid #fff; }
 .strip-item:last-child { border-right: none; }
@@ -360,11 +363,11 @@ footer {
 <section id="hero" style="padding:0;">
   <div class="hero">
     <div class="hero-img-note">[ 写真：職場・社員の活躍シーン ]</div>
-    <div class="hero-en-bg">WORK THAT<br>SUPPORTS<br>THE FUTURE</div>
     <div class="hero-body">
       <div class="hero-body-inner">
+        <!-- WORK THAT... は h1 の直上・左揃え -->
+        <div class="hero-en-bg">WORK THAT<br>SUPPORTS<br>THE FUTURE</div>
         <h1>ともに、ものづくりを<br>動かす仲間を求めています。</h1>
-        <p>未経験歓迎・中途採用メイン。事務・現場（製造）など複数ポジション募集中です。</p>
       </div>
     </div>
   </div>
@@ -381,7 +384,7 @@ footer {
     <div class="message-grid">
       <div class="message-text">
         <span class="sec-label">MESSAGE</span>
-        <h2>未来に残せる価値と、ものづくりの現場を共に支えよう。</h2>
+        <h2>未来に残せる価値と、<br>ものづくりの現場を共に支えよう。</h2>
         <p class="lead">三幸部品で働くということ。</p>
         <p>代表または採用担当者からのメッセージが入ります。仕事への想い・職場の雰囲気・一緒に働きたい人物像などを自然な言葉で伝えます（200字程度）。</p>
         <p style="margin-top:12px; font-size:0.8rem; color:var(--text-soft); font-family:'Courier New',monospace;">代表取締役 ○○ ○○</p>
@@ -524,17 +527,17 @@ footer {
       <div class="nav3-item">
         <span class="nav3-en">Job Description</span>
         <span class="nav3-ja">仕事を知る</span>
-        <span class="nav3-arrow">→ /recruit/works/</span>
+        <div class="btn btn-outline btn-sm" style="margin-top:auto; align-self:flex-start;">詳しく見る</div>
       </div>
       <div class="nav3-item">
         <span class="nav3-en">Interview</span>
         <span class="nav3-ja">社員インタビュー</span>
-        <span class="nav3-arrow">→ /recruit/interview/</span>
+        <div class="btn btn-outline btn-sm" style="margin-top:auto; align-self:flex-start;">詳しく見る</div>
       </div>
       <div class="nav3-item">
         <span class="nav3-en">Requirements</span>
         <span class="nav3-ja">募集要項</span>
-        <span class="nav3-arrow">→ /recruit/jobs/</span>
+        <div class="btn btn-outline btn-sm" style="margin-top:auto; align-self:flex-start;">詳しく見る</div>
       </div>
     </div>
   </div>
