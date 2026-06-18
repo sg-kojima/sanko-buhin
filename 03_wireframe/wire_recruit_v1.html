@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用トップ ワイヤー v1 ｜ 株式会社三幸部品</title>
+<style>
+/* ─── リセット・ベース ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:        #ffffff;
+  --bg-muted:  #f5f5f5;
+  --border:    #d0d0d0;
+  --text-dark: #1a1a1a;
+  --text-mid:  #555555;
+  --text-soft: #999999;
+  --ph:        #cccccc;
+}
+html { font-size: 18px; }
+body {
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  line-height: 1.9;
+  color: var(--text-dark);
+  background: #e8e8e8;
+}
+.page-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--bg);
+  box-shadow: 0 0 40px rgba(0,0,0,.15);
+}
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+.section-label {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+.section-heading h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+/* 画像プレースホルダー */
+.img-ph {
+  background: var(--ph);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  border: 1px solid var(--border);
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 8px;
+}
+
+/* アノテーション */
+.anno {
+  display: inline-block;
+  background: #fffde0;
+  border: 1px solid #e0d000;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  padding: 3px 8px;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+.anno-block {
+  background: #fffde0;
+  border: 1px solid #e0d000;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  padding: 8px 12px;
+  line-height: 1.7;
+  margin: 8px 0;
+}
+
+/* ボタン */
+.btn-wire {
+  display: inline-block;
+  padding: 14px 36px;
+  border: 2px solid var(--text-dark);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: var(--text-dark);
+  color: #fff;
+  cursor: default;
+}
+.btn-wire-ol {
+  display: inline-block;
+  padding: 14px 36px;
+  border: 2px solid var(--text-dark);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: transparent;
+  color: var(--text-dark);
+  cursor: default;
+}
+
+/* ─── グローバルナビ ─── */
+.gnav {
+  background: var(--bg);
+  border-bottom: 2px solid var(--text-dark);
+  padding: 0 64px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.gnav-logo {
+  width: 160px;
+  height: 44px;
+  background: var(--ph);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #777;
+  border: 1px solid var(--border);
+}
+.gnav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  font-size: 0.83rem;
+}
+.gnav-links a { color: var(--text-mid); text-decoration: none; }
+.gnav-cta { display: flex; gap: 10px; }
+.gnav-cta .btn-sm {
+  padding: 8px 18px;
+  border: 1.5px solid var(--text-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: transparent;
+  color: var(--text-dark);
+  cursor: default;
+}
+.gnav-cta .btn-sm.primary {
+  background: var(--text-dark);
+  color: #fff;
+}
+
+/* ─── パンくず ─── */
+.breadcrumb {
+  padding: 14px 64px;
+  font-size: 0.72rem;
+  font-family: 'Courier New', monospace;
+  color: var(--text-soft);
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── HERO ─── */
+.hero-section {
+  position: relative;
+}
+.hero-img {
+  width: 100%;
+  min-height: 560px;
+  background: var(--ph);
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border);
+}
+.hero-content {
+  padding: 48px 64px;
+  background: rgba(255,255,255,0);
+}
+.hero-content h1 {
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.hero-content p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+
+/* ─── 汎用セクション ─── */
+section {
+  padding: 100px 64px;
+}
+section.bg-muted {
+  background: var(--bg-muted);
+}
+section.bg-dark {
+  background: var(--text-dark);
+  color: #fff;
+}
+
+/* ─── MESSAGE ─── */
+.message-grid {
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  gap: 72px;
+  align-items: center;
+}
+.message-text h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.message-text p {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.9;
+}
+.message-meta {
+  margin-top: 20px;
+  font-size: 0.83rem;
+  color: var(--text-soft);
+  font-family: 'Courier New', monospace;
+}
+
+/* ─── NUMBERS ─── */
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 48px;
+}
+.number-item {
+  padding: 36px 28px;
+  border-right: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.number-item:first-child {
+  border-left: 1px solid var(--border);
+}
+.number-val {
+  font-size: 2.8rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.number-unit {
+  font-size: 0.83rem;
+  color: var(--text-mid);
+}
+.number-label {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  margin-top: 6px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ─── CONTENTS NAV（4コンテンツ） ─── */
+.contents-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  border: 1px solid var(--border);
+}
+.contents-nav-item {
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+.contents-nav-item:last-child {
+  border-right: none;
+}
+.contents-nav-item .nav-img {
+  aspect-ratio: 4/3;
+  height: auto;
+}
+.contents-nav-body {
+  padding: 20px 20px 24px;
+}
+.contents-nav-cat {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+.contents-nav-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.contents-nav-body p {
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+.contents-nav-link {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.78rem;
+  font-family: 'Courier New', monospace;
+  color: var(--text-mid);
+}
+
+/* ─── INTERVIEW ─── */
+.interview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.interview-card {
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.interview-card .card-img {
+  aspect-ratio: 3/2;
+  height: auto;
+}
+.interview-card-body {
+  padding: 20px 20px 24px;
+}
+.interview-tag {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--text-soft);
+  display: block;
+  margin-bottom: 8px;
+}
+.interview-card-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.interview-card-body p {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+/* ─── FLOW（採用の流れ） ─── */
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  position: relative;
+}
+.flow-step {
+  padding: 28px 20px;
+  border: 1px solid var(--border);
+  border-right: none;
+  text-align: center;
+  background: var(--bg);
+  position: relative;
+}
+.flow-step:last-child {
+  border-right: 1px solid var(--border);
+}
+.flow-step::after {
+  content: '→';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  z-index: 1;
+  background: var(--bg);
+  padding: 2px 2px;
+}
+.flow-step:last-child::after {
+  content: '';
+}
+.flow-num {
+  font-family: 'Courier New', monospace;
+  font-size: 0.67rem;
+  color: var(--text-soft);
+  display: block;
+  margin-bottom: 8px;
+}
+.flow-step h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.flow-step p {
+  font-size: 0.75rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* ─── CTA ─── */
+.cta-section {
+  text-align: center;
+  padding: 80px 64px;
+}
+.cta-section h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.cta-section p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  margin-bottom: 36px;
+}
+.cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* ─── フッター ─── */
+.footer-wire {
+  background: var(--text-dark);
+  color: #fff;
+  padding: 56px 64px 28px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 260px 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  margin-bottom: 24px;
+}
+.footer-logo-ph {
+  width: 140px;
+  height: 40px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 16px;
+}
+.footer-addr {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,.35);
+  line-height: 2;
+}
+.footer-nav-col h4 {
+  font-family: 'Courier New', monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 16px;
+}
+.footer-nav-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.footer-nav-col a {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,.3);
+  text-decoration: none;
+}
+.footer-copy {
+  font-family: 'Courier New', monospace;
+  font-size: 0.67rem;
+  color: rgba(255,255,255,.2);
+}
+
+/* ─── セクション区切りラベル（開発用） ─── */
+.wire-section-tag {
+  background: #333;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  padding: 4px 12px;
+  letter-spacing: 0.1em;
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══════════════════════════════════════
+     GLOBAL NAVIGATION
+══════════════════════════════════════ -->
+<div class="wire-section-tag">GLOBAL NAVIGATION</div>
+<nav class="gnav">
+  <div class="gnav-logo">[ LOGO ]</div>
+  <ul class="gnav-links">
+    <li><a href="#">三幸部品とは</a></li>
+    <li><a href="#">会社概要</a></li>
+    <li><a href="#">新着情報</a></li>
+    <li><a href="#" style="font-weight:700;color:#1a1a1a;">採用情報</a></li>
+  </ul>
+  <div class="gnav-cta">
+    <span class="btn-sm">お問い合わせ</span>
+    <span class="btn-sm primary">採用エントリー</span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     BREADCRUMB
+══════════════════════════════════════ -->
+<div class="breadcrumb">
+  TOP &gt; 採用情報
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO : 採用ページヒーロー
+══════════════════════════════════════ -->
+<div class="wire-section-tag">HERO</div>
+<section id="hero" style="padding:0; position:relative;">
+  <div class="hero-img">
+    <div class="img-ph" style="aspect-ratio: 16/6; height: auto; position: absolute; inset:0; font-size:12px;">
+      [ ヒーロー写真：職場・社員の活躍シーン　フル幅 ]
+    </div>
+    <!-- オーバーレイ想定エリア -->
+    <div style="position:relative; z-index:2; padding: 60px 64px 80px; width:100%; background: linear-gradient(to top, rgba(0,0,0,.35) 0%, transparent 70%);">
+      <p class="section-label" style="color:rgba(255,255,255,.7);">RECRUIT</p>
+      <h1 style="font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight:700; line-height:1.3; color:#fff; margin-bottom:16px;">
+        ともに、ものづくりを<br>動かす仲間を求めています。
+      </h1>
+      <p style="font-size:0.88rem; color:rgba(255,255,255,.78); max-width:480px; margin-bottom:28px; font-weight:300;">
+        未経験歓迎・中途採用メイン。<br>事務・現場（製造）職など複数ポジション募集中です。
+      </p>
+      <div style="display:flex; gap:14px;">
+        <span class="btn-wire">採用エントリーはこちら</span>
+        <span class="btn-wire-ol" style="color:#fff; border-color:rgba(255,255,255,.6);">募集要項を見る</span>
+      </div>
+    </div>
+  </div>
+  <div class="anno-block">※ CTAを2箇所設置：ヒーロー（上）＋ページ末尾（下）。ヒーローは応募意欲の高い訪問者向けに早期離脱を防ぐ。</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MESSAGE : 代表メッセージ / 採用担当メッセージ
+══════════════════════════════════════ -->
+<div class="wire-section-tag">MESSAGE</div>
+<section id="message">
+  <div class="message-grid">
+    <div>
+      <div class="img-ph" style="aspect-ratio: 4/3; height: auto;">[ 写真：代表 or 採用担当者の顔写真 ]</div>
+    </div>
+    <div class="message-text">
+      <p class="section-label">MESSAGE</p>
+      <h2 style="font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight:700; margin-bottom:20px;">
+        三幸部品で<br>働くということ
+      </h2>
+      <h3>「ものを止めない」という使命に、誇りを持って向き合う仲間を探しています。</h3>
+      <p style="margin-top:16px; font-size:0.88rem; color:var(--text-mid);">
+        メッセージ本文が入ります。代表または採用担当者からの言葉を掲載。仕事への想い・職場の雰囲気・一緒に働きたい人物像などを自然な言葉で伝えます（200字程度）。
+      </p>
+      <div class="message-meta">代表取締役 ○○ ○○</div>
+    </div>
+  </div>
+  <div class="anno-block">※ 掲載者（代表 or 採用担当）はクライアントに確認。写真は撮影時に取得。</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     NUMBERS : 数字で見る三幸部品
+══════════════════════════════════════ -->
+<div class="wire-section-tag">NUMBERS</div>
+<section id="numbers" class="bg-muted">
+  <div class="section-heading" style="text-align:center;">
+    <p class="section-label">NUMBERS</p>
+    <h2>数字で見る三幸部品</h2>
+  </div>
+  <div class="numbers-grid">
+    <div class="number-item">
+      <div class="number-val">○○</div>
+      <div class="number-unit">名</div>
+      <div class="number-label">従業員数</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val">○○</div>
+      <div class="number-unit">年</div>
+      <div class="number-label">平均勤続年数</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val">○○</div>
+      <div class="number-unit">%</div>
+      <div class="number-label">有休取得率</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val">○○</div>
+      <div class="number-unit">%</div>
+      <div class="number-label">未経験入社率</div>
+    </div>
+  </div>
+  <div class="anno-block" style="margin-top:16px;">※ 数値はMTGにてクライアントへ確認。未取得の場合は「従業員の声（テキスト）」に差し替え可。</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONTENTS NAV : 採用コンテンツへの導線（4項目）
+══════════════════════════════════════ -->
+<div class="wire-section-tag">CONTENTS NAVIGATION</div>
+<section id="contents-nav">
+  <div class="section-heading" style="text-align:center;">
+    <p class="section-label">RECRUIT CONTENTS</p>
+    <h2>採用情報を詳しく見る</h2>
+  </div>
+  <div class="anno-block">※ index.htmlの採用タブセクションと連動。各カードが下層ページへの入口になる。</div>
+  <div class="contents-nav-grid">
+    <div class="contents-nav-item">
+      <div class="img-ph nav-img" style="aspect-ratio:4/3; height:auto;">[ 写真：職場・作業シーン ]</div>
+      <div class="contents-nav-body">
+        <span class="contents-nav-cat">WORK</span>
+        <h3>仕事を知る</h3>
+        <p>職種ごとの業務内容・1日の流れ・やりがいをご紹介します。</p>
+        <span class="contents-nav-link">→ /recruit/works/</span>
+      </div>
+    </div>
+    <div class="contents-nav-item">
+      <div class="img-ph nav-img" style="aspect-ratio:4/3; height:auto;">[ 写真：社員インタビュー ]</div>
+      <div class="contents-nav-body">
+        <span class="contents-nav-cat">INTERVIEW</span>
+        <h3>社員インタビュー</h3>
+        <p>実際に働く社員が、入社のきっかけや職場の雰囲気を語ります。</p>
+        <span class="contents-nav-link">→ /recruit/interview/</span>
+      </div>
+    </div>
+    <div class="contents-nav-item">
+      <div class="img-ph nav-img" style="aspect-ratio:4/3; height:auto;">[ 写真：職場・福利厚生イメージ ]</div>
+      <div class="contents-nav-body">
+        <span class="contents-nav-cat">BENEFITS</span>
+        <h3>福利厚生・制度</h3>
+        <p>各種手当・休暇・社会保険・資格取得支援などをご紹介します。</p>
+        <span class="contents-nav-link">→ /recruit/benefit/</span>
+      </div>
+    </div>
+    <div class="contents-nav-item">
+      <div class="img-ph nav-img" style="aspect-ratio:4/3; height:auto;">[ 写真：オフィス・書類イメージ ]</div>
+      <div class="contents-nav-body">
+        <span class="contents-nav-cat">REQUIREMENTS</span>
+        <h3>募集要項</h3>
+        <p>職種・給与・勤務地・応募資格などの詳しい情報はこちら。</p>
+        <span class="contents-nav-link">→ /recruit/jobs/</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     INTERVIEW PICKUP : 社員の声
+══════════════════════════════════════ -->
+<div class="wire-section-tag">INTERVIEW PICKUP</div>
+<section id="interview" class="bg-muted">
+  <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:40px;">
+    <div class="section-heading">
+      <p class="section-label">INTERVIEW</p>
+      <h2>社員インタビュー</h2>
+    </div>
+    <span class="btn-wire-ol" style="font-size:0.82rem; padding:10px 24px;">一覧を見る</span>
+  </div>
+  <div class="interview-grid">
+    <div class="interview-card">
+      <div class="img-ph card-img" style="aspect-ratio:3/2; height:auto;">[ 写真：社員01 ]</div>
+      <div class="interview-card-body">
+        <span class="interview-tag">STAFF 01 ／ 現場職 ／ 入社○年目</span>
+        <h3>「未経験でも、先輩が丁寧に教えてくれる環境がありました。」</h3>
+        <p>インタビューの抜粋テキストが入ります。入社のきっかけや仕事のやりがいなど（60字程度）。</p>
+      </div>
+    </div>
+    <div class="interview-card">
+      <div class="img-ph card-img" style="aspect-ratio:3/2; height:auto;">[ 写真：社員02 ]</div>
+      <div class="interview-card-body">
+        <span class="interview-tag">STAFF 02 ／ 事務職 ／ 入社○年目</span>
+        <h3>「子育てしながら働けるのは、この職場の理解があるから。」</h3>
+        <p>インタビューの抜粋テキストが入ります。職場の雰囲気・休暇の取りやすさなど（60字程度）。</p>
+      </div>
+    </div>
+    <div class="interview-card">
+      <div class="img-ph card-img" style="aspect-ratio:3/2; height:auto;">[ 写真：社員03 ]</div>
+      <div class="interview-card-body">
+        <span class="interview-tag">STAFF 03 ／ 現場職 ／ 入社○年目</span>
+        <h3>「ものづくりに関わる仕事の面白さを、ここで見つけました。」</h3>
+        <p>インタビューの抜粋テキストが入ります。仕事の面白さ・成長実感など（60字程度）。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FLOW : 採用の流れ
+══════════════════════════════════════ -->
+<div class="wire-section-tag">FLOW</div>
+<section id="flow">
+  <div class="section-heading" style="text-align:center; margin-bottom:8px;">
+    <p class="section-label">FLOW</p>
+    <h2>採用の流れ</h2>
+  </div>
+  <div class="anno-block" style="text-align:center;">※ 選考ステップ数・詳細はクライアントへ確認。</div>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <span class="flow-num">STEP 01</span>
+      <h3>エントリー</h3>
+      <p>Webフォームから必要事項をご入力ください</p>
+    </div>
+    <div class="flow-step">
+      <span class="flow-num">STEP 02</span>
+      <h3>書類選考</h3>
+      <p>ご応募後、○営業日以内にご連絡します</p>
+    </div>
+    <div class="flow-step">
+      <span class="flow-num">STEP 03</span>
+      <h3>面接</h3>
+      <p>1〜2回の面接を予定しています</p>
+    </div>
+    <div class="flow-step">
+      <span class="flow-num">STEP 04</span>
+      <h3>内定・条件提示</h3>
+      <p>結果をご連絡後、入社条件についてご説明します</p>
+    </div>
+    <div class="flow-step">
+      <span class="flow-num">STEP 05</span>
+      <h3>入社</h3>
+      <p>入社日はご相談のうえ決定します</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA : エントリー（ページ末尾・2箇所目）
+══════════════════════════════════════ -->
+<div class="wire-section-tag">CTA（末尾・2箇所目）</div>
+<section id="cta" class="bg-dark">
+  <div style="max-width:700px; margin: 0 auto; text-align:center;">
+    <p class="section-label" style="color:rgba(255,255,255,.4); text-align:center;">ENTRY</p>
+    <h2 style="font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight:700; color:#fff; margin-bottom:16px;">
+      一緒に働きませんか？
+    </h2>
+    <p style="font-size:0.9rem; color:rgba(255,255,255,.65); margin-bottom:36px;">
+      少しでも興味をお持ちの方は、お気軽にエントリーください。<br>採用に関するご不明点はお問い合わせフォームからどうぞ。
+    </p>
+    <div class="cta-btns">
+      <span class="btn-wire">採用エントリーはこちら</span>
+      <span class="btn-wire-ol" style="color:rgba(255,255,255,.85); border-color:rgba(255,255,255,.5);">お問い合わせ</span>
+    </div>
+    <div class="anno-block" style="margin-top:20px; background:rgba(255,255,0,.08); border-color:rgba(255,255,0,.3); color:rgba(255,255,255,.5);">
+      ※ エントリー・お問い合わせは共通フォーム（/contact/）へ誘導。フォーム内で「応募職種」選択項目を設ける想定。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<div class="wire-section-tag">FOOTER</div>
+<footer class="footer-wire">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-ph">[ LOGO ]</div>
+      <p class="footer-addr">株式会社三幸部品<br>〒000-0000 所在地：○○<br>TEL：000-000-0000</p>
+    </div>
+    <nav class="footer-nav-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="#">三幸部品とは</a></li>
+        <li><a href="#">会社概要</a></li>
+        <li><a href="#">新着情報</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-nav-col">
+      <h4>RECRUIT</h4>
+      <ul>
+        <li><a href="#">採用トップ</a></li>
+        <li><a href="#">仕事を知る</a></li>
+        <li><a href="#">社員インタビュー</a></li>
+        <li><a href="#">福利厚生・制度</a></li>
+        <li><a href="#">募集要項</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-nav-col">
+      <h4>CONTACT</h4>
+      <ul>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">採用エントリー</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="footer-copy">© 2026 株式会社三幸部品 All Rights Reserved.</p>
+</footer>
+
+</div><!-- /page-wrap -->
+</body>
+</html>
