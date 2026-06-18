@@ -33,7 +33,7 @@
   /* レイアウト */
   --max-width:   1200px;
   --inner-pad:   64px;
-  --section-gap: 120px;
+  --section-gap: 160px;
 }
 
 html { font-size: 18px; scroll-behavior: smooth; }
@@ -331,7 +331,7 @@ ul { list-style: none; }
 .about-grid {
   display: grid;
   grid-template-columns: 55fr 45fr;
-  min-height: 600px;
+  min-height: 700px;
 }
 .about-photo { position: relative; overflow: hidden; }
 .about-photo-sub {
@@ -342,7 +342,7 @@ ul { list-style: none; }
   overflow: hidden;
 }
 .about-text {
-  padding: 80px 72px;
+  padding: 100px 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -360,29 +360,27 @@ ul { list-style: none; }
 /* ═══════════════════════════════════════════
    SERVICE
 ═══════════════════════════════════════════ */
-.service-layout {
-  display: grid;
-  grid-template-columns: 420px 1fr;
+.service-section {
   background: var(--color-bg-muted);
+  padding-top: var(--section-gap);
 }
-.service-info {
-  padding: 80px 40px 80px 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-right: 1px solid rgba(37,119,200,.14);
+.service-header {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--inner-pad) 64px;
 }
-.service-info p {
+.service-header p {
   font-size: 0.88rem;
   color: var(--color-text-sub);
   line-height: 1.9;
-  margin-bottom: 36px;
+  margin: 20px 0 36px;
+  max-width: 560px;
   font-weight: 300;
 }
 .service-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  min-height: 500px;
+  min-height: 460px;
 }
 .service-strip-item {
   position: relative;
@@ -436,26 +434,7 @@ ul { list-style: none; }
 }
 .recruit-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(12,45,82,.52) 0%,
-    rgba(12,45,82,.18) 45%,
-    rgba(12,45,82,.05) 62%,
-    rgba(12,45,82,.0) 72%
-  );
-}
-.recruit-catch {
-  position: absolute;
-  top: 64px; left: 0; right: 0;
-  z-index: 2;
-  text-align: center;
-  color: #fff;
-  padding: 0 40px;
-}
-.recruit-catch p {
-  font-size: clamp(1.9rem, 3.2vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1.5;
+  background: rgba(12,45,82,.22);
 }
 /* 白パネル：写真の下部に絶対配置 */
 .recruit-panel {
@@ -490,7 +469,7 @@ ul { list-style: none; }
 /* ═══════════════════════════════════════════
    RECRUIT CARDS（2×2）
 ═══════════════════════════════════════════ */
-.recruit-cards-section { padding: 96px 0; background: var(--color-bg-muted); }
+.recruit-cards-section { padding: 120px 0; background: var(--color-bg-muted); }
 .recruit-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -728,7 +707,7 @@ footer {
 @media (max-width: 860px) {
   :root {
     --inner-pad: 24px;
-    --section-gap: 72px;
+    --section-gap: 100px;
   }
   html { font-size: 16px; }
 
@@ -744,13 +723,11 @@ footer {
   .about-text { padding: 48px 28px; }
   .about-text p { max-width: 100%; }
 
-  .service-layout { grid-template-columns: 1fr; }
-  .service-info { padding: 48px 28px; border-right: none; border-bottom: 1px solid rgba(37,119,200,.14); }
-  .service-strip { min-height: 240px; }
+  .service-header { padding-bottom: 40px; }
+  .service-strip { grid-template-columns: 1fr; }
+  .service-strip-item { min-height: 240px; }
 
   .recruit-photo-area { min-height: auto; }
-  .recruit-catch { top: 36px; }
-  .recruit-catch p { font-size: clamp(1.4rem, 5vw, 1.9rem); }
   .recruit-panel { position: static; }
   .recruit-panel-inner { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px 40px; }
   .recruit-body-btns { flex-direction: column; align-items: flex-start; }
@@ -835,9 +812,9 @@ footer {
 <section id="about">
   <div class="about-grid">
     <div class="about-photo">
-      <img src="sozai/pixta_33539606_XL.jpg" alt="工場・製造現場">
+      <img src="sozai/pixta_94866638_XL.jpg" alt="トラック・物流">
       <div class="about-photo-sub">
-        <img src="sozai/pixta_94866638_XL.jpg" alt="トラック・物流">
+        <img src="sozai/pixta_48782325_XL.jpg" alt="部品クローズアップ">
       </div>
     </div>
     <div class="about-text fade-up">
@@ -853,38 +830,36 @@ footer {
 <!-- ══════════════════════════════════════
      SERVICE : 見出し左 + フォトストリップ右
 ══════════════════════════════════════ -->
-<section id="service">
-  <div class="service-layout">
-    <div class="service-info fade-up">
-      <span class="sec-label">事業紹介</span>
-      <span class="en-heading" style="font-size: clamp(2.4rem, 3.5vw, 3.8rem);">Our<br>Service</span>
-      <p>トラック用部品を中心に自動車部品全般の調達・供給・卸売を一貫して担います。製造現場のニーズに合わせた迅速な対応が私たちの強みです。</p>
-      <a href="about/" class="btn btn-outline btn-sm">詳しく見る</a>
+<section class="service-section" id="service">
+  <div class="service-header fade-up">
+    <span class="sec-label">事業紹介</span>
+    <span class="en-heading" style="font-size: clamp(2.4rem, 3.5vw, 3.8rem);">Our<br>Service</span>
+    <p>トラック用部品を中心に自動車部品全般の調達・供給・卸売を一貫して担います。製造現場のニーズに合わせた迅速な対応が私たちの強みです。</p>
+    <a href="about/" class="btn btn-outline btn-sm">詳しく見る</a>
+  </div>
+  <div class="service-strip fade-up">
+    <div class="service-strip-item">
+      <img src="sozai/pixta_11671279_XL.jpg" alt="部品調達・仕入れ">
+      <div class="service-strip-overlay"></div>
+      <div class="service-strip-label">
+        <span class="service-strip-num">01</span>
+        部品調達・仕入れ
+      </div>
     </div>
-    <div class="service-strip">
-      <div class="service-strip-item">
-        <img src="sozai/pixta_11671279_XL.jpg" alt="部品調達・仕入れ">
-        <div class="service-strip-overlay"></div>
-        <div class="service-strip-label">
-          <span class="service-strip-num">01</span>
-          部品調達・仕入れ
-        </div>
+    <div class="service-strip-item">
+      <img src="sozai/pixta_38608749_XL.jpg" alt="在庫管理・品質管理">
+      <div class="service-strip-overlay"></div>
+      <div class="service-strip-label">
+        <span class="service-strip-num">02</span>
+        在庫管理・品質管理
       </div>
-      <div class="service-strip-item">
-        <img src="sozai/pixta_38608749_XL.jpg" alt="在庫管理・品質管理">
-        <div class="service-strip-overlay"></div>
-        <div class="service-strip-label">
-          <span class="service-strip-num">02</span>
-          在庫管理・品質管理
-        </div>
-      </div>
-      <div class="service-strip-item">
-        <img src="sozai/pixta_94866638_XL.jpg" alt="供給・卸売">
-        <div class="service-strip-overlay"></div>
-        <div class="service-strip-label">
-          <span class="service-strip-num">03</span>
-          供給・卸売
-        </div>
+    </div>
+    <div class="service-strip-item">
+      <img src="sozai/pixta_21720100_XL.jpg" alt="供給・卸売">
+      <div class="service-strip-overlay"></div>
+      <div class="service-strip-label">
+        <span class="service-strip-num">03</span>
+        供給・卸売
       </div>
     </div>
   </div>
@@ -897,9 +872,6 @@ footer {
   <div class="recruit-photo-area">
     <img src="sozai/pixta_11151978_XL.jpg" alt="働く仲間">
     <div class="recruit-overlay"></div>
-    <div class="recruit-catch">
-      <p>私たちと一緒に、<br>働きませんか。</p>
-    </div>
     <div class="recruit-panel fade-up">
       <div class="recruit-panel-inner">
         <div class="recruit-panel-heading">
