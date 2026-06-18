@@ -201,38 +201,6 @@
     color: rgba(255,255,255,0.4);
   }
 
-  /* ─── NUMBERS ─── */
-  .numbers-wrap {
-    border-bottom: 1px solid var(--border);
-  }
-  .numbers-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .number-item {
-    padding: 40px 24px;
-    text-align: center;
-    border-right: 1px solid var(--border);
-  }
-  .number-item:last-child { border-right: none; }
-  .number-val {
-    font-size: 2.8rem;
-    font-weight: 700;
-    font-family: 'Courier New', monospace;
-    line-height: 1;
-    display: block;
-  }
-  .number-unit { font-size: 1.1rem; }
-  .number-label {
-    font-size: 0.72rem;
-    color: var(--text-soft);
-    display: block;
-    margin-top: 10px;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.05em;
-  }
 
   /* ─── ABOUT（フル幅グリッド） ─── */
   .about-grid {
@@ -293,7 +261,7 @@
     position: relative;
     background: #999;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     border-left: 2px solid rgba(255,255,255,0.6);
     overflow: hidden;
   }
@@ -301,7 +269,7 @@
   .service-strip-item + .service-strip-item { background: #888; }
   .service-strip-item:last-child { background: #777; }
   .service-strip-label {
-    padding: 20px 18px;
+    padding: 24px 20px;
     background: rgba(0,0,0,0.35);
     width: 100%;
     color: rgba(255,255,255,0.9);
@@ -329,12 +297,12 @@
   }
   .recruit-photo-area {
     position: relative;
-    min-height: 520px;
+    min-height: 580px;
     background: #666;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
   }
   .recruit-overlay {
     position: absolute;
@@ -344,13 +312,15 @@
   .recruit-marquee {
     position: relative;
     z-index: 2;
-    font-size: clamp(5rem, 10vw, 10rem);
+    font-size: clamp(6rem, 13vw, 13rem);
     font-weight: 700;
     color: rgba(255,255,255,0.12);
     white-space: nowrap;
     font-family: 'Courier New', monospace;
     letter-spacing: -0.02em;
     user-select: none;
+    width: 100%;
+    text-align: center;
   }
   .recruit-body {
     max-width: 1200px;
@@ -369,17 +339,21 @@
   }
   .recruit-body-btns { display: flex; gap: 14px; flex-shrink: 0; }
 
-  /* ─── RECRUIT CARDS ─── */
-  .recruit-cards-section { padding: 80px 0; background: var(--bg-muted); }
+  /* ─── RECRUIT CARDS（2×2） ─── */
+  .recruit-cards-section { padding: 96px 0; background: var(--bg); }
   .recruit-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
   }
-  .recruit-card { border: 1px solid var(--border); background: #fff; overflow: hidden; }
+  .recruit-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--placeholder);
+  }
   .recruit-card-img {
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
     height: auto;
     background: var(--placeholder);
     display: flex;
@@ -388,24 +362,33 @@
     font-size: 11px;
     font-family: 'Courier New', monospace;
     color: #666;
-    border-bottom: 1px solid var(--border);
+    filter: brightness(0.75);
   }
-  .recruit-card-body { padding: 20px 18px 24px; }
+  .recruit-card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 32px;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+    color: #fff;
+  }
   .recruit-card-body h3 {
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+    color: #fff;
   }
   .recruit-card-body p {
-    font-size: 0.78rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-    margin-bottom: 14px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    margin-bottom: 10px;
   }
   .link-arrow {
     font-size: 0.78rem;
     font-family: 'Courier New', monospace;
-    color: var(--text-mid);
+    color: rgba(255,255,255,0.7);
   }
 
   /* ─── INTERVIEW ─── */
@@ -623,29 +606,6 @@
   <div class="hero-img-note">[ 写真：工場・現場・トラック部品 ]</div>
 </section>
 
-<!-- ══════════════════════════════════════
-     NUMBERS : 数字で見る三幸部品
-══════════════════════════════════════ -->
-<div class="numbers-wrap" id="numbers">
-  <div class="numbers-grid">
-    <div class="number-item">
-      <span class="number-val">○○<span class="number-unit">年</span></span>
-      <span class="number-label">創　業</span>
-    </div>
-    <div class="number-item">
-      <span class="number-val">○○<span class="number-unit">社</span></span>
-      <span class="number-label">取引先数</span>
-    </div>
-    <div class="number-item">
-      <span class="number-val">○○<span class="number-unit">種</span></span>
-      <span class="number-label">取扱い部品数</span>
-    </div>
-    <div class="number-item">
-      <span class="number-val">○○<span class="number-unit">名</span></span>
-      <span class="number-label">在籍スタッフ</span>
-    </div>
-  </div>
-</div>
 
 <!-- ══════════════════════════════════════
      ABOUT : フル幅 写真55% + テキスト45%
@@ -749,7 +709,7 @@
         </div>
       </div>
       <div class="recruit-card">
-        <div class="recruit-card-img">[ 写真：職場イメージ ]</div>
+        <div class="recruit-card-img">[ 写真：職場・福利厚生イメージ ]</div>
         <div class="recruit-card-body">
           <h3>福利厚生・制度</h3>
           <p>各種手当・休日・社会保険・資格取得支援など。</p>
@@ -757,7 +717,7 @@
         </div>
       </div>
       <div class="recruit-card">
-        <div class="recruit-card-img">[ アイコン or 写真 ]</div>
+        <div class="recruit-card-img">[ 写真：職場・応募イメージ ]</div>
         <div class="recruit-card-body">
           <h3>募集要項</h3>
           <p>職種・給与・勤務地・応募資格など詳細。</p>
