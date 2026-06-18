@@ -93,7 +93,7 @@ ul { list-style: none; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 36px;
+  padding: 18px 40px;
   font-family: var(--font-main);
   font-size: 0.88rem;
   font-weight: 700;
@@ -134,7 +134,7 @@ ul { list-style: none; }
 }
 .btn-white-ol:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 
-.btn-sm { padding: 10px 24px; font-size: 0.8rem; }
+.btn-sm { padding: 13px 28px; font-size: 0.8rem; }
 
 /* ═══════════════════════════════════════════
    Fade-up animation
@@ -421,17 +421,26 @@ ul { list-style: none; }
 }
 
 /* ═══════════════════════════════════════════
-   RECRUIT（フル幅フォト）
+   RECRUIT
 ═══════════════════════════════════════════ */
 .recruit-section { background: var(--color-bg); }
-.recruit-heading-bar {
+.recruit-top {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 80px var(--inner-pad) 36px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  padding: 80px var(--inner-pad);
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 72px;
+  align-items: center;
 }
+.recruit-intro p {
+  font-size: 0.92rem;
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+.recruit-body-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 .recruit-photo-area {
   position: relative;
   min-height: 740px;
@@ -461,23 +470,6 @@ ul { list-style: none; }
   font-weight: 700;
   line-height: 1.5;
 }
-.recruit-body {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 56px var(--inner-pad) 88px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 48px;
-}
-.recruit-body p {
-  font-size: 0.92rem;
-  color: var(--color-text-sub);
-  line-height: 1.9;
-  max-width: 540px;
-  font-weight: 300;
-}
-.recruit-body-btns { display: flex; gap: 14px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
 
 /* ═══════════════════════════════════════════
    RECRUIT CARDS（2×2）
@@ -740,10 +732,8 @@ footer {
   .service-info { padding: 48px 28px; border-right: none; border-bottom: 1px solid rgba(37,119,200,.14); }
   .service-strip { min-height: 240px; }
 
-  .recruit-heading-bar { padding: 48px 24px 24px; }
+  .recruit-top { grid-template-columns: 1fr; padding: 48px 24px; gap: 32px; }
   .recruit-photo-area { min-height: 440px; }
-  .recruit-body { flex-direction: column; padding: 40px 24px 64px; gap: 28px; }
-  .recruit-body-btns { justify-content: flex-start; }
 
   .recruit-cards { grid-template-columns: 1fr; }
 
@@ -881,13 +871,20 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
-     RECRUIT : フル幅フォト
+     RECRUIT : 見出し＋テキスト → フル幅フォト
 ══════════════════════════════════════ -->
 <section class="recruit-section" id="recruit">
-  <div class="recruit-heading-bar fade-up">
+  <div class="recruit-top fade-up">
     <div>
       <span class="sec-label">採用情報</span>
       <span class="en-heading">Recruit</span>
+    </div>
+    <div class="recruit-intro">
+      <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
+      <div class="recruit-body-btns">
+        <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
+        <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
+      </div>
     </div>
   </div>
   <div class="recruit-photo-area">
@@ -895,13 +892,6 @@ footer {
     <div class="recruit-overlay"></div>
     <div class="recruit-catch">
       <p>私たちと一緒に、<br>働きませんか。</p>
-    </div>
-  </div>
-  <div class="recruit-body fade-up">
-    <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
-    <div class="recruit-body-btns">
-      <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
-      <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
     </div>
   </div>
 </section>
