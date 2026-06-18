@@ -22,13 +22,12 @@ body {
   font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
   line-height: 1.9;
   color: var(--text);
-  background: #d0d0d0;
+  background: var(--bg);
 }
 .page-wrap {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   background: var(--bg);
-  box-shadow: 0 0 40px rgba(0,0,0,.18);
 }
 
 /* ─ 画像プレースホルダー ─ */
@@ -36,7 +35,6 @@ body {
   background: var(--ph);
   display: flex; align-items: center; justify-content: center;
   color: #666; font-size: 11px; font-family: 'Courier New', monospace;
-  border: 1px solid var(--border);
   width: 100%; height: auto; text-align: center; padding: 8px;
 }
 
@@ -96,7 +94,7 @@ body {
   width: 160px; height: 44px; background: var(--ph);
   display: flex; align-items: center; justify-content: center;
   font-family: 'Courier New', monospace; font-size: 10px; color: #777;
-  border: 1px solid var(--border); flex-shrink: 0;
+  flex-shrink: 0;
 }
 .gnav-links { display: flex; gap: 24px; list-style: none; font-size: 0.78rem; }
 .gnav-links a { color: var(--text-mid); text-decoration: none; }
@@ -320,7 +318,6 @@ body {
 }
 .footer-logo-ph {
   width: 140px; height: 40px; background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.1);
   display: flex; align-items: center; justify-content: center;
   font-family: 'Courier New', monospace; font-size: 10px;
   color: rgba(255,255,255,.25); margin-bottom: 16px;
