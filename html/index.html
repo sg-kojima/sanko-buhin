@@ -214,6 +214,44 @@ ul { list-style: none; }
 .gnav-links a:hover { color: var(--color-primary); }
 .gnav-links a:hover::after { transform: scaleX(1); }
 
+/* ─── ドロップダウン（採用情報） ─── */
+.has-dropdown { position: relative; }
+.has-dropdown > a { display: inline-flex; align-items: center; gap: 3px; }
+.drop-arrow { font-size: 0.65em; display: inline-block; transition: transform .2s; }
+.has-dropdown:hover .drop-arrow { transform: rotate(180deg); }
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: #fff;
+  border: 1px solid var(--color-line);
+  box-shadow: 0 8px 32px rgba(0,0,0,.12);
+  min-width: 192px;
+  padding: 6px 0;
+  list-style: none;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 200;
+}
+.has-dropdown:hover .dropdown {
+  opacity: 1; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+/* ドロップダウン内リンク：underline無効・常に濃色 */
+.dropdown a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 0.82rem;
+  color: var(--color-text-sub);
+  border-bottom: 1px solid var(--color-line);
+}
+.dropdown a:last-child { border-bottom: none; }
+.dropdown a:hover { color: var(--color-primary); background: var(--color-bg-muted); }
+.dropdown a::after { display: none; }
+/* 透過GNAV時もドロップダウン内は白地・濃色テキスト */
+.gnav:not(.scrolled) .dropdown a { color: var(--color-text-sub); }
+.gnav:not(.scrolled) .dropdown a:hover { color: var(--color-primary); }
+
 .gnav-cta { flex-shrink: 0; display: flex; gap: 10px; align-items: center; }
 .gnav-cta .btn { padding: 9px 22px; font-size: 0.78rem; justify-content: center; gap: 0; }
 .gnav-cta .btn::after { content: ''; }
@@ -286,6 +324,16 @@ ul { list-style: none; }
 }
 .drawer-nav a:last-child { border-bottom: none; }
 .drawer-nav a:hover { color: #fff; }
+/* ドロワー内 採用情報サブ項目 */
+.drawer-sub {
+  padding: 10px 0 10px 28px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,.5);
+  display: block;
+  transition: color .2s;
+}
+.drawer-sub:hover { color: rgba(255,255,255,.85); }
 .drawer-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,.45);
@@ -866,7 +914,15 @@ footer {
         <li><a href="about/">三幸部品とは</a></li>
         <li><a href="company/">会社概要</a></li>
         <li><a href="news/">新着情報</a></li>
-        <li><a href="recruit/">採用情報</a></li>
+        <li class="has-dropdown">
+          <a href="recruit/">採用情報<span class="drop-arrow">▾</span></a>
+          <ul class="dropdown">
+            <li><a href="recruit/works/">仕事を知る</a></li>
+            <li><a href="recruit/interview/">社員インタビュー</a></li>
+            <li><a href="recruit/benefit/">福利厚生・制度</a></li>
+            <li><a href="recruit/jobs/">募集要項</a></li>
+          </ul>
+        </li>
       </ul>
       <div class="gnav-cta">
         <a href="contact/" class="btn btn-outline">お問い合わせ</a>
@@ -886,6 +942,10 @@ footer {
     <a href="company/">会社概要</a>
     <a href="news/">新着情報</a>
     <a href="recruit/">採用情報</a>
+    <a href="recruit/works/" class="drawer-sub">└ 仕事を知る</a>
+    <a href="recruit/interview/" class="drawer-sub">└ 社員インタビュー</a>
+    <a href="recruit/benefit/" class="drawer-sub">└ 福利厚生・制度</a>
+    <a href="recruit/jobs/" class="drawer-sub">└ 募集要項</a>
     <a href="contact/">お問い合わせ</a>
     <a href="recruit/entry/">採用エントリー</a>
   </nav>
@@ -904,10 +964,6 @@ footer {
     <span class="hero-eyebrow">SANKO BUHIN CO., LTD.</span>
     <h1>信頼をつなぐ部品が、<br>日本のものづくりを<br>動かし続ける。</h1>
     <p>自動車部品・トラック用部品の製造・卸売を通じて、製造現場の信頼パートナーとして歩み続けてきました。</p>
-    <div class="hero-btns">
-      <a href="recruit/" class="btn btn-white">採用情報を見る</a>
-      <a href="about/" class="btn btn-white-ol">会社を知る</a>
-    </div>
   </div>
 </section>
 

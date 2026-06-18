@@ -25,10 +25,9 @@
     background: #fff;
   }
 
-  .inner { max-width: 1100px; margin: 0 auto; padding: 0 64px; }
+  .inner { max-width: 1200px; margin: 0 auto; padding: 0 64px; }
 
   /* ─── セクション見出し ─── */
-  /* 英字大見出し（ビジュアルの核） */
   .en-heading {
     font-size: clamp(3rem, 5vw, 5rem);
     font-weight: 700;
@@ -38,7 +37,6 @@
     margin-bottom: 12px;
     color: var(--text-dark);
   }
-  /* 英字ラベル（小、en-headingの上） */
   .sec-label {
     font-family: 'Courier New', monospace;
     font-size: 11px;
@@ -48,7 +46,6 @@
     display: block;
     margin-bottom: 10px;
   }
-  /* 日本語サブ見出し（en-headingの下） */
   .ja-sub {
     font-size: 1.1rem;
     font-weight: 700;
@@ -85,6 +82,7 @@
     cursor: default;
     font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
     text-align: center;
+    border-radius: 100px;
   }
   .btn-fill    { background: var(--text-dark); color: #fff; }
   .btn-outline { background: transparent; color: var(--text-dark); }
@@ -109,7 +107,7 @@
   .gnav {
     background: #fff;
     border-bottom: 1px solid var(--border);
-    padding: 0 40px;
+    padding: 0 32px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -119,12 +117,11 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 72px;
     gap: 32px;
   }
   .gnav-logo {
-    width: 180px;
+    width: 164px;
     height: 44px;
     background: var(--placeholder);
     display: flex;
@@ -138,20 +135,40 @@
   }
   .gnav-links {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     list-style: none;
     font-size: 0.83rem;
     color: var(--text-mid);
-    flex: 1;
-    justify-content: center;
+    margin-left: auto;
   }
-  .gnav-cta { display: flex; gap: 12px; flex-shrink: 0; }
+  .gnav-cta { display: flex; gap: 10px; flex-shrink: 0; }
   .gnav-cta .btn { padding: 8px 20px; font-size: 0.78rem; }
+
+  /* ─ ドロップダウン（採用情報） ─ */
+  .has-dropdown { position: relative; }
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 4px); left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    min-width: 180px;
+    padding: 4px 0;
+    display: none; z-index: 200;
+    list-style: none;
+  }
+  .has-dropdown:hover .dropdown { display: block; }
+  .dropdown li {
+    padding: 10px 18px;
+    font-size: 0.78rem; color: var(--text-mid);
+    border-bottom: 1px solid var(--border);
+  }
+  .dropdown li:last-child { border-bottom: none; }
 
   /* ─── HERO ─── */
   .hero {
     position: relative;
-    min-height: 88vh;
+    min-height: 100vh;
     background: #888;
     display: flex;
     align-items: flex-end;
@@ -165,9 +182,9 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: 0 80px 80px;
+    padding: 0 64px 80px 10vw;
     color: #fff;
-    max-width: 860px;
+    max-width: 920px;
   }
   .hero-eyebrow {
     font-family: 'Courier New', monospace;
@@ -175,23 +192,22 @@
     letter-spacing: 0.25em;
     text-transform: uppercase;
     opacity: 0.6;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     display: block;
   }
   .hero-content h1 {
-    font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+    font-size: clamp(2.2rem, 3.2vw, 3.4rem);
     font-weight: 700;
-    line-height: 1.25;
-    margin-bottom: 20px;
+    line-height: 1.3;
+    margin-bottom: 24px;
   }
   .hero-content p {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     line-height: 1.9;
     opacity: 0.85;
-    margin-bottom: 36px;
-    max-width: 480px;
+    max-width: 460px;
+    font-weight: 300;
   }
-  .hero-btns { display: flex; gap: 14px; }
   .hero-img-note {
     position: absolute;
     top: 24px;
@@ -201,25 +217,24 @@
     color: rgba(255,255,255,0.4);
   }
 
-
   /* ─── ABOUT（フル幅グリッド） ─── */
   .about-grid {
     display: grid;
     grid-template-columns: 55fr 45fr;
-    min-height: 580px;
+    min-height: 100vh;
   }
   .about-photo { background: var(--placeholder); position: relative; }
   .about-photo-sub {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 45%;
-    height: 45%;
+    width: 42%;
+    height: 42%;
     background: #aaa;
-    border: 3px solid #fff;
+    border: 4px solid #fff;
   }
   .about-text {
-    padding: 80px 72px;
+    padding: 100px 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -229,33 +244,28 @@
     font-size: 0.9rem;
     color: var(--text-mid);
     line-height: 1.9;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
     max-width: 420px;
   }
 
-  /* ─── SERVICE（見出し左＋フォトストリップ右） ─── */
-  .service-layout {
-    display: grid;
-    grid-template-columns: 420px 1fr;
-    background: var(--bg-muted);
+  /* ─── SERVICE（見出し上 + フォトストリップ全幅） ─── */
+  .service-section { background: var(--bg-muted); }
+  .service-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 64px 60px;
   }
-  .service-info {
-    padding: 80px 40px 80px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-right: 1px solid var(--border);
-  }
-  .service-info p {
+  .service-header p {
     font-size: 0.88rem;
     color: var(--text-mid);
     line-height: 1.9;
-    margin-bottom: 32px;
+    margin: 20px 0 36px;
+    max-width: 560px;
   }
   .service-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    min-height: 480px;
+    min-height: 460px;
   }
   .service-strip-item {
     position: relative;
@@ -285,110 +295,129 @@
     margin-bottom: 4px;
   }
 
-  /* ─── RECRUIT（フル幅フォト） ─── */
+  /* ─── RECRUIT（写真左58% ＋ テキストパネル右42%） ─── */
   .recruit-section { background: var(--bg); }
-  .recruit-heading-bar {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 64px 64px 32px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+  .recruit-grid {
+    display: grid;
+    grid-template-columns: 58fr 42fr;
+    min-height: 100vh;
   }
   .recruit-photo-area {
-    position: relative;
-    min-height: 720px;
     background: #666;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    position: relative;
+    min-height: 600px;
   }
   .recruit-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.18);
   }
-  .recruit-catch {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #fff;
-    padding: 0 40px;
+  .recruit-panel {
+    background: var(--bg);
+    padding: 80px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .recruit-catch p {
-    font-size: clamp(1.8rem, 3vw, 3rem);
-    font-weight: 700;
-    line-height: 1.5;
-    margin: 0;
+  .recruit-panel p {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 32px;
   }
-  .recruit-body {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 52px 64px 80px;
+  .recruit-body-btns { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  /* ─── RECRUIT TAB（左メニュー＋右画像切替） ─── */
+  .recruit-cards-section { background: var(--bg); }
+  .recruit-tab-layout {
+    display: grid;
+    grid-template-columns: 42fr 58fr;
+    min-height: 720px;
+  }
+  .recruit-tab-left {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+  }
+  .recruit-tab-heading {
+    padding: 72px 64px 56px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .recruit-tab-heading .en-heading { font-size: clamp(2.2rem, 3vw, 3.4rem); line-height: 1.05; }
+  .recruit-tab-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+  }
+  .recruit-tab-item {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 48px;
-  }
-  .recruit-body p {
-    font-size: 0.95rem;
-    color: var(--text-mid);
-    line-height: 1.9;
-    max-width: 560px;
-  }
-  .recruit-body-btns { display: flex; gap: 14px; flex-shrink: 0; }
-
-  /* ─── RECRUIT CARDS（2×2） ─── */
-  .recruit-cards-section { padding: 96px 0; background: var(--bg-muted); }
-  .recruit-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    padding: 0 48px;
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    min-height: 80px;
   }
-  .recruit-card {
-    position: relative;
-    overflow: hidden;
-    background: var(--placeholder);
+  .recruit-tab-item:first-child { border-left-color: var(--text-dark); background: #f0f0f0; }
+  .recruit-tab-item:last-child { border-bottom: none; }
+  .recruit-tab-cat {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
   }
-  .recruit-card-img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    height: auto;
-    background: var(--placeholder);
+  .recruit-tab-item:first-child .recruit-tab-cat { color: var(--text-dark); }
+  .recruit-tab-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.3;
+    margin: 0;
+  }
+  .recruit-tab-arrow {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    color: var(--text-soft);
+  }
+  .recruit-tab-images {
+    background: #777;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 28px;
+  }
+  .recruit-tab-panel-link {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.85);
+    padding: 10px 22px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 100px;
+  }
+  .recruit-tab-note {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 11px;
     font-family: 'Courier New', monospace;
-    color: #666;
-    filter: brightness(0.75);
-  }
-  .recruit-card-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 28px 32px;
-    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
-    color: #fff;
-  }
-  .recruit-card-body h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: #fff;
-  }
-  .recruit-card-body p {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.78);
-    line-height: 1.6;
-    margin-bottom: 10px;
-  }
-  .link-arrow {
-    font-size: 0.78rem;
-    font-family: 'Courier New', monospace;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    line-height: 1.8;
   }
 
   /* ─── INTERVIEW ─── */
@@ -408,7 +437,6 @@
   .interview-card-img {
     width: 100%;
     aspect-ratio: 3/2;
-    height: auto;
     background: var(--placeholder);
     display: flex;
     align-items: center;
@@ -417,6 +445,7 @@
     font-family: 'Courier New', monospace;
     color: #666;
     margin-bottom: 20px;
+    border: 1px solid var(--border);
   }
   .interview-tag {
     font-size: 0.7rem;
@@ -446,7 +475,6 @@
     gap: 64px;
     align-items: start;
   }
-  .news-heading-col { padding-top: 4px; }
   .news-heading-col .en-heading { font-size: clamp(2.4rem, 4vw, 4rem); }
   .news-list { list-style: none; border-top: 1px solid var(--border); }
   .news-item {
@@ -463,14 +491,13 @@
     flex-shrink: 0;
     width: 92px;
   }
-
   .news-title { font-size: 0.9rem; }
 
-  /* ─── CONTACT ─── */
+  /* ─── CONTACT（ネイビー背景＋写真テクスチャ） ─── */
   .contact-section {
     position: relative;
     min-height: 480px;
-    background: #555;
+    background: #222;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -478,18 +505,19 @@
   .contact-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.15);
   }
   .contact-inner {
     position: relative;
     z-index: 2;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 64px;
+    padding: 80px 64px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 40px;
   }
   .contact-text .sec-label { color: rgba(255,255,255,0.5); }
   .contact-text .en-heading { color: #fff; font-size: clamp(3rem, 5vw, 5rem); }
@@ -498,9 +526,17 @@
     color: rgba(255,255,255,0.75);
     line-height: 1.9;
     margin-top: 12px;
-    max-width: 480px;
+    max-width: 440px;
   }
-  .contact-cta { flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
+  .contact-cta { flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+  .contact-img-note {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    color: rgba(255,255,255,0.3);
+  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -512,7 +548,7 @@
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 240px 1fr 1fr 1fr;
+    grid-template-columns: 260px 1fr 1fr 1fr;
     gap: 48px;
     padding-bottom: 40px;
     border-bottom: 1px solid #333;
@@ -570,10 +606,17 @@
         <li>三幸部品とは</li>
         <li>会社概要</li>
         <li>新着情報</li>
-        <li>採用情報</li>
-        <li>お問い合わせ</li>
+        <li class="has-dropdown">採用情報 ▾
+          <ul class="dropdown">
+            <li>仕事を知る</li>
+            <li>社員インタビュー</li>
+            <li>福利厚生・制度</li>
+            <li>募集要項</li>
+          </ul>
+        </li>
       </ul>
       <div class="gnav-cta">
+        <div class="btn btn-outline" style="font-size:0.78rem;padding:8px 20px;">お問い合わせ</div>
         <div class="btn btn-fill" style="font-size:0.78rem;padding:8px 20px;">採用エントリー</div>
       </div>
     </div>
@@ -582,7 +625,7 @@
 
 <!-- ══════════════════════════════════════
      HERO : フル幅背景写真 テキスト下左寄せ
-     参考：ヒーロー全体を写真で埋め、テキストを下部にアンカー
+     ボタンなし（デザイン変更）
 ══════════════════════════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-overlay"></div>
@@ -590,10 +633,6 @@
     <span class="hero-eyebrow">SANKO BUHIN CO., LTD.</span>
     <h1>信頼をつなぐ部品が、<br>日本のものづくりを<br>動かし続ける。</h1>
     <p>自動車部品・トラック用部品の製造・卸売を通じて、製造現場の信頼パートナーとして歩み続けてきました。</p>
-    <div class="hero-btns">
-      <div class="btn btn-white">採用情報を見る</div>
-      <div class="btn btn-white-ol">会社を知る</div>
-    </div>
   </div>
   <div class="hero-img-note">[ 写真：工場・現場・トラック部品 ]</div>
 </section>
@@ -606,7 +645,7 @@
 <section id="about">
   <div class="about-grid">
     <div class="about-photo">
-      <div class="img-ph" style="aspect-ratio:auto; height:100%; min-height:580px;">[ 写真：工場外観・製品イメージ（メイン） ]</div>
+      <div class="img-ph" style="height:100%;min-height:600px;">[ 写真：工場外観・製品イメージ（メイン） ]</div>
       <div class="about-photo-sub">[ 写真：部品クローズアップ ]</div>
     </div>
     <div class="about-text">
@@ -620,105 +659,111 @@
 </section>
 
 <!-- ══════════════════════════════════════
-     SERVICE : 見出し左 + フォトストリップ右
-     参考：Our Business スタイル（見出し＋写真帯）
+     SERVICE : 見出しブロック上部 + フォトストリップ全幅
+     ※変更：左固定幅カラムから見出し上部配置に変更
 ══════════════════════════════════════ -->
-<section id="service">
-  <div class="service-layout">
-    <div class="service-info">
-      <span class="sec-label">事業紹介</span>
-      <span class="en-heading" style="font-size: clamp(2.4rem, 3.5vw, 3.8rem);">Our<br>Service</span>
-      <p>トラック用部品を中心に自動車部品全般の調達・供給・卸売を一貫して担います。製造現場のニーズに合わせた迅速な対応が私たちの強みです。</p>
-      <div><div class="btn btn-outline btn-sm">詳しく見る</div></div>
+<section class="service-section" id="service">
+  <div class="service-header">
+    <span class="sec-label">事業紹介</span>
+    <span class="en-heading" style="font-size: clamp(2.4rem, 3.5vw, 3.8rem);">Our<br>Service</span>
+    <p>トラック用部品を中心に自動車部品全般の調達・供給・卸売を一貫して担います。製造現場のニーズに合わせた迅速な対応が私たちの強みです。</p>
+    <div class="btn btn-outline btn-sm">詳しく見る</div>
+  </div>
+  <div class="service-strip">
+    <div class="service-strip-item">
+      <div class="service-strip-label">
+        <span class="service-strip-num">01</span>
+        部品調達・仕入れ
+      </div>
     </div>
-    <div class="service-strip">
-      <div class="service-strip-item">
-        <div class="service-strip-label">
-          <span class="service-strip-num">01</span>
-          部品調達・仕入れ
-        </div>
+    <div class="service-strip-item">
+      <div class="service-strip-label">
+        <span class="service-strip-num">02</span>
+        在庫管理・品質管理
       </div>
-      <div class="service-strip-item">
-        <div class="service-strip-label">
-          <span class="service-strip-num">02</span>
-          在庫管理・品質管理
-        </div>
-      </div>
-      <div class="service-strip-item">
-        <div class="service-strip-label">
-          <span class="service-strip-num">03</span>
-          供給・卸売
-        </div>
+    </div>
+    <div class="service-strip-item">
+      <div class="service-strip-label">
+        <span class="service-strip-num">03</span>
+        供給・卸売
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-     RECRUIT : フル幅フォト + WORK WITH US
-     参考：ishii「WORK WITH US.」スタイル
+     RECRUIT : 写真左58% ＋ テキストパネル右42%
+     ※変更：ヘッダーバー+フル幅写真+ボディから左右2カラムに変更
 ══════════════════════════════════════ -->
 <section class="recruit-section" id="recruit">
-  <div class="recruit-heading-bar">
-    <div>
+  <div class="recruit-grid">
+    <div class="recruit-photo-area">
+      <div class="img-ph" style="height:100%;min-height:640px;">[ 写真：働く仲間・現場イメージ ]</div>
+      <div class="recruit-overlay"></div>
+    </div>
+    <div class="recruit-panel">
       <span class="sec-label">採用情報</span>
       <span class="en-heading">Recruit</span>
-    </div>
-  </div>
-  <div class="recruit-photo-area">
-    <div class="recruit-overlay"></div>
-    <div class="recruit-catch">
-      <p>私たちと一緒に、働きませんか。</p>
-    </div>
-  </div>
-  <div class="recruit-body">
-    <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
-    <div class="recruit-body-btns">
-      <div class="btn btn-fill">採用エントリーはこちら</div>
-      <div class="btn btn-outline">採用情報を詳しく見る</div>
+      <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
+      <div class="recruit-body-btns">
+        <div class="btn btn-fill">採用エントリーはこちら</div>
+        <div class="btn btn-outline">採用情報を詳しく見る</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-     RECRUIT CARDS : 採用4カード
+     RECRUIT TAB : 左見出し＋タブメニュー ＋ 右画像切替
+     ※変更：2×2カードグリッドから左メニュー+右画像切替に変更
 ══════════════════════════════════════ -->
 <div class="recruit-cards-section" id="recruit-contents">
-  <div class="inner">
-    <div class="recruit-cards">
-      <div class="recruit-card">
-        <div class="recruit-card-img">[ 写真：仕事風景 ]</div>
-        <div class="recruit-card-body">
-          <h3>仕事を知る</h3>
-          <p>各職種の業務内容や1日の流れ、働くやりがいをご紹介します。</p>
-          <div class="link-arrow">詳しく見る →</div>
-        </div>
+  <div class="recruit-tab-layout">
+
+    <!-- 左：見出し＋タブメニュー -->
+    <div class="recruit-tab-left">
+      <div class="recruit-tab-heading">
+        <span class="sec-label">採用コンテンツ</span>
+        <span class="en-heading">Work<br>With Us</span>
       </div>
-      <div class="recruit-card">
-        <div class="recruit-card-img">[ 写真：社員インタビュー ]</div>
-        <div class="recruit-card-body">
-          <h3>社員インタビュー</h3>
-          <p>実際に働く社員が、入社のきっかけや職場の雰囲気を語ります。</p>
-          <div class="link-arrow">詳しく見る →</div>
-        </div>
-      </div>
-      <div class="recruit-card">
-        <div class="recruit-card-img">[ 写真：職場・福利厚生イメージ ]</div>
-        <div class="recruit-card-body">
-          <h3>福利厚生・制度</h3>
-          <p>各種手当・休暇・社会保険・資格取得支援など、働く環境をご紹介します。</p>
-          <div class="link-arrow">詳しく見る →</div>
-        </div>
-      </div>
-      <div class="recruit-card">
-        <div class="recruit-card-img">[ 写真：職場・応募イメージ ]</div>
-        <div class="recruit-card-body">
-          <h3>募集要項</h3>
-          <p>職種・給与・勤務地・応募資格など、詳しい採用情報をご確認ください。</p>
-          <div class="link-arrow">詳しく見る →</div>
-        </div>
-      </div>
+      <ul class="recruit-tab-menu">
+        <li class="recruit-tab-item" style="border-left-color:#1a1a1a;background:#f0f0f0;">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">WORK</span>
+            <h3>仕事を知る</h3>
+          </div>
+          <div class="recruit-tab-arrow">→</div>
+        </li>
+        <li class="recruit-tab-item">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">INTERVIEW</span>
+            <h3>社員インタビュー</h3>
+          </div>
+          <div class="recruit-tab-arrow">→</div>
+        </li>
+        <li class="recruit-tab-item">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">BENEFITS</span>
+            <h3>福利厚生・制度</h3>
+          </div>
+          <div class="recruit-tab-arrow">→</div>
+        </li>
+        <li class="recruit-tab-item">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">REQUIREMENTS</span>
+            <h3>募集要項</h3>
+          </div>
+          <div class="recruit-tab-arrow">→</div>
+        </li>
+      </ul>
     </div>
+
+    <!-- 右：画像パネル（ホバーで切替） -->
+    <div class="recruit-tab-images">
+      <div class="recruit-tab-note">[ 写真：タブ選択に連動して切替 ]<br>仕事を知る ／ 社員インタビュー<br>福利厚生・制度 ／ 募集要項</div>
+      <div class="recruit-tab-panel-link">詳しく見る →</div>
+    </div>
+
   </div>
 </div>
 
@@ -732,7 +777,7 @@
         <span class="sec-label">社員の声</span>
         <span class="en-heading" style="font-size:clamp(2.4rem,4vw,4rem);">Interview</span>
       </div>
-      <div class="btn btn-outline btn-sm">一覧を見る →</div>
+      <div class="btn btn-outline btn-sm">一覧を見る</div>
     </div>
     <div class="interview-grid">
       <div class="interview-card">
@@ -767,7 +812,7 @@
         <span class="sec-label">新着情報</span>
         <span class="en-heading" style="font-size:clamp(2.4rem,4vw,4rem);">News</span>
         <div style="margin-top:28px;">
-          <div class="btn btn-outline btn-sm">全記事一覧へ →</div>
+          <div class="btn btn-outline btn-sm">全記事一覧へ</div>
         </div>
       </div>
       <div>
@@ -784,8 +829,8 @@
 </section>
 
 <!-- ══════════════════════════════════════
-     CONTACT : フル幅 写真背景 + 2 CTA
-     参考：シンプルな写真帯＋見出し＋矢印
+     CONTACT : ネイビー背景 ＋ 写真テクスチャ（低透過）
+     ※変更：グレー背景写真からネイビー単色ベースに変更
 ══════════════════════════════════════ -->
 <section class="contact-section" id="contact">
   <div class="contact-overlay"></div>
@@ -800,6 +845,7 @@
       <div class="btn btn-white-ol">お問い合わせはこちら</div>
     </div>
   </div>
+  <div class="contact-img-note">[ 背景：写真テクスチャ / 低透過オーバーレイ ]</div>
 </section>
 
 <!-- ══════════════════════════════════════

@@ -104,6 +104,28 @@ body {
   margin-left: auto;
 }
 .gnav-links .current { font-weight: 700; color: var(--text); }
+
+/* ─ ドロップダウン（採用情報） ─ */
+.has-dropdown { position: relative; }
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px); left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  min-width: 180px;
+  padding: 4px 0;
+  display: none; z-index: 200;
+  list-style: none;
+}
+.has-dropdown:hover .dropdown { display: block; }
+.dropdown li {
+  padding: 10px 18px;
+  font-size: 0.78rem; color: var(--text-mid);
+  border-bottom: 1px solid var(--border);
+}
+.dropdown li:last-child { border-bottom: none; }
+
 .gnav-cta { display: flex; gap: 10px; flex-shrink: 0; }
 .gnav-cta .btn { padding: 8px 20px; font-size: 0.78rem; }
 
@@ -323,7 +345,14 @@ footer {
         <li>三幸部品とは</li>
         <li>会社概要</li>
         <li>新着情報</li>
-        <li class="current">採用情報</li>
+        <li class="has-dropdown current">採用情報 ▾
+          <ul class="dropdown">
+            <li>仕事を知る</li>
+            <li>社員インタビュー</li>
+            <li>福利厚生・制度</li>
+            <li>募集要項</li>
+          </ul>
+        </li>
       </ul>
       <div class="gnav-cta">
         <!-- → /contact/ -->
@@ -498,8 +527,6 @@ footer {
       <div class="btn btn-white-ol">募集要項を見る</div>
       <!-- → /contact/ -->
       <div class="btn btn-white">採用エントリーはこちら</div>
-      <!-- → /contact/ -->
-      <div class="btn btn-white-ol">お問い合わせはこちら</div>
     </div>
   </div>
 </section>
