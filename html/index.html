@@ -421,41 +421,31 @@ ul { list-style: none; }
    RECRUIT
 ═══════════════════════════════════════════ */
 .recruit-section { background: var(--color-bg); }
+.recruit-grid {
+  display: grid;
+  grid-template-columns: 58fr 42fr;
+  min-height: 760px;
+}
 .recruit-photo-area {
   position: relative;
-  min-height: 860px;
   overflow: hidden;
 }
 .recruit-photo-area img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: left center;
 }
 .recruit-overlay {
   position: absolute; inset: 0;
-  background: rgba(12,45,82,.22);
+  background: rgba(12,45,82,.18);
 }
-/* 白パネル：写真の下部に絶対配置 */
 .recruit-panel {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(255,255,255,.96);
-  z-index: 3;
-  padding: 52px 0 60px;
-  backdrop-filter: blur(4px);
-}
-.recruit-panel-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--inner-pad);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 72px;
-  align-items: center;
-}
-.recruit-panel-heading {
-  flex-shrink: 0;
+  background: var(--color-bg);
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .recruit-intro p {
   font-size: 0.92rem;
@@ -727,9 +717,9 @@ footer {
   .service-strip { grid-template-columns: 1fr; }
   .service-strip-item { min-height: 240px; }
 
-  .recruit-photo-area { min-height: auto; }
-  .recruit-panel { position: static; }
-  .recruit-panel-inner { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px 40px; }
+  .recruit-grid { grid-template-columns: 1fr; }
+  .recruit-photo-area { min-height: 320px; }
+  .recruit-panel { padding: 48px 28px; }
   .recruit-body-btns { flex-direction: column; align-items: flex-start; }
 
   .recruit-cards { grid-template-columns: 1fr; }
@@ -869,21 +859,19 @@ footer {
      RECRUIT : 見出し＋テキスト → フル幅フォト
 ══════════════════════════════════════ -->
 <section class="recruit-section" id="recruit">
-  <div class="recruit-photo-area">
-    <img src="sozai/pixta_11151978_XL.jpg" alt="働く仲間">
-    <div class="recruit-overlay"></div>
+  <div class="recruit-grid">
+    <div class="recruit-photo-area">
+      <img src="sozai/pixta_11151978_XL.jpg" alt="働く仲間">
+      <div class="recruit-overlay"></div>
+    </div>
     <div class="recruit-panel fade-up">
-      <div class="recruit-panel-inner">
-        <div class="recruit-panel-heading">
-          <span class="sec-label">採用情報</span>
-          <span class="en-heading">Recruit</span>
-        </div>
-        <div class="recruit-intro">
-          <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
-          <div class="recruit-body-btns">
-            <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
-            <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
-          </div>
+      <span class="sec-label">採用情報</span>
+      <span class="en-heading">Recruit</span>
+      <div class="recruit-intro">
+        <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
+        <div class="recruit-body-btns">
+          <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
+          <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
         </div>
       </div>
     </div>
