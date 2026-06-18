@@ -126,9 +126,14 @@ body {
 /* ─ HERO ─ */
 .hero {
   position: relative; min-height: 80vh;
+  background: var(--ph); /* ← セクション自体がフル幅写真プレースホルダー */
   display: flex; align-items: flex-end; overflow: hidden;
 }
-.hero-bg { position: absolute; inset: 0; }
+.hero-img-note {
+  position: absolute; top: 24px; right: 24px;
+  font-size: 10px; font-family: 'Courier New', monospace;
+  color: rgba(0,0,0,.35);
+}
 .hero-en-bg {
   position: absolute; top: 32px; left: 48px;
   font-family: 'Courier New', monospace;
@@ -246,13 +251,18 @@ body {
 .who-right .sec-en-xl { margin-bottom: 20px; }
 .who-right p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 24px; }
 
-/* ─ ENVIRONMENT（フル幅写真背景） ─ */
+/* ─ ENVIRONMENT（フル幅：トップのheroと同じパターン） ─ */
 .env-section {
   position: relative; min-height: 60vh;
+  background: var(--ph); /* ← セクション自体の背景色 = フル幅写真プレースホルダー */
   display: flex; align-items: flex-end;
   overflow: hidden;
 }
-.env-bg { position: absolute; inset: 0; }
+.env-photo-note {
+  position: absolute; top: 24px; right: 24px;
+  font-size: 10px; font-family: 'Courier New', monospace;
+  color: rgba(0,0,0,.35);
+}
 .env-body {
   position: relative; z-index: 2;
   padding: 64px 48px 72px;
@@ -343,11 +353,8 @@ footer {
 ══════════════════════════════════════ -->
 <section id="hero" style="padding:0;">
   <div class="hero">
-    <div class="hero-bg">
-      <div class="img-ph" style="position:absolute; inset:0; height:100%; font-size:12px;">
-        [ ヒーロー写真：職場・社員の活躍シーン　フル幅 ]
-      </div>
-    </div>
+    <!-- セクション自体がグレー背景 = フル幅写真プレースホルダー -->
+    <div class="hero-img-note">[ 写真：職場・社員の活躍シーン ]</div>
     <div class="hero-en-bg">WORK THAT<br>SUPPORTS<br>THE FUTURE</div>
     <div class="hero-body">
       <h1>ともに、ものづくりを<br>動かす仲間を求めています。</h1>
@@ -479,9 +486,8 @@ footer {
      ENVIRONMENT（フル幅写真背景・テキストオーバーレイ）
 ══════════════════════════════════════ -->
 <section id="environment" style="padding:0;" class="env-section">
-  <div class="env-bg">
-    <div class="img-ph" style="position:absolute; inset:0; height:100%;">[ フル幅写真：職場環境・施設 ]</div>
-  </div>
+  <!-- セクション自体がグレー背景 = フル幅写真プレースホルダー（トップheroと同じパターン） -->
+  <div class="env-photo-note">[ 写真：職場環境・施設 ]</div>
   <div class="env-body">
     <span class="sec-label">ENVIRONMENT</span>
     <span class="sec-en-xl">Environment</span>
