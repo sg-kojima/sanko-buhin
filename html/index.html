@@ -355,7 +355,7 @@ ul { list-style: none; }
 .about-grid {
   display: grid;
   grid-template-columns: 55fr 45fr;
-  min-height: 820px;
+  min-height: 100vh;
 }
 .about-photo { position: relative; overflow: hidden; }
 .about-photo-sub {
@@ -380,6 +380,7 @@ ul { list-style: none; }
   max-width: 420px;
   font-weight: 300;
 }
+.about-text .btn { align-self: flex-start; }
 
 /* ═══════════════════════════════════════════
    SERVICE
@@ -447,7 +448,7 @@ ul { list-style: none; }
 .recruit-grid {
   display: grid;
   grid-template-columns: 58fr 42fr;
-  min-height: 760px;
+  min-height: 100vh;
 }
 .recruit-photo-area {
   position: relative;
@@ -480,80 +481,107 @@ ul { list-style: none; }
 .recruit-body-btns { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 
 /* ═══════════════════════════════════════════
-   RECRUIT TAB（左メニュー ＋ 右画像切替）
+   RECRUIT TAB（見出し左上 ＋ リスト ＋ 右画像切替）
 ═══════════════════════════════════════════ */
-.recruit-cards-section { background: var(--color-bg-muted); }
+.recruit-cards-section { background: var(--color-bg); }
 .recruit-tab-layout {
   display: grid;
-  grid-template-columns: 58fr 42fr;
+  grid-template-columns: 42fr 58fr;
   min-height: 720px;
 }
 
-/* 左：メニューリスト */
-.recruit-tab-menu {
+/* 左カラム全体：見出し＋メニュー */
+.recruit-tab-left {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border-right: 1px solid var(--color-line);
 }
+
+/* 左上：見出しエリア */
+.recruit-tab-heading {
+  padding: 72px 64px 56px;
+  border-bottom: 1px solid var(--color-line);
+  flex-shrink: 0;
+}
+.recruit-tab-heading .en-heading {
+  font-size: clamp(2.2rem, 3vw, 3.4rem);
+  line-height: 1.05;
+}
+
+/* 左下：メニューリスト */
+.recruit-tab-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
 .recruit-tab-item {
+  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
-  padding: 36px 56px;
+  padding: 0 48px 0 44px;
   border-bottom: 1px solid var(--color-line);
+  border-left: 3px solid transparent;
   cursor: pointer;
-  transition: background .25s;
+  transition: border-left-color .25s, background .25s;
   text-decoration: none;
   color: inherit;
 }
-.recruit-tab-item:first-child { border-top: 1px solid var(--color-line); }
+.recruit-tab-item:last-child { border-bottom: none; }
+
 .recruit-tab-item.is-active,
-.recruit-tab-item:hover { background: var(--color-primary); }
-
-.recruit-tab-num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: var(--color-text-soft);
-  flex-shrink: 0;
-  transition: color .25s;
+.recruit-tab-item:hover {
+  border-left-color: var(--color-accent);
+  background: var(--color-accent-light);
 }
-.recruit-tab-item.is-active .recruit-tab-num,
-.recruit-tab-item:hover .recruit-tab-num { color: rgba(255,255,255,.4); }
 
-.recruit-tab-content { }
-.recruit-tab-content h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--color-primary);
+/* カテゴリラベル */
+.recruit-tab-cat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--color-text-soft);
+  text-transform: uppercase;
+  display: block;
   margin-bottom: 5px;
   transition: color .25s;
 }
-.recruit-tab-item.is-active .recruit-tab-content h3,
-.recruit-tab-item:hover .recruit-tab-content h3 { color: #fff; }
+.recruit-tab-item.is-active .recruit-tab-cat,
+.recruit-tab-item:hover .recruit-tab-cat { color: var(--color-accent); }
 
-.recruit-tab-content p {
-  font-size: 0.8rem;
-  color: var(--color-text-sub);
-  line-height: 1.7;
-  font-weight: 300;
+.recruit-tab-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
   transition: color .25s;
+  line-height: 1.3;
+  margin: 0;
 }
-.recruit-tab-item.is-active .recruit-tab-content p,
-.recruit-tab-item:hover .recruit-tab-content p { color: rgba(255,255,255,.62); }
+.recruit-tab-item.is-active .recruit-tab-content h3,
+.recruit-tab-item:hover .recruit-tab-content h3 { color: var(--color-primary); }
 
+/* 丸矢印ボタン */
 .recruit-tab-arrow {
-  font-size: 0.9rem;
-  color: var(--color-text-soft);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  transition: transform .25s, color .25s;
+  font-size: 0.72rem;
+  color: var(--color-text-soft);
+  transition: border-color .25s, color .25s, background .25s, transform .25s;
 }
 .recruit-tab-item.is-active .recruit-tab-arrow,
 .recruit-tab-item:hover .recruit-tab-arrow {
-  color: rgba(255,255,255,.55);
-  transform: translateX(4px);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(37,119,200,.06);
+  transform: translateX(3px);
 }
 
 /* 右：画像パネル */
@@ -809,7 +837,8 @@ footer {
 
   .recruit-tab-layout { grid-template-columns: 1fr; }
   .recruit-tab-images { min-height: 280px; position: relative; }
-  .recruit-tab-item { padding: 24px 20px; gap: 14px; }
+  .recruit-tab-heading { padding: 40px 24px 32px; }
+  .recruit-tab-item { padding: 0 20px 0 18px; min-height: 72px; gap: 14px; }
 
   .interview-grid { grid-template-columns: 1fr; gap: 40px; }
 
@@ -969,40 +998,46 @@ footer {
 ══════════════════════════════════════ -->
 <div class="recruit-cards-section" id="recruit-contents">
   <div class="recruit-tab-layout">
-    <ul class="recruit-tab-menu">
-      <li class="recruit-tab-item is-active" data-tab="0">
-        <span class="recruit-tab-num">01</span>
-        <div class="recruit-tab-content">
-          <h3>仕事を知る</h3>
-          <p>各職種の業務内容や1日の流れ、働くやりがいをご紹介します。</p>
-        </div>
-        <span class="recruit-tab-arrow">→</span>
-      </li>
-      <li class="recruit-tab-item" data-tab="1">
-        <span class="recruit-tab-num">02</span>
-        <div class="recruit-tab-content">
-          <h3>社員インタビュー</h3>
-          <p>実際に働く社員が、入社のきっかけや職場の雰囲気を語ります。</p>
-        </div>
-        <span class="recruit-tab-arrow">→</span>
-      </li>
-      <li class="recruit-tab-item" data-tab="2">
-        <span class="recruit-tab-num">03</span>
-        <div class="recruit-tab-content">
-          <h3>福利厚生・制度</h3>
-          <p>各種手当・休暇・社会保険・資格取得支援など、働く環境をご紹介します。</p>
-        </div>
-        <span class="recruit-tab-arrow">→</span>
-      </li>
-      <li class="recruit-tab-item" data-tab="3">
-        <span class="recruit-tab-num">04</span>
-        <div class="recruit-tab-content">
-          <h3>募集要項</h3>
-          <p>職種・給与・勤務地・応募資格など、詳しい採用情報をご確認ください。</p>
-        </div>
-        <span class="recruit-tab-arrow">→</span>
-      </li>
-    </ul>
+
+    <!-- 左：見出し＋タブメニュー -->
+    <div class="recruit-tab-left">
+      <div class="recruit-tab-heading fade-up">
+        <span class="sec-label">採用コンテンツ</span>
+        <span class="en-heading">Work<br>With Us</span>
+      </div>
+      <ul class="recruit-tab-menu">
+        <li class="recruit-tab-item is-active" data-tab="0">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">WORK</span>
+            <h3>仕事を知る</h3>
+          </div>
+          <span class="recruit-tab-arrow">→</span>
+        </li>
+        <li class="recruit-tab-item" data-tab="1">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">INTERVIEW</span>
+            <h3>社員インタビュー</h3>
+          </div>
+          <span class="recruit-tab-arrow">→</span>
+        </li>
+        <li class="recruit-tab-item" data-tab="2">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">BENEFITS</span>
+            <h3>福利厚生・制度</h3>
+          </div>
+          <span class="recruit-tab-arrow">→</span>
+        </li>
+        <li class="recruit-tab-item" data-tab="3">
+          <div class="recruit-tab-content">
+            <span class="recruit-tab-cat">REQUIREMENTS</span>
+            <h3>募集要項</h3>
+          </div>
+          <span class="recruit-tab-arrow">→</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 右：画像パネル -->
     <div class="recruit-tab-images">
       <div class="recruit-tab-panel is-active">
         <img src="sozai/pixta_47550245_XL.jpg" alt="仕事を知る">
@@ -1021,6 +1056,7 @@ footer {
         <a href="recruit/requirements/" class="recruit-tab-panel-link">詳しく見る →</a>
       </div>
     </div>
+
   </div>
 </div>
 
