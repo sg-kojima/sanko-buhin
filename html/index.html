@@ -456,53 +456,111 @@ ul { list-style: none; }
 .recruit-body-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* ═══════════════════════════════════════════
-   RECRUIT CARDS（2×2）
+   RECRUIT TAB（左メニュー ＋ 右画像切替）
 ═══════════════════════════════════════════ */
-.recruit-cards-section { padding: 120px 0; background: var(--color-bg-muted); }
-.recruit-cards {
+.recruit-cards-section { background: var(--color-bg-muted); }
+.recruit-tab-layout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: 2fr 3fr;
+  min-height: 560px;
 }
-.recruit-card {
-  display: block;
+
+/* 左：メニューリスト */
+.recruit-tab-menu {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-line);
+}
+.recruit-tab-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 36px 48px;
+  border-bottom: 1px solid var(--color-line);
+  cursor: pointer;
+  transition: background .25s;
+  text-decoration: none;
+  color: inherit;
+}
+.recruit-tab-item:first-child { border-top: 1px solid var(--color-line); }
+.recruit-tab-item.is-active,
+.recruit-tab-item:hover { background: var(--color-primary); }
+
+.recruit-tab-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--color-text-soft);
+  flex-shrink: 0;
+  transition: color .25s;
+}
+.recruit-tab-item.is-active .recruit-tab-num,
+.recruit-tab-item:hover .recruit-tab-num { color: rgba(255,255,255,.4); }
+
+.recruit-tab-content { flex: 1; }
+.recruit-tab-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 5px;
+  transition: color .25s;
+}
+.recruit-tab-item.is-active .recruit-tab-content h3,
+.recruit-tab-item:hover .recruit-tab-content h3 { color: #fff; }
+
+.recruit-tab-content p {
+  font-size: 0.8rem;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+  font-weight: 300;
+  transition: color .25s;
+}
+.recruit-tab-item.is-active .recruit-tab-content p,
+.recruit-tab-item:hover .recruit-tab-content p { color: rgba(255,255,255,.62); }
+
+.recruit-tab-arrow {
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  flex-shrink: 0;
+  transition: transform .25s, color .25s;
+}
+.recruit-tab-item.is-active .recruit-tab-arrow,
+.recruit-tab-item:hover .recruit-tab-arrow {
+  color: rgba(255,255,255,.55);
+  transform: translateX(4px);
+}
+
+/* 右：画像パネル */
+.recruit-tab-images {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4/3;
-  background: var(--color-primary);
 }
-.recruit-card img {
+.recruit-tab-panel {
   position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity .45s ease;
+  pointer-events: none;
+}
+.recruit-tab-panel.is-active { opacity: 1; pointer-events: auto; }
+.recruit-tab-panel img {
   width: 100%; height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity .55s ease, transform .6s ease;
 }
-.recruit-card:hover img { opacity: 1; transform: scale(1.04); }
-.recruit-card-body {
+.recruit-tab-panel-link {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 32px 36px;
-  background: linear-gradient(to top, rgba(12,45,82,.85) 0%, rgba(12,45,82,.22) 60%, transparent 100%);
-  color: #fff;
-}
-.recruit-card-body h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.recruit-card-body p {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,.76);
-  line-height: 1.65;
-  margin-bottom: 12px;
-  font-weight: 300;
-}
-.link-arrow {
+  bottom: 28px; right: 28px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: rgba(255,255,255,.56);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,.85);
+  padding: 10px 22px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 100px;
+  transition: background .2s, border-color .2s;
+}
+.recruit-tab-panel-link:hover {
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.7);
 }
 
 /* ═══════════════════════════════════════════
@@ -723,7 +781,9 @@ footer {
   .recruit-panel { padding: 48px 28px; }
   .recruit-body-btns { flex-direction: column; align-items: flex-start; }
 
-  .recruit-cards { grid-template-columns: 1fr; }
+  .recruit-tab-layout { grid-template-columns: 1fr; }
+  .recruit-tab-images { min-height: 280px; position: relative; }
+  .recruit-tab-item { padding: 24px 20px; gap: 14px; }
 
   .interview-grid { grid-template-columns: 1fr; gap: 40px; }
 
@@ -880,43 +940,61 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
-     RECRUIT CARDS : 採用4カード（2×2）
+     RECRUIT TAB : 左メニュー＋右画像切替
 ══════════════════════════════════════ -->
 <div class="recruit-cards-section" id="recruit-contents">
-  <div class="inner">
-    <div class="recruit-cards">
-      <a href="recruit/work/" class="recruit-card">
-        <img src="sozai/pixta_47550245_XL.jpg" alt="仕事風景">
-        <div class="recruit-card-body">
+  <div class="recruit-tab-layout">
+    <ul class="recruit-tab-menu">
+      <li class="recruit-tab-item is-active" data-tab="0">
+        <span class="recruit-tab-num">01</span>
+        <div class="recruit-tab-content">
           <h3>仕事を知る</h3>
           <p>各職種の業務内容や1日の流れ、働くやりがいをご紹介します。</p>
-          <div class="link-arrow">詳しく見る →</div>
         </div>
-      </a>
-      <a href="recruit/interview/" class="recruit-card">
-        <img src="sozai/pixta_54091235_XL.jpg" alt="社員インタビュー">
-        <div class="recruit-card-body">
+        <span class="recruit-tab-arrow">→</span>
+      </li>
+      <li class="recruit-tab-item" data-tab="1">
+        <span class="recruit-tab-num">02</span>
+        <div class="recruit-tab-content">
           <h3>社員インタビュー</h3>
           <p>実際に働く社員が、入社のきっかけや職場の雰囲気を語ります。</p>
-          <div class="link-arrow">詳しく見る →</div>
         </div>
-      </a>
-      <a href="recruit/benefits/" class="recruit-card">
-        <img src="sozai/pixta_90410893_XL.jpg" alt="福利厚生・制度">
-        <div class="recruit-card-body">
+        <span class="recruit-tab-arrow">→</span>
+      </li>
+      <li class="recruit-tab-item" data-tab="2">
+        <span class="recruit-tab-num">03</span>
+        <div class="recruit-tab-content">
           <h3>福利厚生・制度</h3>
           <p>各種手当・休暇・社会保険・資格取得支援など、働く環境をご紹介します。</p>
-          <div class="link-arrow">詳しく見る →</div>
         </div>
-      </a>
-      <a href="recruit/requirements/" class="recruit-card">
-        <img src="sozai/pixta_61884114_XL.jpg" alt="募集要項">
-        <div class="recruit-card-body">
+        <span class="recruit-tab-arrow">→</span>
+      </li>
+      <li class="recruit-tab-item" data-tab="3">
+        <span class="recruit-tab-num">04</span>
+        <div class="recruit-tab-content">
           <h3>募集要項</h3>
           <p>職種・給与・勤務地・応募資格など、詳しい採用情報をご確認ください。</p>
-          <div class="link-arrow">詳しく見る →</div>
         </div>
-      </a>
+        <span class="recruit-tab-arrow">→</span>
+      </li>
+    </ul>
+    <div class="recruit-tab-images">
+      <div class="recruit-tab-panel is-active">
+        <img src="sozai/pixta_47550245_XL.jpg" alt="仕事を知る">
+        <a href="recruit/work/" class="recruit-tab-panel-link">詳しく見る →</a>
+      </div>
+      <div class="recruit-tab-panel">
+        <img src="sozai/pixta_54091235_XL.jpg" alt="社員インタビュー">
+        <a href="recruit/interview/" class="recruit-tab-panel-link">詳しく見る →</a>
+      </div>
+      <div class="recruit-tab-panel">
+        <img src="sozai/pixta_90410893_XL.jpg" alt="福利厚生・制度">
+        <a href="recruit/benefits/" class="recruit-tab-panel-link">詳しく見る →</a>
+      </div>
+      <div class="recruit-tab-panel">
+        <img src="sozai/pixta_61884114_XL.jpg" alt="募集要項">
+        <a href="recruit/requirements/" class="recruit-tab-panel-link">詳しく見る →</a>
+      </div>
     </div>
   </div>
 </div>
@@ -1102,6 +1180,20 @@ hamburger.addEventListener('click', openDrawer);
 closeBtn.addEventListener('click', closeDrawer);
 overlay.addEventListener('click', closeDrawer);
 drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+/* ─── Recruit tab hover ─── */
+const recruitTabItems  = document.querySelectorAll('.recruit-tab-item');
+const recruitTabPanels = document.querySelectorAll('.recruit-tab-panel');
+
+recruitTabItems.forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    const idx = parseInt(item.dataset.tab, 10);
+    recruitTabItems.forEach(i  => i.classList.remove('is-active'));
+    recruitTabPanels.forEach(p => p.classList.remove('is-active'));
+    item.classList.add('is-active');
+    recruitTabPanels[idx].classList.add('is-active');
+  });
+});
 </script>
 </body>
 </html>
