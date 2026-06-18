@@ -168,7 +168,7 @@
   /* ─── ヒーロー ─── */
   .hero {
     position: relative;
-    min-height: 620px;
+    min-height: 780px;
     background: #888;
     display: flex;
     align-items: center;
@@ -177,14 +177,14 @@
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.42);
+    background: rgba(0,0,0,0.45);
   }
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: 80px;
+    padding: 100px 100px 100px 80px;
     color: #fff;
-    max-width: 700px;
+    max-width: 860px;
   }
   .hero-eyebrow {
     font-family: 'Courier New', monospace;
@@ -192,21 +192,21 @@
     letter-spacing: 0.25em;
     text-transform: uppercase;
     opacity: 0.65;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     display: block;
   }
   .hero-content h1 {
-    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
   .hero-content p {
-    font-size: 1rem;
-    line-height: 1.9;
+    font-size: 1.05rem;
+    line-height: 2.0;
     opacity: 0.88;
-    margin-bottom: 40px;
-    max-width: 500px;
+    margin-bottom: 48px;
+    max-width: 560px;
   }
   .hero-btns { display: flex; gap: 16px; }
   .hero-img-label {
@@ -256,8 +256,48 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 72px;
-    align-items: center;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-points {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .about-point {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    background: var(--bg-muted);
+  }
+  .about-point-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--text-soft);
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .about-point-text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .about-point-text p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin: 0;
+    max-width: none;
+  }
+  .about-img-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   /* ─── SERVICE ─── */
@@ -530,7 +570,7 @@
       <div class="gnav-logo">[ ロゴ ]</div>
       <ul class="gnav-links">
         <li>三幸部品とは</li>
-        <li>サービス紹介</li>
+        <li>事業内容 <span class="note" style="font-size:10px;vertical-align:middle;">※要確認</span></li>
         <li>会社概要</li>
         <li>新着情報</li>
         <li>採用情報</li>
@@ -541,7 +581,7 @@
       </div>
     </div>
   </nav>
-  <div class="note-bar">※ ナビ項目・順番はMTG後に確定 ／ 採用エントリーCTAはヘッダー右端に常設</div>
+  <div class="note-bar">※ ナビ項目・順番はMTG後に確定 ／ 採用エントリーCTAはヘッダー右端に常設 ／ 「事業内容」はサイトマップ未確定（現サイトマップには独立ページなし→要確認）</div>
 </header>
 
 <!-- ══════════════════════════════════════
@@ -551,17 +591,18 @@
 <section class="hero" id="hero">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow">SANKO BUHIN CO., LTD.</span>
-    <h1>トラックの部品で、<br>日本の物流を<br>支え続ける。</h1>
-    <p>自動車部品・トラック用部品の供給を通じて、<br>製造現場と社会をつなぐ仕事があります。</p>
+    <span class="hero-eyebrow">SANKO BUHIN CO., LTD. ／ SINCE ○○○○</span>
+    <h1>信頼をつなぐ部品が、<br>日本のものづくりを<br>動かし続ける。</h1>
+    <p>自動車部品・トラック用部品の製造・卸売を通じて、<br>製造現場の信頼パートナーとして歩み続けてきました。<br>私たちの仕事は、ものの流れを止めないことです。</p>
     <div class="hero-btns">
       <div class="btn btn-white">採用情報を見る</div>
       <div class="btn btn-white-ol">会社を知る</div>
     </div>
+    <span class="note" style="display:block; margin-top:20px; background:rgba(255,255,0,0.18); border-color:rgba(255,255,0,0.5); color:rgba(255,255,255,0.75);">※ キャッチコピー・リード文はMTG後に確定 ／ 仮テキスト</span>
   </div>
-  <div class="hero-img-label">[ 写真：工場・現場・トラック部品 ]</div>
+  <div class="hero-img-label">[ 写真：工場・現場・トラック部品 撮影素材使用予定 ]</div>
 </section>
-<div class="note-bar">※ ヒーロー写真は撮影素材を使用予定 ／ キャッチコピー・リード文はMTG後に確定 ／ CTA①採用情報を見る → /recruit/ ／ CTA②会社を知る → /about/</div>
+<div class="note-bar">※ CTA①採用情報を見る → /recruit/ ／ CTA②会社を知る → /about/ ／ 背景写真：撮影素材を使用予定</div>
 
 <!-- ══════════════════════════════════════
      NUMBERS : 数字で見る三幸部品
@@ -598,14 +639,40 @@
       <div>
         <div class="section-heading">
           <span class="section-label">ABOUT</span>
-          <h2>トラックの部品で、<br>ものづくりを支える。</h2>
-          <p>自動車部品・トラック用部品の製造から卸売まで一貫して手がける三幸部品。長年の実績と専門知識で、製造現場の信頼パートナーとして歩み続けています。</p>
+          <h2>自動車部品の専門商社として、<br>製造現場を支え続ける。</h2>
+          <p>トラック用部品を中心に、多種多様な自動車部品を取り扱う株式会社三幸部品。長年の実績と専門知識をもとに、製造現場のニーズに応えてきました。「モノが止まらない社会」をつくることが、私たちの使命です。</p>
         </div>
-        <div class="btn btn-outline" style="font-size:0.85rem;display:inline-block;">三幸部品とは →</div>
-        <span class="note" style="display:block;margin-top:12px;">※ 会社の強み・特徴はMTG後に肉付け</span>
+        <div class="about-points">
+          <div class="about-point">
+            <span class="about-point-num">POINT 01</span>
+            <div class="about-point-text">
+              <h4>豊富な取扱品目と確かな調達力</h4>
+              <p>トラック用部品を中心に○○種以上の部品を取り扱い。迅速な供給体制で現場のニーズに対応します。</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <span class="about-point-num">POINT 02</span>
+            <div class="about-point-text">
+              <h4>長年の信頼と実績</h4>
+              <p>創業以来○○年、取引先○○社以上。積み重ねた信頼と専門知識が三幸部品の強みです。</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <span class="about-point-num">POINT 03</span>
+            <div class="about-point-text">
+              <h4>製造現場に寄り添う提案力</h4>
+              <p>部品の供給だけでなく、現場の課題解決に向けた提案も。専門スタッフが丁寧にサポートします。</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:36px;">
+          <div class="btn btn-outline" style="font-size:0.85rem;display:inline-block;">三幸部品とは →</div>
+        </div>
+        <span class="note" style="display:block;margin-top:12px;">※ 強み3項目の内容・数値はMTG後に確定</span>
       </div>
-      <div>
-        <div class="img-ph" style="aspect-ratio:4/3; height:auto;">[ 写真：工場外観 or 製品・部品イメージ ]</div>
+      <div class="about-img-stack">
+        <div class="img-ph" style="aspect-ratio:4/3; height:auto;">[ 写真：工場外観 or 製品・部品イメージ（メイン） ]</div>
+        <div class="img-ph" style="aspect-ratio:16/9; height:auto;">[ 写真：社内・スタッフ・作業風景 ]</div>
       </div>
     </div>
   </div>
@@ -614,6 +681,7 @@
 <!-- ══════════════════════════════════════
      SERVICE : 事業・サービス紹介
      参考：miyamoto（写真大＋右テキスト）
+     ⚠️ サイトマップに独立ページなし → 「三幸部品とは」/about/ に統合か、別途ページ追加か要確認
 ══════════════════════════════════════ -->
 <section id="service" class="bg-muted">
   <div class="inner">
@@ -631,7 +699,7 @@
         <div style="margin-top:28px;">
           <div class="btn btn-outline" style="font-size:0.85rem;display:inline-block;">サービス詳細を見る →</div>
         </div>
-        <span class="note" style="display:block;margin-top:12px;">※ 取扱い品目・対応メーカー詳細はMTG後に追記</span>
+        <span class="note" style="display:block;margin-top:12px;">※ 取扱い品目・対応メーカー詳細はMTG後に追記 ／ ⚠️ リンク先：サービス独立ページ未確定（要確認）</span>
       </div>
     </div>
   </div>
