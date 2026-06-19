@@ -92,17 +92,18 @@ ul { list-style: none; }
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 18px 40px;
+  gap: 12px;
+  padding: 20px 52px;
   font-family: var(--font-main);
   font-size: 0.88rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   cursor: pointer;
   transition: background .25s, color .25s, border-color .25s;
   border: 2px solid transparent;
   line-height: 1;
   border-radius: 100px;
+  white-space: nowrap;
 }
 .btn::after { content: '→'; font-size: 0.8em; font-weight: 400; }
 
@@ -134,7 +135,11 @@ ul { list-style: none; }
 }
 .btn-white-ol:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 
-.btn-sm { padding: 13px 28px; font-size: 0.8rem; }
+/* エントリー・採用情報専用：オレンジ */
+.btn-entry { background: #E8710A; color: #fff; border-color: #E8710A; }
+.btn-entry:hover { background: #cf6209; border-color: #cf6209; }
+
+.btn-sm { padding: 15px 40px; font-size: 0.82rem; }
 
 /* ═══════════════════════════════════════════
    Fade-up animation
@@ -252,8 +257,8 @@ ul { list-style: none; }
 .gnav:not(.scrolled) .dropdown a { color: var(--color-text-sub); }
 .gnav:not(.scrolled) .dropdown a:hover { color: var(--color-primary); }
 
-.gnav-cta { flex-shrink: 0; display: flex; gap: 10px; align-items: center; }
-.gnav-cta .btn { padding: 9px 22px; font-size: 0.78rem; justify-content: center; gap: 0; }
+.gnav-cta { flex-shrink: 0; display: flex; gap: 12px; align-items: center; }
+.gnav-cta .btn { padding: 14px 36px; font-size: 0.82rem; justify-content: center; gap: 0; }
 .gnav-cta .btn::after { content: ''; }
 
 /* ─── ヒーロー上：透過状態の文字色 ─── */
@@ -914,19 +919,10 @@ footer {
         <li><a href="about/">三幸部品とは</a></li>
         <li><a href="company/">会社概要</a></li>
         <li><a href="news/">新着情報</a></li>
-        <li class="has-dropdown">
-          <a href="recruit/">採用情報<span class="drop-arrow">▾</span></a>
-          <ul class="dropdown">
-            <li><a href="recruit/works/">仕事を知る</a></li>
-            <li><a href="recruit/interview/">社員インタビュー</a></li>
-            <li><a href="recruit/benefit/">福利厚生・制度</a></li>
-            <li><a href="recruit/jobs/">募集要項</a></li>
-          </ul>
-        </li>
       </ul>
       <div class="gnav-cta">
-        <a href="contact/" class="btn btn-outline">お問い合わせ</a>
-        <a href="recruit/entry/" class="btn btn-primary">採用エントリー</a>
+        <a href="recruit.html" class="btn btn-entry">採用情報</a>
+        <a href="contact/" class="btn btn-primary">お問い合わせ</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="メニューを開く">
         <span></span><span></span><span></span>
@@ -941,13 +937,8 @@ footer {
     <a href="about/">三幸部品とは</a>
     <a href="company/">会社概要</a>
     <a href="news/">新着情報</a>
-    <a href="recruit/">採用情報</a>
-    <a href="recruit/works/" class="drawer-sub">└ 仕事を知る</a>
-    <a href="recruit/interview/" class="drawer-sub">└ 社員インタビュー</a>
-    <a href="recruit/benefit/" class="drawer-sub">└ 福利厚生・制度</a>
-    <a href="recruit/jobs/" class="drawer-sub">└ 募集要項</a>
+    <a href="recruit.html">採用情報</a>
     <a href="contact/">お問い合わせ</a>
-    <a href="recruit/entry/">採用エントリー</a>
   </nav>
 </div>
 <div class="drawer-overlay" id="drawerOverlay"></div>
@@ -1041,8 +1032,7 @@ footer {
       <div class="recruit-intro">
         <p>当社では、ものづくりを支えることに誇りを持つ仲間を募集しています。事務・現場（製造）など複数職種で募集中。未経験の方もお気軽にご応募ください。</p>
         <div class="recruit-body-btns">
-          <a href="recruit/entry/" class="btn btn-primary">採用エントリーはこちら</a>
-          <a href="recruit/" class="btn btn-outline">採用情報を詳しく見る</a>
+          <a href="recruit.html" class="btn btn-outline">詳しく見る</a>
         </div>
       </div>
     </div>
@@ -1097,19 +1087,19 @@ footer {
     <div class="recruit-tab-images">
       <div class="recruit-tab-panel is-active">
         <img src="sozai/pixta_47550245_XL.jpg" alt="仕事を知る">
-        <a href="recruit/work/" class="recruit-tab-panel-link">詳しく見る →</a>
+        <a href="recruit_works.html" class="recruit-tab-panel-link">詳しく見る →</a>
       </div>
       <div class="recruit-tab-panel">
         <img src="sozai/pixta_54091235_XL.jpg" alt="社員インタビュー">
-        <a href="recruit/interview/" class="recruit-tab-panel-link">詳しく見る →</a>
+        <a href="recruit_interview.html" class="recruit-tab-panel-link">詳しく見る →</a>
       </div>
       <div class="recruit-tab-panel">
         <img src="sozai/pixta_90410893_XL.jpg" alt="福利厚生・制度">
-        <a href="recruit/benefits/" class="recruit-tab-panel-link">詳しく見る →</a>
+        <a href="recruit_benefit.html" class="recruit-tab-panel-link">詳しく見る →</a>
       </div>
       <div class="recruit-tab-panel">
         <img src="sozai/pixta_61884114_XL.jpg" alt="募集要項">
-        <a href="recruit/requirements/" class="recruit-tab-panel-link">詳しく見る →</a>
+        <a href="recruit_jobs.html" class="recruit-tab-panel-link">詳しく見る →</a>
       </div>
     </div>
 
@@ -1126,7 +1116,7 @@ footer {
         <span class="sec-label">社員の声</span>
         <span class="en-heading">Interview</span>
       </div>
-      <a href="recruit/interview/" class="btn btn-outline btn-sm">一覧を見る</a>
+      <a href="recruit_interview.html" class="btn btn-outline btn-sm">一覧を見る</a>
     </div>
     <div class="interview-grid">
       <div class="interview-card fade-up">
@@ -1210,7 +1200,7 @@ footer {
       <p>取引・サービスに関するお問い合わせ、採用エントリーはこちらから。</p>
     </div>
     <div class="contact-cta fade-up" style="transition-delay:.1s">
-      <a href="recruit/entry/" class="btn btn-white">採用エントリーはこちら</a>
+      <a href="contact/" class="btn btn-white">採用エントリーはこちら</a>
       <a href="contact/" class="btn btn-white-ol">お問い合わせはこちら</a>
     </div>
   </div>
@@ -1236,18 +1226,18 @@ footer {
     <nav class="footer-nav">
       <h4>RECRUIT</h4>
       <ul>
-        <li><a href="recruit/">採用トップ</a></li>
-        <li><a href="recruit/work/">仕事を知る</a></li>
-        <li><a href="recruit/interview/">社員インタビュー</a></li>
-        <li><a href="recruit/benefits/">福利厚生・制度</a></li>
-        <li><a href="recruit/requirements/">募集要項</a></li>
+        <li><a href="recruit.html">採用情報</a></li>
+        <li><a href="recruit_works.html">仕事を知る</a></li>
+        <li><a href="recruit_interview.html">社員インタビュー</a></li>
+        <li><a href="recruit_benefit.html">福利厚生・制度</a></li>
+        <li><a href="recruit_jobs.html">募集要項</a></li>
       </ul>
     </nav>
     <nav class="footer-nav">
       <h4>CONTACT</h4>
       <ul>
         <li><a href="contact/">お問い合わせ</a></li>
-        <li><a href="recruit/entry/">採用エントリー</a></li>
+        <li><a href="contact/">採用エントリー</a></li>
         <li><a href="privacy/">プライバシーポリシー</a></li>
       </ul>
     </nav>

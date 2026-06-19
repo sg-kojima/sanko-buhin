@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用情報 | 株式会社三幸部品</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   Reset & Base
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary:       #0C2D52;
+  --color-accent:        #2577C8;
+  --color-accent-mid:    #3D8FE0;
+  --color-accent-light:  #EBF4FF;
+  --color-bg:            #FFFFFF;
+  --color-bg-muted:      #F4F8FD;
+  --color-text:          #1A1A1A;
+  --color-text-sub:      #5A6A7A;
+  --color-text-soft:     #9AAAB8;
+  --color-line:          rgba(0,0,0,.08);
+  --font-main: 'Noto Sans JP', "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+  --max-width:   1200px;
+  --inner-pad:   64px;
+  --section-gap: 160px;
+}
+
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-main);
+  line-height: 1.9;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--inner-pad);
+}
+
+/* ═══════════════════════════════════════════
+   Typography helpers
+═══════════════════════════════════════════ */
+.sec-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+.en-heading {
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+}
+.ja-sub {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+/* ═══════════════════════════════════════════
+   Buttons（笹島建設参考：大きめ・丸・余白たっぷり）
+═══════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 52px;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background .25s, color .25s, border-color .25s;
+  border: 2px solid transparent;
+  line-height: 1;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.btn::after { content: '→'; font-size: 0.8em; font-weight: 400; }
+
+.btn-primary { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+.btn-primary:hover { background: var(--color-accent-mid); border-color: var(--color-accent-mid); }
+
+.btn-outline { background: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+.btn-outline:hover { background: var(--color-primary); color: #fff; }
+
+.btn-white { background: #fff; color: var(--color-primary); border-color: #fff; }
+.btn-white:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+.btn-white-ol { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+.btn-white-ol:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+
+/* エントリー専用：オレンジ */
+.btn-entry { background: #E8710A; color: #fff; border-color: #E8710A; }
+.btn-entry:hover { background: #cf6209; border-color: #cf6209; }
+
+.btn-sm { padding: 15px 40px; font-size: 0.82rem; }
+
+/* ═══════════════════════════════════════════
+   Fade-up
+═══════════════════════════════════════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .72s ease, transform .72s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   RECRUIT NAVIGATION（採用専用）
+═══════════════════════════════════════════ */
+.r-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  transition: background .4s ease, border-color .4s ease, box-shadow .4s ease;
+}
+.r-nav.scrolled {
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--color-line);
+  box-shadow: 0 2px 24px rgba(0,0,0,.07);
+  backdrop-filter: blur(8px);
+}
+.r-nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  gap: 0;
+}
+
+/* ロゴ */
+.r-nav-logo {
+  flex-shrink: 0;
+  width: 140px; height: 40px;
+  background: rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px; color: rgba(255,255,255,.45);
+  border: 1px solid rgba(255,255,255,.16);
+  margin-right: auto; /* ロゴ左寄せ → リンク群を右へ寄せる */
+  transition: background .4s, border-color .4s, color .4s;
+}
+.r-nav.scrolled .r-nav-logo {
+  background: var(--color-bg-muted);
+  border-color: var(--color-line);
+  color: var(--color-text-soft);
+}
+
+/* 採用専用ナビリンク */
+.r-nav-links {
+  display: flex;
+  gap: 32px;
+  margin-right: 40px; /* リンク群はCTAボタンの左隣 */
+}
+.r-nav-links a {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255,255,255,.82);
+  letter-spacing: 0.02em;
+  padding: 6px 0;
+  position: relative;
+  transition: color .2s;
+  white-space: nowrap;
+}
+.r-nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 1px; background: rgba(255,255,255,.65);
+  transform: scaleX(0); transition: transform .25s;
+}
+.r-nav-links a:hover { color: #fff; }
+.r-nav-links a:hover::after { transform: scaleX(1); }
+.r-nav.scrolled .r-nav-links a { color: var(--color-text-sub); }
+.r-nav.scrolled .r-nav-links a:hover { color: var(--color-primary); }
+.r-nav.scrolled .r-nav-links a::after { background: var(--color-accent); }
+
+/* CTAボタン */
+.r-nav-cta {
+  flex-shrink: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: 32px;
+}
+.r-nav-cta .btn {
+  padding: 14px 36px;
+  font-size: 0.82rem;
+  justify-content: center;
+  gap: 0;
+}
+.r-nav-cta .btn::after { content: ''; }
+
+/* 透過時のボタン */
+.r-nav:not(.scrolled) .r-nav-cta .btn-outline {
+  color: rgba(255,255,255,.88);
+  border-color: rgba(255,255,255,.45);
+}
+.r-nav:not(.scrolled) .r-nav-cta .btn-outline:hover {
+  background: rgba(255,255,255,.14);
+  border-color: #fff;
+  color: #fff;
+}
+.r-nav:not(.scrolled) .hamburger { color: #fff; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+  width: 44px; height: 44px;
+  cursor: pointer; background: none; border: none; padding: 0;
+  z-index: 200; color: var(--color-primary);
+  margin-left: auto;
+}
+.hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: currentColor; transition: transform .3s, opacity .3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Drawer */
+.mobile-drawer {
+  position: fixed; top: 0; right: 0;
+  width: 280px; height: 100%;
+  background: var(--color-primary);
+  z-index: 300;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+  padding: 80px 36px 48px;
+}
+.mobile-drawer.open { transform: translateX(0); }
+.drawer-close {
+  position: absolute; top: 22px; right: 22px;
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; color: rgba(255,255,255,.6); padding: 8px;
+}
+.drawer-nav { display: flex; flex-direction: column; }
+.drawer-nav a {
+  font-size: 13px; font-weight: 300; letter-spacing: .08em;
+  color: rgba(255,255,255,.78);
+  padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  transition: color .2s;
+}
+.drawer-nav a:last-child { border-bottom: none; }
+.drawer-nav a:hover { color: #fff; }
+.drawer-back {
+  font-size: 11px !important;
+  color: rgba(255,255,255,.38) !important;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+.drawer-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 290; opacity: 0; pointer-events: none;
+  transition: opacity .35s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
+/* ═══════════════════════════════════════════
+   HERO（100vh フル幅）
+═══════════════════════════════════════════ */
+.r-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 680px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.r-hero-bg { position: absolute; inset: 0; }
+.r-hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 35%;
+}
+.r-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(12,45,82,.08) 0%,
+    rgba(12,45,82,.22) 45%,
+    rgba(12,45,82,.75) 100%
+  );
+}
+
+/* パンくず（hero内部・左上） */
+.r-hero-bc {
+  position: absolute;
+  top: 88px; left: var(--inner-pad);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,.42);
+  letter-spacing: 0.06em;
+}
+.r-hero-bc a { color: rgba(255,255,255,.42); transition: color .2s; }
+.r-hero-bc a:hover { color: rgba(255,255,255,.8); }
+.r-hero-bc .sep { margin: 0 8px; }
+
+.r-hero-content {
+  position: relative; z-index: 2;
+  padding: 0 var(--inner-pad) 10vh 10vw;
+  max-width: 1080px;
+  color: #fff;
+}
+.r-hero-deco {
+  font-family: var(--font-mono);
+  font-size: clamp(1.4rem, 2.6vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: rgba(255,255,255,.16);
+  display: block;
+  margin-bottom: 36px;
+  letter-spacing: 0.02em;
+}
+.r-hero-content h1 {
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  border-left: 3px solid var(--color-accent);
+  padding-left: 32px;
+}
+
+/* ═══════════════════════════════════════════
+   MESSAGE（代表メッセージ：min-height 100vh）
+═══════════════════════════════════════════ */
+.r-msg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+.r-msg-watermark {
+  position: absolute;
+  bottom: -16px; right: -16px;
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 9vw, 9rem);
+  font-weight: 700;
+  color: var(--color-accent-light);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  letter-spacing: -0.03em;
+}
+.r-msg-grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 100px;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 160px var(--inner-pad);
+  position: relative; z-index: 1;
+  width: 100%;
+}
+.r-msg-text h2 {
+  font-size: clamp(1.9rem, 3vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  color: var(--color-primary);
+}
+.r-msg-text .lead {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.r-msg-text .body {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  line-height: 2;
+  font-weight: 300;
+}
+.r-msg-text .signature {
+  margin-top: 40px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-soft);
+  border-top: 1px solid var(--color-line);
+  padding-top: 20px;
+}
+.r-msg-photo {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  position: relative;
+}
+.r-msg-photo img { width: 100%; height: 100%; object-fit: cover; }
+.r-msg-photo::before {
+  content: '';
+  position: absolute;
+  top: -16px; right: -16px;
+  width: 60%; height: 60%;
+  border: 2px solid var(--color-accent-light);
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════
+   OUR JOB（左写真・右テキスト：min-height 100vh）
+═══════════════════════════════════════════ */
+.r-job { background: var(--color-bg-muted); }
+.r-job-grid {
+  display: grid;
+  grid-template-columns: 48fr 52fr;
+  min-height: 100vh;
+}
+.r-job-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 画像切替パネル */
+.r-job-panel {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity .65s ease;
+  pointer-events: none;
+}
+.r-job-panel.is-active { opacity: 1; }
+.r-job-panel img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+.r-job-body {
+  padding: 120px var(--inner-pad);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.r-job-body .en-heading { font-size: clamp(2.4rem, 3.5vw, 4.5rem); margin-bottom: 4px; }
+.r-job-body .ja-sub { margin-bottom: 16px; }
+.r-job-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  line-height: 2; font-weight: 300;
+}
+.r-job-list {
+  border-top: 1px solid var(--color-line);
+  margin: 40px 0 48px;
+}
+.r-job-item {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--color-line);
+  transition: padding-left .2s;
+  cursor: pointer;
+}
+.r-job-item:hover,
+.r-job-item.is-active { padding-left: 12px; }
+.r-job-item-left { display: flex; align-items: center; gap: 20px; }
+.r-job-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; color: var(--color-text-soft); letter-spacing: 0.08em;
+}
+.r-job-name { font-size: 1.05rem; font-weight: 700; color: var(--color-text); }
+.r-job-arrow {
+  width: 38px; height: 38px;
+  border-radius: 50%; border: 1px solid var(--color-line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; color: var(--color-text-soft); flex-shrink: 0;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.r-job-item:hover .r-job-arrow,
+.r-job-item.is-active .r-job-arrow {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-light);
+}
+.r-job-item.is-active .r-job-name { color: var(--color-accent); }
+.r-job-body .btn { align-self: flex-start; }
+
+/* ═══════════════════════════════════════════
+   MEMBER（社員紹介 3カラム）
+═══════════════════════════════════════════ */
+.r-member {
+  padding: var(--section-gap) 0;
+  background: var(--color-bg);
+}
+.r-member-header { margin-bottom: 72px; }
+.r-member-header .en-heading { font-size: clamp(3rem, 5vw, 5.5rem); }
+.r-member-header p {
+  font-size: 0.9rem;
+  color: var(--color-text-sub); font-weight: 300;
+}
+.r-member-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.r-member-card { overflow: hidden; }
+.r-member-img {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.r-member-img img { transition: transform .5s ease; }
+.r-member-card:hover .r-member-img img { transform: scale(1.04); }
+.r-member-meta {
+  font-family: var(--font-mono);
+  font-size: 0.67rem; color: var(--color-accent);
+  letter-spacing: 0.1em; display: block; margin-bottom: 12px;
+}
+.r-member-card h3 {
+  font-size: 1.05rem; font-weight: 700;
+  line-height: 1.55; margin-bottom: 10px;
+  color: var(--color-primary);
+}
+.r-member-card p {
+  font-size: 0.82rem; color: var(--color-text-sub);
+  line-height: 1.7; font-weight: 300;
+}
+.r-member-footer {
+  display: flex; align-items: center; justify-content: flex-end;
+  margin-top: 72px;
+}
+
+/* ═══════════════════════════════════════════
+   ENVIRONMENT（フル幅写真 + 白オーバーレイbox）
+═══════════════════════════════════════════ */
+.r-env {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.r-env-bg { position: absolute; inset: 0; }
+.r-env-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 20%; /* 頭・顔がしっかり見えるよう上寄りに */
+}
+.r-env-overlay {
+  position: absolute; inset: 0;
+  background: rgba(12,45,82,.28);
+}
+.r-env-body {
+  position: relative; z-index: 2;
+  margin: 0 0 80px var(--inner-pad);
+  padding: 60px 64px;
+  background: rgba(255,255,255,.97);
+  max-width: 520px;
+  border-top: 3px solid var(--color-accent);
+}
+.r-env-en {
+  font-size: clamp(1.7rem, 2.4vw, 2.6rem);
+  font-weight: 700; line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  display: block; margin-bottom: 8px;
+}
+.r-env-body .ja-sub {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  margin-bottom: 16px;
+}
+.r-env-body .desc {
+  font-size: 0.88rem; color: var(--color-text-sub);
+  line-height: 2; font-weight: 300; margin-bottom: 36px;
+}
+
+/* ═══════════════════════════════════════════
+   PHOTO STRIP（4カラム）
+═══════════════════════════════════════════ */
+.r-photo-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+}
+.r-strip-item {
+  height: 400px;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  position: relative;
+}
+.r-strip-item:last-child { border-right: none; }
+.r-strip-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.r-strip-item:hover img { transform: scale(1.06); }
+
+/* ═══════════════════════════════════════════
+   CTA（募集要項・採用エントリー）
+═══════════════════════════════════════════ */
+.r-cta {
+  position: relative;
+  min-height: 440px;
+  background: var(--color-primary);
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.r-cta-bg { position: absolute; inset: 0; }
+.r-cta-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .1; mix-blend-mode: luminosity;
+}
+.r-cta-inner {
+  position: relative; z-index: 2;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 100px var(--inner-pad);
+  width: 100%;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 40px;
+}
+.r-cta-text .sec-label { color: rgba(255,255,255,.35); }
+.r-cta-text .en-heading {
+  color: #fff;
+  font-size: clamp(2.4rem, 4vw, 4.5rem);
+  margin-bottom: 12px;
+}
+.r-cta-text p {
+  font-size: 0.92rem; color: rgba(255,255,255,.72);
+  line-height: 2; font-weight: 300;
+}
+.r-cta-btns {
+  flex-shrink: 0;
+  display: flex; flex-direction: column;
+  gap: 16px; align-items: stretch;
+  min-width: 280px;
+}
+.r-cta-btns .btn { justify-content: center; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: #0A1E35;
+  color: #7E90A0;
+  padding: 80px 40px 36px;
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  margin-bottom: 32px;
+}
+.footer-logo {
+  width: 160px; height: 44px;
+  background: rgba(255,255,255,.05);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px; color: #4A5E70;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,.07);
+}
+.footer-addr { font-size: 0.72rem; color: #4A5E70; line-height: 2.2; }
+.footer-nav h4 {
+  font-family: var(--font-mono);
+  font-size: 0.67rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #7E90A0;
+  margin-bottom: 20px;
+}
+.footer-nav ul { display: flex; flex-direction: column; gap: 4px; }
+.footer-nav a { font-size: 0.78rem; color: #4A5E70; padding: 6px 0; transition: color .2s; }
+.footer-nav a:hover { color: #7E90A0; }
+.footer-copy {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.67rem; color: #2E3E4E; letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 960px) {
+  :root {
+    --inner-pad: 32px;
+    --section-gap: 120px;
+  }
+  .r-nav-links { gap: 20px; }
+  .r-nav-links a { font-size: 0.78rem; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --inner-pad: 24px;
+    --section-gap: 100px;
+  }
+  html { font-size: 16px; }
+
+  .r-nav-links, .r-nav-cta { display: none; }
+  .hamburger { display: flex; }
+
+  .r-hero-bc { left: 24px; top: 80px; }
+  .r-hero-content { padding: 0 24px 72px; }
+
+  .r-msg-grid { grid-template-columns: 1fr; gap: 48px; padding: 100px 24px; }
+  .r-msg-photo { aspect-ratio: 4/3; }
+  .r-msg-photo::before { display: none; }
+  .r-msg-watermark { display: none; }
+
+  .r-job-grid { grid-template-columns: 1fr; min-height: auto; }
+  .r-job-photo { min-height: 340px; position: relative; }
+  .r-job-body { padding: 72px 24px; }
+
+  .r-member-grid { grid-template-columns: 1fr; gap: 56px; }
+  .r-member-footer { justify-content: flex-start; }
+
+  .r-env-body {
+    margin: 0 24px 52px;
+    padding: 44px 36px;
+    max-width: none;
+  }
+
+  .r-photo-strip { grid-template-columns: repeat(2, 1fr); }
+  .r-strip-item { height: 240px; }
+
+  .r-cta-inner { flex-direction: column; align-items: flex-start; padding: 80px 24px; }
+  .r-cta-btns { width: 100%; min-width: 0; }
+  .r-cta-btns .btn { width: 100%; }
+
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-inner > div:first-child { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     RECRUIT NAVIGATION（採用専用）
+══════════════════════════════════════ -->
+<header>
+  <nav class="r-nav" id="rnav">
+    <div class="r-nav-inner">
+      <a href="recruit.html" class="r-nav-logo">[ LOGO ]</a>
+      <ul class="r-nav-links">
+        <li><a href="recruit_works.html">仕事を知る</a></li>
+        <li><a href="recruit_interview.html">社員インタビュー</a></li>
+        <li><a href="recruit_benefit.html">福利厚生・制度</a></li>
+        <li><a href="recruit_jobs.html">募集要項</a></li>
+      </ul>
+      <div class="r-nav-cta">
+        <a href="index.html" class="btn btn-primary">コーポレートサイト</a>
+        <a href="contact.html" class="btn btn-entry">採用エントリー</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <button class="drawer-close" id="drawerClose">✕</button>
+  <nav class="drawer-nav">
+    <a href="recruit.html">採用情報 TOP</a>
+    <a href="recruit_works.html">仕事を知る</a>
+    <a href="recruit_interview.html">社員インタビュー</a>
+    <a href="recruit_benefit.html">福利厚生・制度</a>
+    <a href="recruit_jobs.html">募集要項</a>
+    <a href="contact.html">採用エントリー</a>
+    <a href="index.html" class="drawer-back">← コーポレートサイトへ</a>
+  </nav>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ══════════════════════════════════════
+     HERO：100vh フル幅
+     パンくずはhero内部に組み込み
+══════════════════════════════════════ -->
+<section class="r-hero" id="hero">
+  <div class="r-hero-bg">
+    <img src="sozai/pixta_66975844_XL.jpg" alt="三幸部品 採用 職場風景">
+  </div>
+  <div class="r-hero-overlay"></div>
+  <div class="r-hero-bc">
+    <a href="index.html">TOP</a><span class="sep">›</span>採用情報
+  </div>
+  <div class="r-hero-content fade-up">
+    <span class="r-hero-deco">WORK THAT<br>SUPPORTS<br>THE FUTURE</span>
+    <h1>ともに、ものづくりを<br>動かす仲間を求めています。</h1>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MESSAGE：代表メッセージ（100vh）
+══════════════════════════════════════ -->
+<section id="message" class="r-msg">
+  <div class="r-msg-watermark">Create new value</div>
+  <div class="r-msg-grid">
+    <div class="r-msg-text fade-up">
+      <span class="sec-label">MESSAGE</span>
+      <h2>未来に残せる価値と、<br>ものづくりの現場を<br>共に支えよう。</h2>
+      <p class="lead">三幸部品で働くということ。</p>
+      <p class="body">代表または採用担当者からのメッセージが入ります。仕事への想い・職場の雰囲気・一緒に働きたい人物像などを自然な言葉でお伝えします（200字程度）。モノとモノをつなぎ、製造現場を下支えする仕事に、誇りを感じてほしいと思っています。</p>
+      <p class="signature">代表取締役 ○○ ○○</p>
+    </div>
+    <div class="r-msg-photo fade-up" style="transition-delay:.15s">
+      <img src="sozai/pixta_33914940_L.jpg" alt="代表メッセージ">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     OUR JOB：左写真・右テキスト（100vh）
+══════════════════════════════════════ -->
+<section id="job" class="r-job">
+  <div class="r-job-grid">
+    <!-- 左：ホバーで切り替わる画像パネル -->
+    <div class="r-job-photo">
+      <div class="r-job-panel is-active" data-panel="0">
+        <img src="sozai/pixta_33539606_XL.jpg" alt="現場職（製造・物流）">
+      </div>
+      <div class="r-job-panel" data-panel="1">
+        <img src="sozai/pixta_14289953_XL.jpg" alt="事務職">
+      </div>
+      <div class="r-job-panel" data-panel="2">
+        <img src="sozai/pixta_38583423_XL.jpg" alt="営業職">
+      </div>
+    </div>
+    <!-- 右：テキスト＋ジョブリスト -->
+    <div class="r-job-body fade-up">
+      <span class="sec-label">JOB</span>
+      <span class="en-heading">Our Job</span>
+      <p class="ja-sub">仕事を知る</p>
+      <p class="r-job-desc">三幸部品には、ものづくりを支えるさまざまな仕事があります。あなたに合ったポジションを見つけてください。</p>
+      <ul class="r-job-list">
+        <li class="r-job-item is-active" data-job="0">
+          <div class="r-job-item-left">
+            <span class="r-job-num">01</span>
+            <span class="r-job-name">現場職（製造・物流）</span>
+          </div>
+          <span class="r-job-arrow">→</span>
+        </li>
+        <li class="r-job-item" data-job="1">
+          <div class="r-job-item-left">
+            <span class="r-job-num">02</span>
+            <span class="r-job-name">事務職</span>
+          </div>
+          <span class="r-job-arrow">→</span>
+        </li>
+        <li class="r-job-item" data-job="2">
+          <div class="r-job-item-left">
+            <span class="r-job-num">03</span>
+            <span class="r-job-name">営業職</span>
+          </div>
+          <span class="r-job-arrow">→</span>
+        </li>
+      </ul>
+      <a href="recruit_works.html" class="btn btn-outline btn-sm">詳しく見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MEMBER：社員紹介 3カラム
+══════════════════════════════════════ -->
+<section id="member" class="r-member">
+  <div class="inner">
+    <div class="r-member-header fade-up">
+      <span class="sec-label">MEMBER</span>
+      <span class="en-heading">Member</span>
+      <p class="ja-sub">人を知る</p>
+      <p>実際に働く社員を紹介します。三幸部品で出会える仲間を知ってください。</p>
+    </div>
+    <div class="r-member-grid">
+      <div class="r-member-card fade-up">
+        <div class="r-member-img">
+          <img src="sozai/pixta_54091235_XL.jpg" alt="社員01">
+        </div>
+        <span class="r-member-meta">STAFF 01 ／ 現場職 ／ 入社○年目</span>
+        <h3>「お客様も仲間も大切に、成長を楽しむ日々。」</h3>
+        <p>○○ ○○ ／ 製造部門・現場リーダー</p>
+      </div>
+      <div class="r-member-card fade-up" style="transition-delay:.12s">
+        <div class="r-member-img">
+          <img src="sozai/pixta_90410893_XL.jpg" alt="社員02">
+        </div>
+        <span class="r-member-meta">STAFF 02 ／ 事務職 ／ 入社○年目</span>
+        <h3>「仕事も育児も、自分らしくいられる職場です。」</h3>
+        <p>○○ ○○ ／ 営業事務</p>
+      </div>
+      <div class="r-member-card fade-up" style="transition-delay:.24s">
+        <div class="r-member-img">
+          <img src="sozai/pixta_47550245_XL.jpg" alt="社員03">
+        </div>
+        <span class="r-member-meta">STAFF 03 ／ 現場職 ／ 入社○年目</span>
+        <h3>「未経験でも、確実に成長できる環境がある。」</h3>
+        <p>○○ ○○ ／ 部品管理・検品</p>
+      </div>
+    </div>
+    <div class="r-member-footer">
+      <a href="recruit_interview.html" class="btn btn-outline btn-sm">社員インタビューを読む</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ENVIRONMENT：フル幅写真 + 白オーバーレイbox
+══════════════════════════════════════ -->
+<section id="environment" class="r-env">
+  <div class="r-env-bg">
+    <img src="sozai/pixta_95811103_XL.jpg" alt="職場環境・制度">
+  </div>
+  <div class="r-env-overlay"></div>
+  <div class="r-env-body fade-up">
+    <span class="sec-label">ENVIRONMENT</span>
+    <span class="r-env-en">Working<br>Environment</span>
+    <p class="ja-sub">働く環境・制度</p>
+    <p class="desc">三幸部品の職場環境・福利厚生・各種制度についてご紹介します。働きやすさを大切に、社員一人ひとりが長く活躍できる環境を整えています。</p>
+    <a href="recruit_benefit.html" class="btn btn-outline btn-sm">詳しく見る</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PHOTO STRIP：職場写真 4枚横並び
+══════════════════════════════════════ -->
+<div class="r-photo-strip">
+  <div class="r-strip-item">
+    <img src="sozai/pixta_14289953_XL.jpg" alt="職場写真01">
+  </div>
+  <div class="r-strip-item">
+    <img src="sozai/pixta_21850090_XL.jpg" alt="職場写真02">
+  </div>
+  <div class="r-strip-item">
+    <img src="sozai/pixta_29020366_XL.jpg" alt="職場写真03">
+  </div>
+  <div class="r-strip-item">
+    <img src="sozai/pixta_59810726_XL.jpg" alt="職場写真04">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CTA：募集要項 + 採用エントリー
+══════════════════════════════════════ -->
+<section id="cta" class="r-cta">
+  <div class="r-cta-bg">
+    <img src="sozai/pixta_33539606_XL.jpg" alt="">
+  </div>
+  <div class="r-cta-inner">
+    <div class="r-cta-text fade-up">
+      <span class="sec-label">ENTRY / REQUIREMENTS</span>
+      <span class="en-heading">Join Us</span>
+      <p>三幸部品で一緒に働きませんか。<br>まずはお気軽にエントリーください。</p>
+    </div>
+    <div class="r-cta-btns fade-up" style="transition-delay:.1s">
+      <a href="recruit_jobs.html" class="btn btn-white-ol">募集要項を見る</a>
+      <a href="contact.html" class="btn btn-white">採用エントリーはこちら</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">[ LOGO ]</div>
+      <p class="footer-addr">株式会社三幸部品<br>〒000-0000<br>所在地：○○<br>TEL：000-000-0000</p>
+    </div>
+    <nav class="footer-nav">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="about.html">三幸部品とは</a></li>
+        <li><a href="company.html">会社概要</a></li>
+        <li><a href="news.html">新着情報</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-nav">
+      <h4>RECRUIT</h4>
+      <ul>
+        <li><a href="recruit.html">採用情報</a></li>
+        <li><a href="recruit_works.html">仕事を知る</a></li>
+        <li><a href="recruit_interview.html">社員インタビュー</a></li>
+        <li><a href="recruit_benefit.html">福利厚生・制度</a></li>
+        <li><a href="recruit_jobs.html">募集要項</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-nav">
+      <h4>CONTACT</h4>
+      <ul>
+        <li><a href="contact.html">お問い合わせ</a></li>
+        <li><a href="contact.html">採用エントリー</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="footer-copy">© 2026 株式会社三幸部品 All Rights Reserved.</p>
+</footer>
+
+<script>
+/* ─── RECRUIT NAV：ヒーロー領域で透過、スクロールで白 ─── */
+const rnav   = document.getElementById('rnav');
+const heroEl = document.getElementById('hero');
+
+function updateNav() {
+  if (!heroEl) { rnav.classList.add('scrolled'); return; }
+  const heroBot = heroEl.offsetTop + heroEl.offsetHeight;
+  if (window.scrollY < heroBot - 80) {
+    rnav.classList.remove('scrolled');
+  } else {
+    rnav.classList.add('scrolled');
+  }
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+/* ─── OurJob：ホバーで画像切替 ─── */
+const jobItems  = document.querySelectorAll('.r-job-item');
+const jobPanels = document.querySelectorAll('.r-job-panel');
+
+jobItems.forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    const idx = item.dataset.job;
+    jobItems.forEach(i => i.classList.remove('is-active'));
+    jobPanels.forEach(p => p.classList.remove('is-active'));
+    item.classList.add('is-active');
+    const target = document.querySelector(`.r-job-panel[data-panel="${idx}"]`);
+    if (target) target.classList.add('is-active');
+  });
+});
+
+/* ─── Fade-up ─── */
+const fadeItems = document.querySelectorAll('.fade-up');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+fadeItems.forEach(el => observer.observe(el));
+
+/* ─── Hamburger / Drawer ─── */
+const hamburger = document.getElementById('hamburger');
+const drawer    = document.getElementById('mobileDrawer');
+const overlay   = document.getElementById('drawerOverlay');
+const closeBtn  = document.getElementById('drawerClose');
+
+function openDrawer() {
+  drawer.classList.add('open');
+  overlay.classList.add('open');
+  hamburger.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  drawer.classList.remove('open');
+  overlay.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', openDrawer);
+closeBtn.addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+</body>
+</html>
