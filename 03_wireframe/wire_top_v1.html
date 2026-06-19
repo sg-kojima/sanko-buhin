@@ -248,8 +248,49 @@
     max-width: 420px;
   }
 
+  /* ─── COMPANY（会社案内：写真背景＋テキスト＋ボタン） ─── */
+  .company-section {
+    position: relative;
+    min-height: 560px;
+    background: #777;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .company-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  }
+  .company-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 64px;
+    width: 100%;
+    color: #fff;
+  }
+  .company-content .sec-label { color: rgba(255,255,255,0.5); }
+  .company-content .en-heading { color: #fff; }
+  .company-content p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
+    margin: 12px 0 32px;
+    max-width: 480px;
+  }
+  .company-img-note {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    color: rgba(255,255,255,0.3);
+  }
+
   /* ─── SERVICE（見出し上 + フォトストリップ全幅） ─── */
-  .service-section { background: var(--bg-muted); }
+  .service-section { background: var(--bg); }
   .service-header {
     max-width: 1200px;
     margin: 0 auto;
@@ -592,7 +633,7 @@
 <!-- ワイヤー管理バー -->
 <div class="wire-bar">
   <div>WIREFRAME — 株式会社三幸部品 ／ トップページ（TOP）</div>
-  <span>wire_top_v1.html ／ 2026.06.18</span>
+  <span>wire_top_v1.html ／ 2026.06.19</span>
 </div>
 
 <!-- ══════════════════════════════════════
@@ -604,20 +645,12 @@
       <div class="gnav-logo">[ ロゴ ]</div>
       <ul class="gnav-links">
         <li>三幸部品とは</li>
-        <li>会社概要</li>
+        <li>会社案内</li>
         <li>新着情報</li>
-        <li class="has-dropdown">採用情報 ▾
-          <ul class="dropdown">
-            <li>仕事を知る</li>
-            <li>社員インタビュー</li>
-            <li>福利厚生・制度</li>
-            <li>募集要項</li>
-          </ul>
-        </li>
       </ul>
       <div class="gnav-cta">
+        <div class="btn btn-fill" style="font-size:0.78rem;padding:8px 20px;">採用情報</div>
         <div class="btn btn-outline" style="font-size:0.78rem;padding:8px 20px;">お問い合わせ</div>
-        <div class="btn btn-fill" style="font-size:0.78rem;padding:8px 20px;">採用エントリー</div>
       </div>
     </div>
   </nav>
@@ -656,6 +689,21 @@
       <div><div class="btn btn-outline btn-sm">詳しく見る</div></div>
     </div>
   </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMPANY : 会社案内 左：メッセージ+ボタン 右：会社概要テーブル
+     ※サイトマップ：/company/ = 会社基本情報・代表者・企業理念・アクセス
+══════════════════════════════════════ -->
+<section class="company-section" id="company">
+  <div class="company-overlay"></div>
+  <div class="company-content">
+    <span class="sec-label">会社案内</span>
+    <span class="en-heading" style="font-size:clamp(2.4rem,3.5vw,3.8rem);">Company</span>
+    <p>企業理念・会社概要・代表者メッセージ・アクセス情報はこちらからご覧いただけます。</p>
+    <div class="btn btn-white-ol btn-sm">会社案内を見る</div>
+  </div>
+  <div class="company-img-note">[ 写真：社屋・工場外観・製品イメージ ]</div>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -861,14 +909,14 @@
       <h4>COMPANY</h4>
       <ul>
         <li>三幸部品とは</li>
-        <li>会社概要</li>
+        <li>会社案内</li>
         <li>新着情報</li>
       </ul>
     </div>
     <div class="footer-nav">
       <h4>RECRUIT</h4>
       <ul>
-        <li>採用トップ</li>
+        <li>採用情報</li>
         <li>仕事を知る</li>
         <li>社員インタビュー</li>
         <li>福利厚生・制度</li>

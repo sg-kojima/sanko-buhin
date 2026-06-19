@@ -436,6 +436,48 @@ ul { list-style: none; }
 .about-text .btn { align-self: flex-start; }
 
 /* ═══════════════════════════════════════════
+   COMPANY
+═══════════════════════════════════════════ */
+.company-section {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.company-bg { position: absolute; inset: 0; }
+.company-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.company-overlay {
+  position: absolute; inset: 0;
+  background: rgba(12,45,82,.62);
+}
+.company-content {
+  position: relative; z-index: 2;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px var(--inner-pad);
+  width: 100%;
+  color: #fff;
+}
+.company-content .sec-label { color: rgba(255,255,255,.45); }
+.company-content .en-heading {
+  color: #fff;
+  font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+}
+.company-content p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,.7);
+  line-height: 1.9;
+  margin: 14px 0 36px;
+  max-width: 520px;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════════
    SERVICE
 ═══════════════════════════════════════════ */
 .service-section {
@@ -879,6 +921,9 @@ footer {
   .about-text { padding: 48px 28px; }
   .about-text p { max-width: 100%; }
 
+  .company-section { min-height: 420px; }
+  .company-content { padding: 64px var(--inner-pad); }
+
   .service-header { padding: 56px var(--inner-pad) 40px; }
   .service-strip { grid-template-columns: 1fr; }
   .service-strip-item { min-height: 240px; }
@@ -917,7 +962,7 @@ footer {
       <a href="index.html" class="gnav-logo">[ LOGO ]</a>
       <ul class="gnav-links">
         <li><a href="about/">三幸部品とは</a></li>
-        <li><a href="company/">会社概要</a></li>
+        <li><a href="company/">会社案内</a></li>
         <li><a href="news/">新着情報</a></li>
       </ul>
       <div class="gnav-cta">
@@ -935,7 +980,7 @@ footer {
   <button class="drawer-close" id="drawerClose">✕</button>
   <nav class="drawer-nav">
     <a href="about/">三幸部品とは</a>
-    <a href="company/">会社概要</a>
+    <a href="company/">会社案内</a>
     <a href="news/">新着情報</a>
     <a href="recruit.html">採用情報</a>
     <a href="contact/">お問い合わせ</a>
@@ -976,6 +1021,22 @@ footer {
       <p>トラック用部品を中心に、多種多様な自動車部品を取り扱う株式会社三幸部品。長年の実績と専門知識をもとに、製造現場のニーズに応えてきました。「ものの流れを止めない」ことが、私たちの使命です。</p>
       <a href="about/" class="btn btn-outline btn-sm">詳しく見る</a>
     </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMPANY : 会社案内 写真背景 + テキスト
+══════════════════════════════════════ -->
+<section class="company-section" id="company">
+  <div class="company-bg">
+    <img src="sozai/pixta_81077224_XL.jpg" alt="三幸部品について">
+  </div>
+  <div class="company-overlay"></div>
+  <div class="company-content fade-up">
+    <span class="sec-label">会社案内</span>
+    <span class="en-heading">Company</span>
+    <p>企業理念・会社概要・代表者メッセージ・アクセス情報はこちらからご覧いただけます。</p>
+    <a href="company/" class="btn btn-white-ol btn-sm">会社案内を見る</a>
   </div>
 </section>
 
@@ -1219,7 +1280,7 @@ footer {
       <h4>COMPANY</h4>
       <ul>
         <li><a href="about/">三幸部品とは</a></li>
-        <li><a href="company/">会社概要</a></li>
+        <li><a href="company/">会社案内</a></li>
         <li><a href="news/">新着情報</a></li>
       </ul>
     </nav>
