@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>議事録 20260623 ｜ 株式会社三幸部品様 初回打ち合わせ</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:         #1b3a5c;
+    --navy-mid:     #2d5a8e;
+    --navy-light:   #e8f0f8;
+    --gold:         #b8810a;
+    --gold-light:   #fef7e7;
+    --green:        #2e7d32;
+    --green-light:  #e8f5e9;
+    --orange:       #e65100;
+    --orange-light: #fff3e0;
+    --text:         #1a2330;
+    --muted:        #5a6472;
+    --border:       #b8c8d8;
+    --border-light: #d8e4ee;
+    --bg:           #f4f7fa;
+    --white:        #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    font-size: 12px;
+    color: var(--text);
+    background: #8fa5be;
+    line-height: 1.75;
+  }
+  .page {
+    width: 297mm;
+    min-height: 210mm;
+    background: var(--white);
+    margin: 16px auto;
+    padding: 11mm 15mm;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── ページヘッダー ── */
+  .ph { display: flex; justify-content: space-between; align-items: center; padding-bottom: 5px; border-bottom: 1px solid var(--border); margin-bottom: 14px; font-size: 9px; color: var(--muted); }
+  .ph-brand { font-weight: 700; color: var(--navy); font-size: 9.5px; letter-spacing: 0.03em; }
+
+  /* ── セクションヘッダー ── */
+  .sh { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--navy); }
+  .sh-num { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1; color: var(--gold); opacity: 0.45; flex-shrink: 0; }
+  .sh-body { display: flex; flex-direction: column; gap: 1px; }
+  .sh-title { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: 0.04em; }
+  .sh-sub { font-size: 9px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* ── サブヘッド ── */
+  .sub-head { font-size: 11px; font-weight: 700; color: var(--text); padding-left: 9px; border-left: 3px solid var(--gold); margin: 14px 0 6px; }
+  .sub-head:first-child { margin-top: 0; }
+
+  /* ── info-table ── */
+  .info-table { width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed; margin-bottom: 2px; }
+  .info-table th { width: 22%; background: var(--navy-light); color: var(--navy); font-weight: 600; padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; }
+  .info-table td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; background: var(--white); line-height: 1.7; }
+  .info-table tr:nth-child(even) td { background: var(--bg); }
+
+  /* ── ステータスバッジ ── */
+  .badge { display: inline-block; font-size: 9px; padding: 1px 7px; border-radius: 10px; color: #fff; font-weight: 700; vertical-align: middle; margin-left: 4px; white-space: nowrap; }
+  .badge-confirmed  { background: var(--green); }
+  .badge-pending    { background: var(--gold); }
+  .badge-changed    { background: var(--orange); }
+  .badge-action     { background: var(--navy); }
+
+  /* ── 確認事項テーブル ── */
+  .check-table { width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed; }
+  .check-table thead th { background: var(--navy); color: var(--white); font-weight: 600; padding: 7px 10px; border: 1px solid var(--navy); text-align: left; }
+  .check-table thead th:nth-child(1) { width: 28%; }
+  .check-table thead th:nth-child(2) { width: 40%; }
+  .check-table thead th:nth-child(3) { width: 16%; }
+  .check-table thead th:nth-child(4) { width: 16%; }
+  .check-table tbody td { padding: 6px 10px; border: 1px solid var(--border); vertical-align: top; background: var(--white); line-height: 1.7; }
+  .check-table tbody tr:nth-child(even) td { background: var(--bg); }
+
+  /* ── アクションリスト ── */
+  .action-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .action-item { display: grid; grid-template-columns: 16px 1fr 70px 80px; gap: 8px; align-items: start; padding: 7px 10px; border: 1px solid var(--border); border-radius: 3px; font-size: 11px; background: var(--white); }
+  .action-item::before { content: '□'; color: var(--gold); font-size: 13px; line-height: 1.4; }
+  .action-owner { font-size: 10px; font-weight: 700; color: var(--navy); text-align: right; }
+  .action-due { font-size: 10px; color: var(--muted); text-align: right; font-family: 'DM Mono', monospace; }
+
+  /* ── ノートボックス ── */
+  .note-box { background: var(--bg); border-left: 3px solid var(--border); padding: 8px 12px; margin-top: 10px; font-size: 10px; color: var(--muted); line-height: 1.85; }
+  .gold-box { background: var(--gold-light); border-left: 3px solid var(--gold); padding: 10px 14px; margin-top: 12px; font-size: 10.5px; color: var(--text); line-height: 1.85; }
+  .green-box { background: var(--green-light); border-left: 3px solid var(--green); padding: 10px 14px; margin-top: 10px; font-size: 10.5px; color: var(--text); line-height: 1.85; }
+  .orange-box { background: var(--orange-light); border-left: 3px solid var(--orange); padding: 10px 14px; margin-top: 10px; font-size: 10.5px; color: var(--text); line-height: 1.85; }
+
+  /* ── 表紙 ── */
+  .cover-page { display: flex; flex-direction: column; justify-content: space-between; min-height: 210mm; padding: 0; }
+  .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 14mm 18mm 10mm 22mm; position: relative; }
+  .cover-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 7px; background: var(--gold); }
+  .cover-label { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .cover-client { font-family: 'Noto Sans JP', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px; letter-spacing: 0.02em; line-height: 1.45; }
+  .cover-brand { font-size: 11px; color: var(--muted); margin-bottom: 28px; font-family: 'DM Mono', monospace; }
+  .cover-title { font-family: 'Noto Sans JP', sans-serif; font-size: 44px; font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 6px; }
+  .cover-vol { font-size: 13px; color: var(--gold); letter-spacing: 0.14em; margin-bottom: 44px; }
+  .cover-meta { display: flex; gap: 44px; }
+  .cover-meta-item label { display: block; font-size: 9px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; }
+  .cover-meta-item span { font-size: 12px; color: var(--text); font-weight: 500; }
+  .cover-foot { background: var(--navy); padding: 12px 22mm; display: flex; align-items: center; gap: 6px; }
+  .cover-foot-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-right: 10px; flex-shrink: 0; }
+  .cover-foot-text { font-size: 11px; color: rgba(255,255,255,0.85); }
+
+  /* ── 確認済みハイライト ── */
+  .confirmed-row { background: var(--green-light) !important; }
+  .changed-row   { background: var(--orange-light) !important; }
+</style>
+</head>
+<body>
+
+<!-- ========== 表紙 ========== -->
+<div class="page">
+  <div class="cover-page">
+    <div class="cover-main">
+      <div class="cover-bar"></div>
+      <div class="cover-label">MEETING MINUTES</div>
+      <div class="cover-client">株式会社三幸部品 様</div>
+      <div class="cover-brand">SANKO BUHIN CO., LTD.</div>
+      <div class="cover-title">初回<br>打ち合わせ</div>
+      <div class="cover-vol">vol.01</div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <label>Date</label>
+          <span>2026年6月23日（火）</span>
+        </div>
+        <div class="cover-meta-item">
+          <label>Author</label>
+          <span>小島 Megumi（ステージグループ）</span>
+        </div>
+        <div class="cover-meta-item">
+          <label>Version</label>
+          <span>v1.0</span>
+        </div>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div class="cover-foot-label">Prepared by</div>
+      <div class="cover-foot-text">株式会社ステージグループ</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== P2: 基本情報 ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">株式会社三幸部品 | 初回打ち合わせ議事録</span>
+    <span>2026.06.23 — p.2</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">01</div>
+    <div class="sh-body">
+      <div class="sh-title">MTG基本情報</div>
+      <div class="sh-sub">MEETING INFO</div>
+    </div>
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <th>日時</th>
+      <td>2026年6月23日（火）</td>
+    </tr>
+    <tr>
+      <th>場所・形式</th>
+      <td>—</td>
+    </tr>
+    <tr>
+      <th>参加者（クライアント）</th>
+      <td>株式会社三幸部品　芹澤様（ほか）</td>
+    </tr>
+    <tr>
+      <th>参加者（制作側）</th>
+      <td>小島 Megumi（ステージグループ）</td>
+    </tr>
+    <tr>
+      <th>議題</th>
+      <td>Webサイトリニューアルにかかる初回ヒアリング・方針確認</td>
+    </tr>
+    <tr>
+      <th>次回MTG</th>
+      <td>—</td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 28px;">
+    <div class="sh">
+      <div class="sh-num">02</div>
+      <div class="sh-body">
+        <div class="sh-title">仕様・ドメイン確認</div>
+        <div class="sh-sub">SPEC &amp; DOMAIN</div>
+      </div>
+    </div>
+
+    <table class="info-table">
+      <tr>
+        <th>仕様書・サイトマップ</th>
+        <td>
+          事前作成の仕様書（sitemap_三幸部品_v1）の内容でOK
+          <span class="badge badge-confirmed">確認済み</span>
+        </td>
+      </tr>
+      <tr>
+        <th>ドメイン</th>
+        <td>
+          仕様書記載のドメイン（sanko-buhin.co.jp）でOK
+          <span class="badge badge-confirmed">確認済み</span>
+        </td>
+      </tr>
+      <tr>
+        <th>ロゴ</th>
+        <td>
+          <strong>既存のロゴはない。</strong>コーポレートカラーは青・赤。文字ロゴでの制作を検討。
+          <span class="badge badge-pending">要検討</span>
+        </td>
+      </tr>
+    </table>
+
+    <div class="gold-box">
+      <strong>ロゴについて補足：</strong>三幸部品の文字を青・赤のコーポレートカラーで構成する文字ロゴを想定。
+      ロゴデザインの範囲（Webサイト用のみか、名刺・封筒等も含むか）は次回確認が必要。
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== P3: ターゲット・強み ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">株式会社三幸部品 | 初回打ち合わせ議事録</span>
+    <span>2026.06.23 — p.3</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">03</div>
+    <div class="sh-body">
+      <div class="sh-title">ターゲット</div>
+      <div class="sh-sub">TARGET</div>
+    </div>
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <th>主なターゲット</th>
+      <td>20〜30代前後を中心に厚くしたい</td>
+    </tr>
+    <tr>
+      <th>用途</th>
+      <td>採用サイトとしての活用を重視。求職者（未経験含む）への訴求。</td>
+    </tr>
+    <tr>
+      <th>現状の採用経路</th>
+      <td>ハローワーク・Indeed（Indeedからのエントリーがある）→ 新サイトでのエントリー獲得を目指す</td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 28px;">
+    <div class="sh">
+      <div class="sh-num">04</div>
+      <div class="sh-body">
+        <div class="sh-title">優位性・強み</div>
+        <div class="sh-sub">STRENGTH &amp; ADVANTAGE</div>
+      </div>
+    </div>
+
+    <table class="info-table">
+      <tr>
+        <th>確認済みの強み</th>
+        <td>
+          <ul style="padding-left: 16px; line-height: 2;">
+            <li>短納期対応</li>
+            <li>一貫生産体制（社内完結）</li>
+            <li>多様な分野への対応力</li>
+            <li>製造機械の部品も製作可能</li>
+            <li>トラック部品・化学分野など幅広い取引実績</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>業種メモ</th>
+        <td>
+          自動車部品はほとんど手がけていない。<br>
+          トラック部品・化学分野での実績が中心。
+        </td>
+      </tr>
+      <tr>
+        <th>追加ヒアリング</th>
+        <td>
+          強み・優位性の詳細は後日ヒアリングシートで回収予定
+          <span class="badge badge-pending">待ち</span>
+        </td>
+      </tr>
+    </table>
+
+    <div class="note-box">
+      ヒアリングシート回収後、仕様書の「強み」セクションおよびトップページの強みセクションに反映する。
+      「短納期・一貫生産・多品種対応」の3本軸をベースに整理する方向で仮設計を進める。
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== P4: 採用情報 ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">株式会社三幸部品 | 初回打ち合わせ議事録</span>
+    <span>2026.06.23 — p.4</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">05</div>
+    <div class="sh-body">
+      <div class="sh-title">採用情報（確認済み項目）</div>
+      <div class="sh-sub">RECRUITMENT INFO</div>
+    </div>
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <th>スタッフ総数</th>
+      <td>30名</td>
+    </tr>
+    <tr>
+      <th>女性スタッフ</th>
+      <td>
+        11名（製造4名 / 事務5名 / 産休中2名）<br>
+        <span style="font-size: 10px; color: var(--muted);">女性が活躍できる環境として打ち出せる</span>
+      </td>
+    </tr>
+    <tr>
+      <th>試用期間</th>
+      <td>3か月</td>
+    </tr>
+    <tr>
+      <th>正社員登用</th>
+      <td>試用期間終了・正社員登用の際に<strong>金一封あり</strong>（金額は要確認）</td>
+    </tr>
+    <tr>
+      <th>育休・産休</th>
+      <td>取りやすい環境（実績として産休中2名がいることを示せる）</td>
+    </tr>
+    <tr>
+      <th>福利厚生</th>
+      <td>
+        手厚い。最近コーヒーサーバーを設置。<br>
+        <span style="font-size: 10px; color: var(--muted);">具体的な内容は要追加ヒアリング（食事補助・各種手当など）</span>
+      </td>
+    </tr>
+    <tr>
+      <th>資格取得支援</th>
+      <td>
+        フォークリフト・クレーン・溶接 等の資格取得費用を会社が全額負担
+      </td>
+    </tr>
+    <tr>
+      <th>経験・スキル</th>
+      <td><strong>未経験者歓迎</strong>（OJT・研修体制の詳細は要確認）</td>
+    </tr>
+    <tr>
+      <th>応募方法</th>
+      <td>新サイトからのエントリーフォーム経由を想定（現状：ハローワーク・Indeed）</td>
+    </tr>
+  </table>
+
+  <div class="green-box">
+    <strong>採用ページの訴求軸（仮設計）</strong><br>
+    ①未経験OK・資格取得サポートあり ②女性も活躍中（製造4名） ③育休・産休実績あり
+    ④正社員になれる（金一封付き）⑤福利厚生充実（コーヒーサーバーなど職場環境）
+  </div>
+
+  <div class="note-box" style="margin-top: 10px;">
+    <strong>要追加確認：</strong>金一封の金額 / 給与レンジ・賞与 / 勤務時間・休日 / 残業の有無 / 住宅手当・通勤手当の詳細 / OJT・研修体制
+    → ヒアリングシートで回収予定
+  </div>
+</div>
+
+
+<!-- ========== P5: デザイン方針・参考サイト ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">株式会社三幸部品 | 初回打ち合わせ議事録</span>
+    <span>2026.06.23 — p.5</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">06</div>
+    <div class="sh-body">
+      <div class="sh-title">デザイン方針</div>
+      <div class="sh-sub">DESIGN DIRECTION</div>
+    </div>
+  </div>
+
+  <table class="info-table">
+    <tr>
+      <th>全体の方向性</th>
+      <td>
+        <strong>明るいイメージ</strong>でまとめたい（コーポレート・採用ページともに）
+        <span class="badge badge-confirmed">確認済み</span>
+      </td>
+    </tr>
+    <tr>
+      <th>コーポレートカラー</th>
+      <td>青・赤（詳細なカラーコードは制作側で提案）</td>
+    </tr>
+    <tr>
+      <th>参考サイト</th>
+      <td>
+        南田ネジ（https://minamida.co.jp/）を良さそうとして共有いただいた。<br>
+        <span style="font-size: 10px; color: var(--muted);">明るく親しみやすいビジュアル・遊び心のあるレイアウトが特徴</span>
+      </td>
+    </tr>
+  </table>
+
+  <div class="orange-box" style="margin-top: 14px;">
+    <strong>デザイン方針の更新ポイント</strong><br>
+    事前提案では「コーポレートはカチッとした格・リクルートに遊び心」という二軸方針だったが、
+    今回MTGで<strong>コーポレート・採用ともに「明るいイメージ」</strong>で統一する方向に確定。
+    ただし信頼感・実績を伝えるコーポレートとしての格は維持しながら、明るく親しみやすいトーンで設計する。
+  </div>
+
+  <div class="sub-head" style="margin-top: 20px;">参考サイト分析メモ（minamida.co.jp）</div>
+  <table class="info-table">
+    <tr>
+      <th>良い点</th>
+      <td>
+        <ul style="padding-left: 16px; line-height: 2;">
+          <li>明るくポップな配色（白ベース・鮮やかな差し色）</li>
+          <li>イラストや大きな数字を使って親しみやすさを演出</li>
+          <li>採用ページで「一緒に働く仲間」感を出している</li>
+          <li>会社の規模感・雰囲気が伝わりやすい写真の使い方</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>参考にする箇所</th>
+      <td>
+        トーン全体の明るさ・採用ページのビジュアル表現。<br>
+        ただし「三幸部品らしさ（青・赤・金属加工の力強さ）」は残す。
+      </td>
+    </tr>
+    <tr>
+      <th>採用しない箇所</th>
+      <td>コーポレートとして情報量が少なすぎる点・遊び感が前面に出すぎる部分は抑制。</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ========== P6: 次回アクション ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">株式会社三幸部品 | 初回打ち合わせ議事録</span>
+    <span>2026.06.23 — p.6</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">07</div>
+    <div class="sh-body">
+      <div class="sh-title">次回アクション</div>
+      <div class="sh-sub">NEXT ACTION</div>
+    </div>
+  </div>
+
+  <ul class="action-list">
+    <li class="action-item">
+      <span></span>
+      <span>ヒアリングシートを送付・回収（強み詳細・採用条件・会社情報）</span>
+      <span class="action-owner">クライアント</span>
+      <span class="action-due">次回MTGまで</span>
+    </li>
+    <li class="action-item">
+      <span></span>
+      <span>ロゴの方向性確認（Webのみか名刺等も含むか）・デザイン費用・範囲を提案</span>
+      <span class="action-owner">制作側</span>
+      <span class="action-due">—</span>
+    </li>
+    <li class="action-item">
+      <span></span>
+      <span>カラー方針の提案（青・赤ベースのコーポレートカラー案）を作成</span>
+      <span class="action-owner">制作側</span>
+      <span class="action-due">—</span>
+    </li>
+    <li class="action-item">
+      <span></span>
+      <span>「明るいイメージ」を反映したデザイン方針を仕様書に更新</span>
+      <span class="action-owner">制作側</span>
+      <span class="action-due">—</span>
+    </li>
+    <li class="action-item">
+      <span></span>
+      <span>トップページワイヤーの修正・または採用下層ページのワイヤー継続作成</span>
+      <span class="action-owner">制作側</span>
+      <span class="action-due">—</span>
+    </li>
+    <li class="action-item">
+      <span></span>
+      <span>工場・製品・スタッフの写真素材について準備可能か確認（撮影が必要か）</span>
+      <span class="action-owner">クライアント</span>
+      <span class="action-due">次回MTGまで</span>
+    </li>
+    <li class="action-item">
+      <span></span>
+      <span>エントリーフォームの項目（氏名・電話・メール・志望動機 等）を確認・決定</span>
+      <span class="action-owner">クライアント</span>
+      <span class="action-due">—</span>
+    </li>
+    <li class="action-item">
+      <span></span>
+      <span>取引先の掲載可否（許可が必要かどうか）を確認</span>
+      <span class="action-owner">クライアント</span>
+      <span class="action-due">—</span>
+    </li>
+  </ul>
+
+  <div style="margin-top: 28px;">
+    <div class="sh">
+      <div class="sh-num">08</div>
+      <div class="sh-body">
+        <div class="sh-title">今回確定した事項まとめ</div>
+        <div class="sh-sub">CONFIRMED ITEMS</div>
+      </div>
+    </div>
+
+    <table class="check-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>確定内容</th>
+          <th>ステータス</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="confirmed-row">
+          <td>仕様書・サイトマップ</td>
+          <td>事前作成の内容でOK</td>
+          <td><span class="badge badge-confirmed">確定</span></td>
+          <td>—</td>
+        </tr>
+        <tr class="confirmed-row">
+          <td>ドメイン</td>
+          <td>sanko-buhin.co.jp でOK</td>
+          <td><span class="badge badge-confirmed">確定</span></td>
+          <td>—</td>
+        </tr>
+        <tr class="changed-row">
+          <td>デザイン方針</td>
+          <td>明るいイメージ（コーポレート・採用ともに）</td>
+          <td><span class="badge badge-changed">方針変更</span></td>
+          <td>参考：minamida.co.jp</td>
+        </tr>
+        <tr class="confirmed-row">
+          <td>ターゲット</td>
+          <td>20〜30代中心</td>
+          <td><span class="badge badge-confirmed">確定</span></td>
+          <td>—</td>
+        </tr>
+        <tr class="confirmed-row">
+          <td>スタッフ数</td>
+          <td>30名（女性11名）</td>
+          <td><span class="badge badge-confirmed">確定</span></td>
+          <td>—</td>
+        </tr>
+        <tr class="confirmed-row">
+          <td>試用期間</td>
+          <td>3か月・正社員登用時に金一封</td>
+          <td><span class="badge badge-confirmed">確定</span></td>
+          <td>金額は要確認</td>
+        </tr>
+        <tr class="confirmed-row">
+          <td>資格取得支援</td>
+          <td>フォークリフト・クレーン・溶接を会社負担</td>
+          <td><span class="badge badge-confirmed">確定</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>ロゴ</td>
+          <td>既存ロゴなし→文字ロゴ（青・赤）</td>
+          <td><span class="badge badge-pending">要提案</span></td>
+          <td>範囲・費用を確認</td>
+        </tr>
+        <tr>
+          <td>強み詳細</td>
+          <td>ヒアリングシートで回収後に確定</td>
+          <td><span class="badge badge-pending">待ち</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>写真素材</td>
+          <td>準備状況未確認</td>
+          <td><span class="badge badge-pending">要確認</span></td>
+          <td>撮影が必要な可能性あり</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box" style="margin-top: 14px;">
+    記録者：小島 Megumi（ステージグループ） ／ 作成日：2026年6月23日 ／ 本議事録は確認用であり、最終的な仕様は仕様書（sitemap_三幸部品_v1.html）に反映する。
+  </div>
+</div>
+
+</body>
+</html>

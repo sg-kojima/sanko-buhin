@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ヒアリングシート ｜ 株式会社三幸部品様</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:         #1b3a5c;
+    --navy-mid:     #2d5a8e;
+    --navy-light:   #e8f0f8;
+    --gold:         #b8810a;
+    --gold-light:   #fef7e7;
+    --green:        #2e7d32;
+    --green-light:  #e8f5e9;
+    --text:         #1a2330;
+    --muted:        #5a6472;
+    --border:       #b8c8d8;
+    --border-light: #d8e4ee;
+    --bg:           #f4f7fa;
+    --fill:         #fffef5;
+    --white:        #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    font-size: 12px;
+    color: var(--text);
+    background: #8fa5be;
+    line-height: 1.75;
+  }
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; page-break-after: always; }
+    .page:last-child { page-break-after: avoid; }
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    margin: 16px auto;
+    padding: 12mm 14mm;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.12);
+    position: relative;
+  }
+
+  /* ── ページヘッダー ── */
+  .ph { display: flex; justify-content: space-between; align-items: center; padding-bottom: 5px; border-bottom: 1px solid var(--border); margin-bottom: 14px; font-size: 9px; color: var(--muted); }
+  .ph-brand { font-weight: 700; color: var(--navy); font-size: 9.5px; letter-spacing: 0.03em; }
+
+  /* ── セクションヘッダー ── */
+  .sh { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--navy); }
+  .sh-num { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; color: var(--gold); opacity: 0.45; flex-shrink: 0; }
+  .sh-body { display: flex; flex-direction: column; gap: 1px; }
+  .sh-title { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: 0.04em; }
+  .sh-sub { font-size: 9px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* ── サブヘッド ── */
+  .sub-head { font-size: 11px; font-weight: 700; color: var(--text); padding-left: 9px; border-left: 3px solid var(--gold); margin: 18px 0 8px; }
+
+  /* ── 質問ブロック ── */
+  .q-block { margin-bottom: 14px; }
+  .q-label {
+    font-size: 11px; font-weight: 700; color: var(--navy);
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .q-label .q-no {
+    font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 700;
+    background: var(--navy); color: #fff;
+    padding: 1px 6px; border-radius: 2px; flex-shrink: 0;
+  }
+  .q-label .q-req {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    color: #b00; border: 1px solid #b00; padding: 0 5px; border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .q-hint { font-size: 10px; color: var(--muted); margin-bottom: 5px; padding-left: 2px; line-height: 1.65; }
+  .q-prefill { font-size: 10px; color: var(--green); background: var(--green-light); border: 1px solid #a5d6a7; border-radius: 2px; padding: 4px 8px; margin-bottom: 5px; }
+  .q-prefill strong { font-weight: 700; }
+
+  /* 回答欄 */
+  .answer-line {
+    border-bottom: 1px solid var(--border);
+    min-height: 28px;
+    background: var(--fill);
+    padding: 4px 6px;
+    margin-bottom: 3px;
+    font-size: 11px;
+  }
+  .answer-box {
+    border: 1px solid var(--border);
+    min-height: 56px;
+    background: var(--fill);
+    padding: 6px 8px;
+    width: 100%;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .answer-box.tall { min-height: 80px; }
+  .answer-box.short { min-height: 36px; }
+
+  /* チェックボックス */
+  .check-grid { display: grid; gap: 4px; margin-top: 4px; }
+  .check-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .check-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+  .check-item { display: flex; align-items: flex-start; gap: 6px; padding: 5px 8px; border: 1px solid var(--border); border-radius: 2px; background: var(--fill); font-size: 11px; line-height: 1.5; }
+  .check-box { width: 14px; height: 14px; border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 1px; }
+  .check-item.checked { background: var(--green-light); border-color: #a5d6a7; }
+  .check-item.checked .check-box { background: var(--green); border-color: var(--green); position: relative; }
+  .check-item.checked .check-box::after { content: '✓'; position: absolute; top: -1px; left: 1px; font-size: 10px; color: #fff; font-weight: 700; }
+
+  /* 表形式 */
+  .q-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 4px; }
+  .q-table th { background: var(--navy-light); color: var(--navy); font-weight: 600; padding: 5px 8px; border: 1px solid var(--border); text-align: left; font-size: 10px; }
+  .q-table td { border: 1px solid var(--border); padding: 5px 8px; background: var(--fill); vertical-align: top; }
+  .q-table td.pre { background: var(--green-light); font-size: 10px; color: #2e7d32; }
+
+  /* バッジ */
+  .badge { display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 10px; color: #fff; font-weight: 700; vertical-align: middle; margin-left: 3px; }
+  .badge-pre { background: var(--green); }
+  .badge-new { background: var(--gold); }
+
+  /* ノート */
+  .note-box { background: var(--bg); border-left: 3px solid var(--border); padding: 7px 10px; margin-top: 8px; font-size: 10px; color: var(--muted); line-height: 1.85; }
+  .gold-box { background: var(--gold-light); border-left: 3px solid var(--gold); padding: 8px 12px; margin-top: 10px; font-size: 10px; color: var(--text); line-height: 1.85; }
+
+  /* 表紙 */
+  .cover-page { display: flex; flex-direction: column; min-height: 297mm; }
+  .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 14mm 14mm 10mm 18mm; position: relative; }
+  .cover-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--gold); }
+  .cover-label { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+  .cover-client { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; line-height: 1.45; }
+  .cover-brand { font-size: 10px; color: var(--muted); margin-bottom: 22px; font-family: 'DM Mono', monospace; }
+  .cover-title { font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1.15; margin-bottom: 6px; }
+  .cover-sub { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 32px; }
+  .cover-meta { display: grid; grid-template-columns: auto auto; gap: 6px 32px; }
+  .cover-meta-item label { display: block; font-size: 9px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-bottom: 2px; }
+  .cover-meta-item span { font-size: 11px; color: var(--text); font-weight: 500; }
+  .cover-foot { background: var(--navy); padding: 10px 18mm; display: flex; align-items: center; gap: 6px; }
+  .cover-foot-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-right: 8px; flex-shrink: 0; }
+  .cover-foot-text { font-size: 11px; color: rgba(255,255,255,0.85); }
+
+  .cover-guide { margin-top: 28px; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+  .cover-guide-head { background: var(--navy); color: #fff; font-size: 10px; font-weight: 700; padding: 6px 12px; }
+  .cover-guide-body { padding: 10px 14px; font-size: 11px; line-height: 2; }
+  .cover-guide-body li { margin-left: 16px; }
+
+  .spacer { height: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ========== 表紙 ========== -->
+<div class="page">
+  <div class="cover-page">
+    <div class="cover-main">
+      <div class="cover-bar"></div>
+      <div class="cover-label">HEARING SHEET</div>
+      <div class="cover-client">株式会社三幸部品 様</div>
+      <div class="cover-brand">SANKO BUHIN CO., LTD.</div>
+      <div class="cover-title">事業内容・強み<br>ヒアリングシート</div>
+      <div class="cover-sub">Webサイトリニューアル用</div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <label>作成日</label>
+          <span>2026年6月23日</span>
+        </div>
+        <div class="cover-meta-item">
+          <label>ご提出期限</label>
+          <span>　　　　月　　　　日</span>
+        </div>
+        <div class="cover-meta-item">
+          <label>制作会社</label>
+          <span>株式会社ステージグループ</span>
+        </div>
+        <div class="cover-meta-item">
+          <label>担当者</label>
+          <span>小島 Megumi</span>
+        </div>
+      </div>
+
+      <div class="cover-guide">
+        <div class="cover-guide-head">ご記入にあたって</div>
+        <div class="cover-guide-body">
+          <ul>
+            <li>Webサイトに掲載する文章の元になる大切な情報です。できる限り具体的にご記入ください。</li>
+            <li>完璧な文章でなくて構いません。箇条書き・メモ書き・数字の羅列でも大丈夫です。</li>
+            <li><span style="color: var(--green); font-weight: 700;">緑色のセル</span>は事前にパンフレット・ヒアリングから把握している内容です。変更があれば修正してください。</li>
+            <li>わからない項目は空欄のままで構いません。「確認中」「後日連絡」と記入しても大丈夫です。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div class="cover-foot-label">Prepared by</div>
+      <div class="cover-foot-text">株式会社ステージグループ</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== P2: 事業内容 ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">事業内容・強みヒアリングシート ｜ 株式会社三幸部品様</span>
+    <span>p.2</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">1</div>
+    <div class="sh-body">
+      <div class="sh-title">事業内容</div>
+      <div class="sh-sub">BUSINESS CONTENT</div>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q1</span><span class="q-req">必須</span>現在手がけている加工の種類を教えてください</div>
+    <div class="q-hint">パンフレットに記載の内容を下記に記載しています。現在も同じ場合は「変更なし」と記入してください。追加・変更がある場合は修正をお願いします。</div>
+    <div class="check-grid col2">
+      <div class="check-item checked">
+        <div class="check-box"></div>
+        <div>ボルト加工</div>
+      </div>
+      <div class="check-item checked">
+        <div class="check-box"></div>
+        <div>板金・製缶</div>
+      </div>
+      <div class="check-item checked">
+        <div class="check-box"></div>
+        <div>冷間鍛造</div>
+      </div>
+      <div class="check-item checked">
+        <div class="check-box"></div>
+        <div>切削加工</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div>その他（下に記入）→</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div>パンフレットにあるが現在はやっていない（下に記入）→</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="answer-box short" contenteditable="true"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q2</span><span class="q-req">必須</span>最も得意・力を入れている加工分野はどれですか？</div>
+    <div class="q-hint">サイトで前面に打ち出したい「看板となる技術」を教えてください（複数可）</div>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q3</span><span class="q-req">必須</span>主に対応している業種・納品先の業種を教えてください</div>
+    <div class="q-hint">打ち合わせ時に「トラック部品・化学分野が中心、自動車部品はほぼなし」とお聞きしました。具体的な業種・製品があれば記載してください。</div>
+    <div class="q-prefill"><strong>確認済み：</strong>トラック部品・化学分野が中心 ／ 自動車部品はほぼ手がけていない ／ 製造機械の部品も対応可能</div>
+    <table class="q-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">業種・分野</th>
+          <th>具体的な製品・部品の例（わかる範囲で）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="pre">トラック部品</td><td></td></tr>
+        <tr><td class="pre">化学・プラント分野</td><td></td></tr>
+        <tr><td class="pre">製造機械の部品</td><td></td></tr>
+        <tr><td></td><td></td></tr>
+        <tr><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q4</span>主な設備・機械を教えてください</div>
+    <div class="q-hint">「〇〇機 ○台」「〇〇プレス機」など、設備の名前と台数を記入してください。設備の充実さはお客様への信頼性につながります。</div>
+    <div class="answer-box tall" contenteditable="true"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q5</span>対応できる最小ロット・最大ロットの目安はありますか？</div>
+    <div class="q-hint">「1個から対応可能」「試作品も受付」「大量生産対応」など</div>
+    <div class="answer-box short" contenteditable="true"></div>
+  </div>
+</div>
+
+
+<!-- ========== P3: 優位性・強み ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">事業内容・強みヒアリングシート ｜ 株式会社三幸部品様</span>
+    <span>p.3</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">2</div>
+    <div class="sh-body">
+      <div class="sh-title">優位性・強み</div>
+      <div class="sh-sub">STRENGTH &amp; ADVANTAGE</div>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-bottom: 14px;">
+    打ち合わせ時に「短納期・一貫生産体制・多様な分野への対応力・製造機械部品も対応可」とお聞きしました。
+    以下の質問でより具体的に教えていただけると、説得力のある文章が作成できます。
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q6</span><span class="q-req">必須</span>「短納期」について：通常どのくらいで納品できますか？</div>
+    <div class="q-hint">競合他社と比べて何が違うか、具体的な数字があれば教えてください</div>
+    <table class="q-table">
+      <thead>
+        <tr><th>項目</th><th>内容（例：通常3営業日〜／急ぎは翌日対応可）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>通常の納期目安</td><td></td></tr>
+        <tr><td>最短対応（急ぎの場合）</td><td></td></tr>
+        <tr><td>他社と比べて早い理由</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q7</span><span class="q-req">必須</span>「一貫生産」について：社内でどこまで対応できますか？</div>
+    <div class="q-hint">設計から出荷まで一貫して自社で行える強みがあれば教えてください</div>
+    <div class="check-grid col2">
+      <div class="check-item"><div class="check-box"></div><div>設計・図面対応</div></div>
+      <div class="check-item"><div class="check-box"></div><div>試作品対応</div></div>
+      <div class="check-item"><div class="check-box"></div><div>加工（社内）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>品質検査</div></div>
+      <div class="check-item"><div class="check-box"></div><div>表面処理（メッキ等）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>梱包・出荷</div></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="q-hint">外注している工程があれば記入してください（把握していれば）</div>
+    <div class="answer-box short" contenteditable="true"></div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q8</span><span class="q-req">必須</span>「これが他社にはできない」という技術・強みはありますか？</div>
+    <div class="q-hint">難しい形状・特殊な素材・精度が必要な加工など。実際にお客様から「ここにしか頼めない」と言われたエピソードがあれば理想的です。</div>
+    <div class="answer-box tall" contenteditable="true"></div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q9</span>創業年数・実績のアピールポイントを教えてください</div>
+    <div class="q-prefill"><strong>確認済み：</strong>設立 昭和50年1月10日（1975年）／ 創業約50年</div>
+    <div class="q-hint">「創業○年」を打ち出す以外に、実績として示せることがあれば記入してください。</div>
+    <div class="check-grid col2">
+      <div class="check-item"><div class="check-box"></div><div>取引先○社以上（数を記入→　　　社）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>累計納品数・生産実績（あれば→　　　）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>ISO・品質認証の取得（認証名→　　　　　）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>受賞・表彰歴（内容→　　　　　　　　　）</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== P4: 取引先・顧客・その他 ========== -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-brand">事業内容・強みヒアリングシート ｜ 株式会社三幸部品様</span>
+    <span>p.4</span>
+  </div>
+
+  <div class="sh">
+    <div class="sh-num">3</div>
+    <div class="sh-body">
+      <div class="sh-title">取引先・実績</div>
+      <div class="sh-sub">CLIENTS &amp; RESULTS</div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q10</span>Webサイトに取引先の会社名を掲載してもよいですか？</div>
+    <div class="q-prefill"><strong>パンフレット記載の取引先（現在も取引継続しているか確認が必要）：</strong><br>
+    いすゞテクノ㈱ / 三菱アルミニウム㈱ / 新明和工業㈱ / ㈱澤田精工 / ㈱スズテック / 三幸工業㈱ / ニシナ産業㈱ / ジャトコ㈱ / 光精工㈱ / ㈱静岡製作所 / 日本電産㈱ / ㈱ナゴヤコーポレーション</div>
+    <div class="check-grid col2" style="margin-top: 8px;">
+      <div class="check-item"><div class="check-box"></div><div>掲載OK（会社名のみ）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>掲載OK（ロゴも使用可）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>掲載不可</div></div>
+      <div class="check-item"><div class="check-box"></div><div>各社に確認が必要</div></div>
+    </div>
+    <div class="q-hint" style="margin-top: 8px;">掲載する場合、現在も取引継続中の会社のみ記載してください。追加・削除があれば修正をお願いします。</div>
+    <div class="answer-box short" contenteditable="true" placeholder="変更・追記があればこちらに"></div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q11</span>施工事例・製作事例として紹介できるものはありますか？</div>
+    <div class="q-hint">「こんな部品を作った」「こんな難しい依頼を解決した」など。写真があれば理想的です。</div>
+    <div class="check-grid col2">
+      <div class="check-item"><div class="check-box"></div><div>事例紹介できる（写真あり）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>事例紹介できる（写真なし・テキストのみ）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>事例紹介は難しい（企業秘密など）</div></div>
+      <div class="check-item"><div class="check-box"></div><div>検討中</div></div>
+    </div>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <div class="sh" style="margin-top: 24px;">
+    <div class="sh-num">4</div>
+    <div class="sh-body">
+      <div class="sh-title">その他・自由記入</div>
+      <div class="sh-sub">FREE COMMENT</div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q12</span>サイトを見た人に「一番伝わってほしいこと」は何ですか？</div>
+    <div class="q-hint">採用担当者・発注担当者それぞれに「まずこれを感じてほしい」という一言があれば教えてください。</div>
+    <table class="q-table">
+      <thead>
+        <tr><th>対象</th><th>伝わってほしいこと</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>求職者（採用）</td><td></td></tr>
+        <tr><td>発注担当者（コーポレート）</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-block">
+    <div class="q-label"><span class="q-no">Q13</span>その他、Webサイトに掲載したい情報・伝えたいことがあれば自由に記入してください</div>
+    <div class="answer-box tall" contenteditable="true"></div>
+  </div>
+
+  <div class="note-box">
+    ご記入いただいた内容は、Webサイトのテキスト・構成に反映いたします。<br>
+    ご不明な点は担当 小島（ステージグループ）までお気軽にご連絡ください。<br>
+    連絡先：
+  </div>
+</div>
+
+</body>
+</html>
